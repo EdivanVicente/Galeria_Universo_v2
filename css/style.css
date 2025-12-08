@@ -3763,6 +3763,7 @@ bottom: 7rem;
             padding-right: 200px;
             margin-left: -30px;
         }
+<<<<<<< HEAD
   
 
 /* =========================================================
@@ -4038,3 +4039,6 @@ bottom: 7rem;
   /* OVERRIDES por imagem: garantem lock total nesta faixa (sem drift de classes img_*) */
   #galleryModal .gallery-card[class*="img_"] .card-description-wrapper { bottom: 0.3rem !important; width: 18rem !important; max-width: 18rem !important; }
 }
+=======
+  
+>>>>>>> a59a749250a8689e70a814e473f5b5974e2ac46c
