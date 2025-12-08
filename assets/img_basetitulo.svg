@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 90">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #854ef5;
+        opacity: .3;
+      }
+    </style>
+  </defs>
+  <g id="Moldura">
+    <g>
+      <rect class="cls-1" width="900" height="90"/>
+      <rect class="cls-1" x="0" width="884.46" height="90"/>
+      <rect class="cls-1" x="0" width="868.93" height="90"/>
+      <rect class="cls-1" x="0" width="850.61" height="90"/>
+    </g>
+  </g>
+</svg>

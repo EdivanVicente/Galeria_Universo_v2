@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>Universo em Galeria</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+   
+</head>
+<body>
+    <!-- Botão de Fullscreen -->
+    <button class="btn-fullscreen" id="btnFullscreen" aria-label="Alternar Tela Cheia">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+        </svg>
+    </button>
+
+    <div class="container p-0">
+        
+        <header class="header-container mt-3">
+            <div class="header-row">
+                <!-- Botão Menu -->
+                <button class="btn-menu" id="btnOpenCredits" aria-label="Abrir créditos" data-bs-toggle="modal" data-bs-target="#menuModal">
+                    <img src="./assets/icone_menu.svg" alt="Menu" />
+                </button>
+
+                <h1 class="main-title"><strong>UNIVERSO EM GALERIA</strong></h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="row category-grid justify-content-center mb-2 gallery-row-first">
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="galaxias">
+                        <img src="./assets/thumb_galaxias.png" alt="Galáxias" loading="lazy"/>
+                        <p class="category-title">Galáxias</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="estrelas">
+                        <img src="./assets/thumb_estrelas.png" alt="Estrelas" loading="lazy"/>
+                        <p class="category-title">Estrelas</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="sistemas">
+                        <img src="./assets/thumb_sistemas.png" alt="Sistemas Planetários" loading="lazy"/>
+                        <p class="category-title long-title">Sistemas Planetários</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="planetas">
+                        <img src="./assets/thumb_planetas.png" alt="Planetas" loading="lazy"/>
+                        <p class="category-title">Planetas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row category-grid justify-content-center mt-2 gallery-row-second">
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="satelites">
+                        <img src="./assets/thumb_satelites.png" alt="Satélites Naturais" loading="lazy"/>
+                        <p class="category-title long-title">Satélites Naturais</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="corpos">
+                        <img src="./assets/thumb_corpos.png" alt="Outros Corpos Celestiais" loading="lazy"/>
+                        <p class="category-title long-title">Outros Corpos Celestiais</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-3 col-md-3 col-lg-3 mb-3 category-grid-item">
+                    <div class="category-card open-gallery" data-tema="exploracao">
+                        <img src="./assets/thumb_explora.png" alt="Observação e Exploração" loading="lazy"/>
+                        <p class="category-title long-title">Observação e Exploração</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+    </div> 
+
+    <!-- Modal Menu / Créditos -->
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered custom-popup-dialog">
+            <div class="modal-content custom-popup-content">
+                <button type="button" class="btn-close-custom-styled" data-bs-dismiss="modal" aria-label="Close">
+                    <img src="./assets/icone_fechar.svg" alt="Fechar" />
+                </button>
+                <div class="modal-body popup-body">
+                    <div class="row popup-row">
+                        <div class="col-12 col-md-7 box-wrapper box-wrapper-creditos">
+                            <h5 class="custom-popup-title">CRÉDITOS</h5>
+
+                            <div class="popup-caixa popup-caixa-creditos">
+                                <p class="popup-item direitos-autorais">
+                                    © MVT Educação. Todos os direitos reservados.
+                                </p>
+
+                                <p class="popup-item creditos-texto-formatado">
+                                    <strong class="text-uppercase">CONCEPÇÃO PEDAGÓGICA E COORDENAÇÃO DE AUTORIA</strong><br />
+                                    Ana Cláudia Rocha
+                                </p>
+
+                                <p class="popup-item creditos-texto-formatado">
+                                    <strong class="text-uppercase">GERENTE PEDAGÓGICA EDITORIAL</strong><br />
+                                    Marcela Machado
+                                </p>
+                                
+                                <p class="popup-item creditos-texto-formatado creditos-producao">
+                                    <strong class="text-uppercase">PRODUÇÃO</strong><br />
+                                    Edivan Vicente
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mb-3 box-wrapper box-wrapper-utilizar">
+                            <p class="custom-popup-title-utilizar">COMO UTILIZAR</p>
+                            
+                            <div class="popup-caixa popup-caixa-utilizar">
+                                <p class="popup-subtitle">Navegação Principal</p>
+                                <p class="popup-item">
+                                    Clique nas imagens (Galáxias, Estrelas, etc.) para abrir a
+                                    galeria de cada tema.
+                                </p>
+                                <p class="popup-subtitle">Navegação na Galeria</p>
+                                <p class="popup-item">
+                                    Use as setas laterais (◀ ▶) ou as teclas de seta do seu
+                                    teclado para percorrer as imagens do tema.
+                                </p>
+                                <p class="popup-subtitle">Fechamento</p>
+                                <p class="popup-item">
+                                    Para sair de qualquer modal, clique no ícone **X** no canto
+                                    superior direito ou pressione a tecla **ESC**.
+                                </p>
+                                <p class="popup-subtitle">Tela Cheia</p>
+                                <p class="popup-item">
+                                    Clique no ícone de expansão ao lado do menu para entrar no modo tela cheia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Galeria -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="gallery-title">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="gallery-card" role="document">
+                    
+                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Fechar">
+                        <img src="./assets/icone_fechar.svg" alt="Fechar" />
+                    </button>
+
+                    <button type="button" class="nav-arrow left" aria-label="Imagem Anterior">
+                        <img src="./assets/icone_anterior.svg" alt="Anterior" />
+                    </button>
+                    <button type="button" class="nav-arrow right" aria-label="Próxima Imagem">
+                        <img src="./assets/icone_prox.svg" alt="Próximo" />
+                    </button>
+                    
+                    <div class="card-content-wrapper">
+                        <div class="card-title-wrapper">
+                            <h2 class="card-title" id="gallery-title">Título da Imagem</h2>
+                        </div>
+                        
+                        <div class="image-wrapper">
+                            <img id="main-image" src="" alt="Descrição da imagem exibida na galeria" />
+                            <div class="vertical-label"></div>
+                        </div>
+
+                        <div class="card-description-wrapper">
+                            <p class="card-description">Descrição detalhada da imagem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img src="./assets/img_logo.svg" alt="Abre Palavra" class="open-word-logo-global" onerror="this.style.display='none'"/>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
