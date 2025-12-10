@@ -821,7 +821,7 @@ modal creditos a51 portrait
    ========================================================= */
 
 /* 992–1199.98 */
-@media (min-width: 992px) and (max-width: 1199.98px) {
+@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: portrait) {
   #galleryModal .modal-content .gallery-card {
     width: 60rem;
     max-width: 60rem;
@@ -1159,59 +1159,752 @@ modal creditos a51 portrait
    ========================================================= */
 @media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
   /* Grade em 2 colunas, centralizada, com espaçamento consistente */
+ .header-container {
+    width: 30rem;
+    margin-left: 2rem;
+    height: 3.2rem;
+  }
   .category-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
     justify-items: center;
-    align-items: start;
-    width: 100%;
-    max-width: 991.98px;
     margin: 1.875rem auto 1.5rem;
+    max-width: 991px;
     padding: 0;
   }
-
-  /* Cada item ocupa a coluna; sem margens extras */
   .category-grid-item {
     width: 100%;
     max-width: 240px;
-    margin: 0; /* remove qualquer margin herdada */
+    margin: 0 !important;
+    margin-bottom: 1rem !important;
     position: relative;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
   }
-
-  /* Cartão mantém proporção quadrada e escala que você usa */
+  .category-grid-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
   .category-card {
-    width: 100%;
     max-width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    background: none;
   }
-
-  /* Título do cartão: pequena correção de largura e posição */
   .category-title {
-    bottom: -2rem; /* levemente mais baixo para respirar */
+    bottom: -2rem;
     font-size: 0.95rem;
     width: 70%;
-    max-width: 100%;
   }
-
-  /* Títulos longos: ajuste de largura e fonte mais contida */
   .category-title.long-title {
     bottom: -2rem;
     font-size: 0.8rem;
     width: 85%;
   }
+/* =======================================
+    Modal credito tablet portrait 
+======================================= */
 
-  /* Se houver quantidade ímpar de itens, o último fica centralizado na linha */
-  .category-grid-item:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    justify-self: center;
+
+.custom-popup-content {
+  width: 90vw; 
+  max-width: none; 
+  min-height: 90vh; 
+  padding: 30px;
+}
+
+
+.popup-row {
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  top: 1rem;
+}
+
+
+.btn-close-custom-styled {
+  top: 3rem;
+  right: 2rem;
+  width: 70px;
+  height: 70px;
+}
+.btn-close-custom-styled img {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+.custom-popup-title {
+  left: 0; 
+  top: 21px;
+  width: 8.125rem;
+   font-size: 1.1rem;
+}
+.custom-popup-title-utilizar {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  font-size: 1.1rem;
+  margin: 0;
+   left: 0.5rem; 
+  top: 21px;
+  width: 11.125rem;
+}
+
+.popup-caixa-creditos { 
+  width: 40rem;
+  max-width: none; 
+  top: 20px; 
+  margin: 0 auto 20px auto; 
+}
+.popup-caixa-utilizar {
+  font-size: 1rem;
+  overflow-y: auto; 
+  width: 40rem; 
+  max-width: none; 
+  top: 20px; 
+  margin: 0 auto 20px auto;
+}
+
+.popup-subtitle {
+  font-size: 1rem; 
+  font-weight: 600;
+  color: #6d3ba9;
+  text-align: center;
+}
+.popup-item,
+.creditos-texto-formatado {
+  font-size: 1rem;
+  color: #6d3ba9;
+  text-align: center;
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
+}
+
+
+.popup-caixa-creditos::before {
+  width: calc(100% - 7.75rem); 
+}
+.popup-caixa-utilizar::before {
+  width: calc(100% - 10.8rem); 
+}
+
+
+/* =======================================
+    Modal galeria tablet portrait 
+======================================= */
+  #galleryModal .gallery-card {
+    width: 96vw;
+    max-width: none;
+    min-height: 85vh;
+    max-height: 90vh;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #galleryModal .card-title-wrapper {
+    
+    top: 11.7rem;
+    left: 6.8rem;
+    z-index: 10;
+    width: auto;  
+  }
+    #galleryModal .card-title-wrapper.long-title {
+    
+    top: 11.7rem;
+    left: 6rem;
+    z-index: 10;
+    width: auto;  
+    
+  }
+  #galleryModal .card-title {
+    font-size: 1.6rem;
+  }
+  #galleryModal .card-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 5;
+  }
+  #galleryModal .image-wrapper {
+    width: 100%;
+    max-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  #galleryModal .image-wrapper img {
+    max-width: 90%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+  }
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 10.2rem;
+    right: 2.2rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    z-index: 20;
+  }
+  #galleryModal .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.5rem;
+    height: 4.5rem;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #galleryModal .nav-arrow.left {
+    left: 0;
+  }
+  #galleryModal .nav-arrow.right {
+    right: 0;
+  }
+  #galleryModal .card-description-wrapper {
+    position: absolute;
+    bottom: 12.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 34rem;  
+
+   font-size: 2rem;
+    z-index: 10;
+  }
+    #galleryModal .card-description {
+   
+  
+   font-size: 1rem;
+
+  }
+  
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 11.9rem;
+    max-width: 34rem;
+  }
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 12rem;
+    max-width: 34rem;
+  }
+  #galleryModal .vertical-label {
+    position: absolute;
+    bottom: 3.5rem;
+    right: 4.5rem;
+    font-size: 0.7rem;
+    max-width: 18rem;
+    text-align: right;
+  }
+/* ===============================================
+      ESPECIFICOS LABEL TABLET POTRAIT
+=============================================== */
+  #galleryModal .gallery-card.img_g2f4 .card-description-wrapper {
+    bottom: 14rem;
+    max-width: 35rem;
+  }
+ 
+  #galleryModal .gallery-card.img_g3f2 .card-description-wrapper {
+    bottom: 12rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g4f4 .card-description-wrapper {
+    bottom: 13rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g4f5 .card-description-wrapper {
+    bottom: 14rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g4f6 .card-description-wrapper {
+    bottom: 14rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g4f7 .card-description-wrapper {
+    bottom: 13rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g4f11 .card-description-wrapper {
+    bottom: 13rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g4f12 .card-description-wrapper {
+    bottom: 12rem;
+    max-width: 35rem;
+  }
+  #galleryModal .gallery-card.img_g5f3 .card-description-wrapper {
+    bottom: 12rem;
+    max-width: 36rem;
+    text-align: left;
+  }
+  #galleryModal .gallery-card.img_g5f4 .card-description-wrapper {
+    bottom: 13rem;
+    max-width: 35.5rem;
+  } 
+  #galleryModal .gallery-card.img_g5f6 .card-description-wrapper {
+    bottom: 13rem;
+    max-width: 35.5rem;
+  }
+  #galleryModal .gallery-card.img_g6f3 .card-description-wrapper {
+    bottom: 12rem;
+    max-width: 35.5rem;
+  }
+  #galleryModal .gallery-card.img_g7f3 .card-description-wrapper {
+    bottom: 13rem;
+    max-width: 35.5rem;
+  }
+/* ===============================================
+      VERTICAL LABEL TABLET POTRAIT
+=============================================== */
+  #galleryModal .gallery-card.img_g2f4 .vertical-label.extra-long-credit {
+    max-width: 34.625rem;
+    font-size: 0.7rem;
+  }
+  #galleryModal .gallery-card.img_g4f5 .vertical-label.extra-long-credit {
+    max-width: 33.625rem;
+    font-size: 0.7rem;
+  }
+  #galleryModal .gallery-card.img_g4f6 .vertical-label.extra-long-credit {
+    max-width: 33.625rem;
+    font-size: 0.7rem;
+  }
+  #galleryModal .gallery-card.img_g5f3 .vertical-label.long-credit {
+    max-width: 18.625rem;
+    font-size: 0.7rem;
+    right: 4rem;
+  }
+
+
+}
+
+
+
+/* =======================================================
+   tablet landscape 
+   ======================================================= */
+
+   @media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+
+
+  .header-container{
+ 
+    width: 40rem;
+    margin-left: 2rem;
+    
+  }
+  .header-row{
+    width: 40rem;
+   
+  }
+  .btn-menu img{
+    width: 3rem;
+    height: 3rem;
+  }
+  .main-title{
+    font-size: 2rem;
+  }
+
+  .category-card,
+  .category-grid-item {
+    width: 100%;
+    max-width: 220px;
+    top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-grid {
+    justify-content: center;
+    gap: 1.25rem;
+
+
+  }
+  /* ===========================================
+      MODAL CREDITO LANDSCAPE TABLET 
+=========================================== */
+
+  .custom-popup-content {
+    width: 95vw;
+    max-width: 850px;
+    min-height: 90vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+  }
+
+
+  .popup-row {
+    flex-direction: row;
+    gap: 15px;
+    width: 90%;
+    height: 85%;
+    margin: 0 auto;
+    padding: 15px 0;
+    align-items: flex-start;
+    background: url("../assets/background.jpg") center center / cover no-repeat;
+    border: 5px solid #fff;
+    border-radius: 10px;
+    top: 3.5rem;
+  }
+  
+  .box-wrapper-creditos {
+    width: 45%;
+  }
+  .box-wrapper-utilizar {
+    width: 40%;
+  }
+  
+
+  .custom-popup-title {
+    font-size: 1.2rem;
+    padding: 0.5rem 0.8rem;
+    width: 8rem;
+    height: 2.5rem;
+    transform: translateY(20px);
+    
+    
+  }
+  .custom-popup-title-utilizar {
+    font-size: 1rem;   
+    width: 10rem;
+    height: 2.5rem;
+    transform: translateY(20px);
+  }
+  
+
+  .popup-caixa-creditos,
+  .popup-caixa-utilizar {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
+  
+
+  .popup-caixa-creditos {
+    
+    max-height: calc(100vh - 100px);
+  }
+  .popup-caixa-utilizar {
+    overflow-y: auto;
+    max-height: calc(85vh - 140px);
+  }
+  
+  .popup-item,
+  .creditos-texto-formatado {
+  
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+
+  .popup-subtitle {
+
+    font-weight: 700;
+    color: #6d3ba9;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  .popup-caixa-creditos::before {
+    width: calc(100% - 94px);
+  }
+  .popup-caixa-utilizar::before {
+    width: calc(100% - 144px);
+  }
+
+  
+  .btn-close-custom-styled {
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
+    background: none;
+    border: none;
+    width: 60px;
+    height: 60px;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .btn-close-custom-styled img {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+#menuModal .modal-content .box-wrapper-creditos > .custom-popup-title,
+#menuModal .modal-content .box-wrapper-utilizar > .custom-popup-title-utilizar {
+  position: relative;  
+  top: 0;              
+
+  transform: none;
+  margin: 0;           
+  padding: 0.25rem 0.6rem 0; 
+  border-bottom: none; 
+  z-index: 6;         
+}
+/* ========================================================
+                MODAL GALERY TABLET 
+======================================================== */
+
+  #galleryModal .gallery-card {
+    width: 96vw;
+    max-width: none;
+    min-height: 85vh;
+    max-height: 90vh;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #galleryModal .card-title-wrapper {
+    
+    top: 6.2rem;
+    left: 15rem;
+    z-index: 10;
+    width: auto;  
+    
+  } 
+   #galleryModal .card-title-wrapper.long-title {   
+    top: 6.2rem;
+    left: 15.9rem;
+    z-index: 10;
+    width: auto;  
+  }
+  #galleryModal .card-title {
+    font-size: 1.6rem;
+  }
+
+  #galleryModal .card-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 5;
+  }
+  #galleryModal .image-wrapper {
+    width: 100%;
+    max-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  #galleryModal .image-wrapper img {
+    max-width: 90%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+  }
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 5.2rem;
+    right: 11.2rem;
+    width: 4rem;
+    height: 4rem;
+    z-index: 20;
+  }
+  #galleryModal .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.5rem;
+    height: 4.5rem;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #galleryModal .nav-arrow.left {
+    left: 4rem;
+  }
+  #galleryModal .nav-arrow.right {
+    right: 4rem;
+  }
+  #galleryModal .card-description-wrapper {
+    position: absolute;
+    bottom: 6.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 32.6rem;  
+    z-index: 10;
+  }
+  #galleryModal .card-description {
+    font-size: 0.9rem;
+  }
+  
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 6.5rem;
+    max-width: 32.6rem;
+  }
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 6rem;
+    max-width: 32.6rem;
+  }
+  #galleryModal .vertical-label {
+    position: absolute;
+    bottom: 0;
+    right: 13.5rem;
+    font-size: 0.8rem;
+    max-width: 18rem;
+    text-align: right;
+  }  
+  #galleryModal .vertical-label.long-credit {
+    position: absolute;
+    bottom: 0;
+    right: 13.5rem;
+    font-size: 0.8rem;
+    max-width: 30rem;
+    text-align: right;
+  }  
+  #galleryModal .vertical-label.extra-long-credit {
+    position: absolute;
+    bottom: 0;
+    right: 13.5rem;
+    font-size: 0.8rem;
+    max-width: 30rem;
+    text-align: right;
+  }
+/* ===============================================
+      ESPECIFICOS LABEL TABLET POTRAIT
+=============================================== */
+  #galleryModal .gallery-card.img_g2f4 .card-description-wrapper {
+    bottom: 8.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g2f5 .card-description-wrapper {
+    bottom: 7.2rem;
+    max-width: 32rem;
+  } 
+  #galleryModal .gallery-card.img_g3f2 .card-description-wrapper {
+      bottom: 7.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g4f3 .card-description-wrapper {
+      bottom: 7.2rem;
+    max-width: 32rem;
+  }  #galleryModal .gallery-card.img_g4f4 .card-description-wrapper {
+      bottom: 7.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g4f5 .card-description-wrapper {
+     bottom: 8.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g4f6 .card-description-wrapper {
+    bottom: 8.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g4f7 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g4f11 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g4f12 .card-description-wrapper {
+    bottom: 6.7rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g5f3 .card-description-wrapper {
+     bottom: 6.9rem;
+    max-width: 33rem;
+    text-align: center;
+  }
+  #galleryModal .gallery-card.img_g5f4 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  } 
+  #galleryModal .gallery-card.img_g5f6 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g6f3 .card-description-wrapper {
+      bottom: 6.9rem;
+    max-width: 32rem;
+  }
+  #galleryModal .gallery-card.img_g7f3 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  } 
+   #galleryModal .gallery-card.img_g7f2 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  }  
+   #galleryModal .gallery-card.img_g7f5 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  }   
+  #galleryModal .gallery-card.img_g7f6 .card-description-wrapper {
+     bottom: 7.2rem;
+    max-width: 32rem;
+  }
+/* ===============================================
+      VERTICAL LABEL TABLET LANDSCAPE
+=============================================== */
+  #galleryModal .gallery-card.img_g2f4 .vertical-label.extra-long-credit {
+    max-width: 30.625rem;
+    font-size: 0.7rem;
+  } 
+  #galleryModal .gallery-card.img_g4f2 .vertical-label.long-credit {
+    max-width: 30.625rem;
+    font-size: 0.7rem;
+    
+  }
+  #galleryModal .gallery-card.img_g4f5 .vertical-label.extra-long-credit {
+    max-width: 30.625rem;
+    font-size: 0.7rem;
+  }
+  #galleryModal .gallery-card.img_g4f6 .vertical-label.extra-long-credit {
+    max-width: 30.625rem;
+    font-size: 0.7rem;
+  }
+  #galleryModal .gallery-card.img_g5f3 .vertical-label.long-credit {
+    max-width: 31.625rem;
+    font-size: 0.6rem;
+    
   }
 }
 
+@media (orientation: landscape) {
+  #menuModal .modal-content .popup-row {
+    gap: 0.25rem;
+  }
+
+  #menuModal .modal-content .box-wrapper-creditos > .custom-popup-title,
+  #menuModal .modal-content .box-wrapper-utilizar > .custom-popup-title-utilizar {
+    padding-bottom: 0;
+  }
+
+  #menuModal .modal-content .box-wrapper-creditos > .popup-caixa-creditos,
+  #menuModal .modal-content .box-wrapper-utilizar > .popup-caixa-utilizar {
+    padding-top: 0.6rem;
+  }
+    
+   }
 /* =======================================================
    iPhone SE — LANDSCAPE (380px)
    ======================================================= */
