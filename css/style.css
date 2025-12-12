@@ -1215,11 +1215,108 @@ main {
 }
 
 @media (min-width: 992px) {
-  .category-grid-item { max-width: 20rem; } 
+
+  .category-grid { 
+    justify-content: center; 
+    gap: 2rem; 
+    margin: 2.4rem auto; 
+    padding: 0 1rem; 
+  }
+  
+  .category-grid-item { 
+    width: 100%; 
+    max-width: 20rem; 
+    flex-shrink: 0; 
+  }
+
+  .category-card { max-width: 100%; }
+  .category-title { max-width: 16rem; font-size: 1.7rem; bottom: -2.4rem; }
+  .category-title.long-title { font-size: 1.3rem; width: 16rem; }
+/* ===============================================
+             modal credito 992px
+========================================= */ */
+  .custom-popup-content { width: 95vw; max-width: 85rem; padding: 2.4rem; }
+  .popup-row {
+    flex-direction: row;
+    width: 80%;
+    top: 10.4rem;
+    gap: 2.4rem;
+  }
+  .box-wrapper-creditos { width: 45%; }
+  .box-wrapper-utilizar { width: 41%; }
+  
+  .custom-popup-title, .custom-popup-title-utilizar {
+    font-size: 1.4rem;
+    width: 16rem;
+    height: 3.2rem;
+    top: 0;
+    margin: 0;
+  }
+  
+  .popup-item { font-size: 1rem; }
+  .btn-close-custom-styled { width: 5.4rem; height: 6.4rem; top: 7rem; right: 6.4rem; }
+  .btn-close-custom-styled img { width: 5.6rem; }
+    .popup-caixa-creditos::before {
+    width: calc(100% - 15.39rem);
+  }
+  .popup-caixa-utilizar::before {
+    width: calc(100% - 15.39rem);
+  }
+
+  /*================================================
+              modal galeria 992px 
+  ================================================= */
+
+  #galleryModal .card-title-wrapper { left: 25rem; top:4.3rem;}
+  #galleryModal .card-title {  left: 16.5rem; font-size: 2rem;  }
+
+  #galleryModal .card-title-wrapper.long-title { left: 24.4rem; } 
+  #galleryModal .card-title-wrapper.extra-long-title { left: 24.1rem; } 
+  
+  #galleryModal .close-btn {top: 5.4rem; right: 21.2rem; width: 4.9rem; height: 4rem; }
+  
+  #galleryModal .card-description { font-size: 1.3rem; }
+  #galleryModal .card-description-wrapper { bottom: 8rem; max-width: 45rem; }
+  #galleryModal .card-description-wrapper.long-description { bottom: 9rem; max-width: 45rem; }
+  #galleryModal .card-description-wrapper.extra-long-description { bottom: 9.2rem; max-width: 45rem; }
+ #galleryModal .nav-arrow { width: 5.5rem; height: 7.2rem; z-index: 20; top:40% }
+ 
+  #galleryModal .vertical-label { right: 24.8rem; font-size: 0.8rem;width: 44rem;}
+/* =========================================
+      Ajustes especificos 992px
+========================================= */
+  #galleryModal .gallery-card.img_g2f4 .card-description-wrapper { bottom: 10rem; max-width: 45rem;}
+
+
+  #galleryModal .gallery-card.img_g4f3 .card-description-wrapper { bottom: 10rem; max-width: 45rem; }
+  #galleryModal .gallery-card.img_g4f4 .card-description-wrapper { bottom: 9rem; max-width: 45rem; }
+  #galleryModal .gallery-card.img_g4f12 .card-description-wrapper { bottom: 9rem; max-width: 45rem; }
+ 
+  #galleryModal .gallery-card.img_g4f7 .card-description-wrapper{ bottom: 9rem; max-width: 45rem; }
+  #galleryModal .gallery-card.img_g4f11 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g6f1 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g7f6 .card-description-wrapper { bottom: 9rem; max-width: 45rem; }
+  #galleryModal .gallery-card.img_g5f4 .card-description-wrapper { bottom: 10.5rem; max-width: 45rem; }
+  #galleryModal .gallery-card.img_g4f5 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g4f6 .card-description-wrapper,
+  
+  #galleryModal .gallery-card.img_g6f3 .card-description-wrapper { bottom:9rem; max-width: 45rem; }
+  #galleryModal .gallery-card.img_g7f2 .card-description-wrapper { bottom:10rem; max-width: 45rem; }
+  
+  #galleryModal .gallery-card.img_g5f1 .card-description-wrapper { left: 0; bottom: 9rem; max-width: 45rem; padding: 1.5rem;}
+  #galleryModal .gallery-card.img_g5f3 .card-description-wrapper { bottom: 9rem; max-width: 45rem; text-align: center;}
+  #galleryModal .gallery-card.img_g5f6 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g7f3 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g7f5 .card-description-wrapper { bottom: 9rem; max-width: 45rem; }
+
+}
+
+
+
 
 
   
-}
+
 
 /* =========================================================
    MEDIA QUERY: DESKTOP BASE (1200px+)
@@ -1460,9 +1557,15 @@ main {
 /* Novo: 1400px+ — tela grande (ex: 22") */
 @media (min-width: 1400px) {
   .category-grid-item { max-width: 25rem; } /* 300px */
+   #galleryModal .card-title-wrapper { top: 4.5rem; left: 26.5rem; }
+  #galleryModal .card-title-wrapper.long-title { left: 26.5rem; }
+  #galleryModal .card-title-wrapper.extra-long-title { left: 26rem; }
+  #galleryModal .card-title { font-size: 3rem; }
+  #galleryModal .close-btn { top: 4.5rem; right: 18.9rem; width: 6.4rem; height: 6.4rem; }
+
 }
 
 /* Opcional: 1800px+ — ultrawide */
 @media (min-width: 1800px) {
-  .category-grid-item { max-width: 25rem; } /* 330px */
+  .category-grid-item { max-width: 25rem;border: 1px solid red; } /* 330px */
 }
