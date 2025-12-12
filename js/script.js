@@ -284,6 +284,10 @@ const galleryData = {
   },
 };
 
+// Dados das galerias
+// (mantido exatamente como você enviou)
+// ...
+
 let currentTheme = null;
 let currentIndex = 0;
 
@@ -299,7 +303,6 @@ function preloadAdjacentImages(theme, index) {
 
 function updateGallery() {
   if (!currentTheme) return;
-
   const themeData = galleryData[currentTheme];
   const item = themeData.images[currentIndex];
   const totalImages = themeData.images.length;
@@ -314,16 +317,15 @@ function updateGallery() {
   if (galleryCard) {
     const currentClasses = Array.from(galleryCard.classList);
     const classesToKeep = currentClasses.filter(c => !c.match(/^img_g\d+f\d+$/));
-    
     galleryCard.className = classesToKeep.join(' ');
-
     if (uniqueImageClass) {
-        galleryCard.classList.add(uniqueImageClass);
+      galleryCard.classList.add(uniqueImageClass);
     }
   }
 
   const isSvg = item.src.toLowerCase().endsWith('.svg');
-  mainImage.alt = item.caption.split(".")[0] || themeData.title;
+  // CORREÇÃO: concatenar corretamente o alt
+  mainImage.alt = `${themeData.title} — ${item.caption.split(".")[0]}`;
 
   if (isSvg) {
     mainImage.classList.add('svg-file');
@@ -333,27 +335,24 @@ function updateGallery() {
 
   const galleryTitle = document.getElementById("gallery-title");
   galleryTitle.textContent = themeData.title;
-  
-  const titleWrapper = galleryTitle.closest('.card-title-wrapper');
 
+  const titleWrapper = galleryTitle.closest('.card-title-wrapper');
   const titleText = themeData.title;
   const wordCount = titleText.trim().split(/\s+/).length;
-  
-  if (titleWrapper) {
-      titleWrapper.classList.remove('long-title', 'extra-long-title');
 
-      if (wordCount >= 2) {
-          titleWrapper.classList.add('long-title');
-      }
-      
-      if (wordCount >= 3) {
-          titleWrapper.classList.add('extra-long-title');
-      }
+  if (titleWrapper) {
+    titleWrapper.classList.remove('long-title', 'extra-long-title');
+    if (wordCount >= 2) {
+      titleWrapper.classList.add('long-title');
+    }
+    if (wordCount >= 3) {
+      titleWrapper.classList.add('extra-long-title');
+    }
   }
 
   document.querySelector(".card-description").textContent = item.caption;
-  const descriptionWrapper = document.querySelector(".card-description-wrapper");
 
+  const descriptionWrapper = document.querySelector(".card-description-wrapper");
   if (item.caption && item.caption.length > 190) {
     descriptionWrapper.classList.add("extra-long-description");
     descriptionWrapper.classList.remove("long-description", "short-description");
@@ -366,8 +365,8 @@ function updateGallery() {
   }
 
   const verticalLabel = document.querySelector(".vertical-label");
+  // CORREÇÃO: fallback seguro
   verticalLabel.textContent = item.credit || "";
-
   verticalLabel.style.display = "none";
   verticalLabel.offsetHeight;
   verticalLabel.style.display = "block";
@@ -384,14 +383,13 @@ function updateGallery() {
 
   const leftArrow = document.querySelector(".nav-arrow.left");
   const rightArrow = document.querySelector(".nav-arrow.right");
-
   if (leftArrow && rightArrow) {
     if (totalImages <= 1) {
       leftArrow.style.display = 'none';
       rightArrow.style.display = 'none';
     } else {
-      leftArrow.style.display = currentIndex === 0 ? 'none' : 'flex'; 
-      rightArrow.style.display = currentIndex === totalImages - 1 ? 'none' : 'flex'; 
+      leftArrow.style.display = currentIndex === 0 ? 'none' : 'flex';
+      rightArrow.style.display = currentIndex === totalImages - 1 ? 'none' : 'flex';
     }
   }
 
@@ -441,7 +439,6 @@ document.body.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   const galleryModal = document.getElementById("galleryModal");
   if (!galleryModal.classList.contains("show")) return;
-
   if (e.key === "ArrowLeft") {
     goToPrev();
   } else if (e.key === "ArrowRight") {
@@ -451,78 +448,109 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-
-//
 // 🔥 FECHAR QUALQUER MODAL AO CLICAR FORA DO CONTEÚDO
-//
 document.querySelectorAll(".modal").forEach((modal) => {
-    modal.addEventListener("mousedown", function (e) {
-        const dialog = modal.querySelector(".modal-dialog");
-
-        if (dialog && !dialog.contains(e.target)) {
-            const instance = bootstrap.Modal.getInstance(modal);
-            instance?.hide();
-        }
-    }); 
+  modal.addEventListener("mousedown", function (e) {
+    const dialog = modal.querySelector(".modal-dialog");
+    if (dialog && !dialog.contains(e.target)) {
+      const instance = bootstrap.Modal.getInstance(modal);
+      instance?.hide();
+    }
+  });
 });
-// logica full screem
- document.addEventListener('DOMContentLoaded', () => {
-            const btnFullscreen = document.getElementById('btnFullscreen');
-            const iconPath = btnFullscreen.querySelector('path');
 
-            // Desenhos dos ícones (SVG paths)
-            const iconExpand = "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
-            const iconCompress = "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
+// Lógica Fullscreen (mantida), com classe is-fullscreen para travar estilos
+document.addEventListener('DOMContentLoaded', () => {
+  const btnFullscreen = document.getElementById('btnFullscreen');
+  if (!btnFullscreen) return;
 
-            function toggleFullScreen() {
-                if (!document.fullscreenElement &&    // Padrão W3C
-                    !document.mozFullScreenElement && // Firefox
-                    !document.webkitFullscreenElement && // Chrome, Safari e Opera
-                    !document.msFullscreenElement) {  // IE/Edge
-                    
-                    // Entrar em tela cheia
-                    if (document.documentElement.requestFullscreen) {
-                        document.documentElement.requestFullscreen();
-                    } else if (document.documentElement.msRequestFullscreen) {
-                        document.documentElement.msRequestFullscreen();
-                    } else if (document.documentElement.mozRequestFullScreen) {
-                        document.documentElement.mozRequestFullScreen();
-                    } else if (document.documentElement.webkitRequestFullscreen) {
-                        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                    }
-                    // Muda ícone para 'comprimir'
-                    if(iconPath) iconPath.setAttribute('d', iconCompress);
+  const iconPath = btnFullscreen.querySelector('path');
+  const iconExpand = "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
+  const iconCompress = "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
 
-                } else {
-                    // Sair de tela cheia
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    }
-                    // Muda ícone para 'expandir'
-                    if(iconPath) iconPath.setAttribute('d', iconExpand);
-                }
-            }
+  function setFullscreenClass(on) {
+    const root = document.documentElement;
+    if (on) root.classList.add('is-fullscreen');
+    else root.classList.remove('is-fullscreen');
+  }
 
-            // Atualiza o ícone caso o usuário saia com ESC
-            function updateIconOnStateChange() {
-                if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-                     if(iconPath) iconPath.setAttribute('d', iconExpand);
-                } else {
-                     if(iconPath) iconPath.setAttribute('d', iconCompress);
-                }
-            }
+  function toggleFullScreen() {
+    const isFS =
+      document.fullscreenElement ||
+      document.mozFullScreenElement ||
+      document.webkitFullscreenElement ||
+      document.msFullscreenElement;
 
-            btnFullscreen.addEventListener('click', toggleFullScreen);
-            
-            // Listeners para detectar mudança de estado (ex: apertar ESC)
-            document.addEventListener('fullscreenchange', updateIconOnStateChange);
-            document.addEventListener('webkitfullscreenchange', updateIconOnStateChange);
-            document.addEventListener('mozfullscreenchange', updateIconOnStateChange);
-            document.addEventListener('MSFullscreenChange', updateIconOnStateChange);
-        });
+    if (!isFS) {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      }
+      if (iconPath) iconPath.setAttribute('d', iconCompress);
+      setFullscreenClass(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+      if (iconPath) iconPath.setAttribute('d', iconExpand);
+      setFullscreenClass(false);
+    }
+  }
+
+  function updateIconOnStateChange() {
+   
+const on = !!(document.fullscreenElement ||
+              document.webkitIsFullScreen ||
+              document.mozFullScreen ||
+              document.msFullscreenElement);
+
+
+    if (iconPath) iconPath.setAttribute('d', on ? iconCompress : iconExpand);
+    setFullscreenClass(on);
+  }
+
+  btnFullscreen.addEventListener('click', toggleFullScreen);
+  document.addEventListener('fullscreenchange', updateIconOnStateChange);
+  document.addEventListener('webkitfullscreenchange', updateIconOnStateChange);
+  document.addEventListener('mozfullscreenchange', updateIconOnStateChange);
+  document.addEventListener('MSFullscreenChange', updateIconOnStateChange);
+});
+
+// === BP LOCK: marca o breakpoint atual no <html> ===
+(function bpLock() {
+  function applyBpLock() {
+    const w = window.innerWidth;
+    const root = document.documentElement;
+    root.classList.remove('lock-bp-mobile','lock-bp-tab-p','lock-bp-992','lock-bp-1200','lock-bp-1800');
+    if (w < 768) root.classList.add('lock-bp-mobile');
+    else if (w < 992) root.classList.add('lock-bp-tab-p');
+    else if (w < 1200) root.classList.add('lock-bp-992');
+    else if (w < 1800) root.classList.add('lock-bp-1200');
+    else root.classList.add('lock-bp-1800');
+  }
+  applyBpLock();
+  window.addEventListener('resize', applyBpLock);
+})();
+
+// === FULLSCREEN: garante a classe is-fullscreen e compatibilidade ===
+(function markFullscreen() {
+  function markFS() {
+    const on = !!(document.fullscreenElement || document.webkitFullscreenElement ||
+                  document.mozFullScreenElement || document.msFullscreenElement);
+    document.documentElement.classList.toggle('is-fullscreen', on);
+  }
+  ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange']
+    .forEach(ev => document.addEventListener(ev, markFS));
+  markFS(); // inicial
+})();

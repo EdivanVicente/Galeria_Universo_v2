@@ -1371,7 +1371,7 @@ main {
   /*================================================
           MODAL GALERIA 992px 
   ================================================= */
-
+  #galleryModal .gallery-card { width: 96vw; max-width: none; min-height: 85vh; }
   #galleryModal .card-title-wrapper { left: 25rem; top:4.3rem;}
   #galleryModal .card-title {  left: 16.5rem; font-size: 2rem;  }
 
@@ -1426,7 +1426,7 @@ main {
 /* =========================================================
    MEDIA QUERY: DESKTOP BASE (1200px+)
    ========================================================= */
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (max-width: 1399.98px) {
 
   .header-container { 
     width: 64rem; 
@@ -1589,7 +1589,7 @@ main {
 ===================================================== */ 
   #galleryModal .gallery-card {
     width: 120rem;
-    max-width: 120rem;
+    max-width: 1200px;
     margin: 0 auto;
     min-height: 85vh;
     position: relative;          
@@ -1659,7 +1659,8 @@ main {
 
 
 /* Novo: 1400px+ — tela grande (ex: 22") */
-@media (min-width: 1400px) {
+@media (min-width: 1400px) and (max-width: 1799.98px) {
+  #galleryModal .gallery-card { max-width: 1400px;  }
   .category-grid-item { max-width: 25rem; } /* 300px */
    #galleryModal .card-title-wrapper { top: 4.5rem; left: 26.5rem; }
   #galleryModal .card-title-wrapper.long-title { left: 26.5rem; }
@@ -1670,6 +1671,334 @@ main {
 }
 
 /* Opcional: 1800px+ — ultrawide */
-@media (min-width: 1800px) {
+@media (min-width: 1800px) and (max-width: 1980px) {
+    #galleryModal .gallery-card { max-width: 1400px;  }
   .category-grid-item { max-width: 25rem; } /* 330px */
+}
+@media (min-width: 1801px) and (max-width: 2980px) {
+    #galleryModal .gallery-card { max-width: 1980px;  }
+  .category-grid-item { max-width: 25rem; } /* 330px */
+
+  .header-container { 
+    width: 64rem; 
+    margin-left: 3.2rem; 
+    height: 8rem; 
+        position: relative;
+    left: calc(-50vw + 600px);   
+    transform: none; 
+  }
+  .btn-menu img { width: 4.8rem; height: 4.8rem; }
+  .main-title { font-size: 3.2rem; }
+  
+  .category-grid { 
+    justify-content: center; 
+    gap: 2rem; 
+    margin: 2.4rem auto; 
+    padding: 0 1rem; 
+  }
+  
+  .category-grid-item { 
+    width: 100%; 
+    max-width: 27rem; 
+    flex-shrink: 0; 
+    margin-top: 5rem;
+  }
+
+  .category-card { max-width: 100%; }
+  .category-title { max-width: 16rem; font-size: 2.5rem; bottom: -2.8rem; }
+  .category-title.long-title { 
+    font-size: 1.8rem;
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  /*==============================================
+          MODAL CREDITOS  1200PX
+  ============================================== */
+ .custom-popup-content {
+    width: 95vw;
+    max-width: 850px;
+    min-height: 90vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+  }
+
+
+  .popup-row {
+    flex-direction: row;
+    gap: 15px;
+    width: 90%;
+    height: 65%;
+    margin: 0 auto;
+    padding: 15px 0;
+    align-items: flex-start;
+    background: url("../assets/background.jpg") center center / cover no-repeat;
+    border: 5px solid #fff;
+    border-radius: 10px;
+    top: 12.5rem;    
+  }
+  
+  .box-wrapper-creditos {
+    width: 45%;
+  }
+  .box-wrapper-utilizar {
+    width: 40%;
+  }
+  
+
+  .custom-popup-title {
+    font-size: 1.5rem;   
+    width: 12rem;
+    height: 3rem;
+    transform: translateY(20px);
+    top: 1.5rem;
+    left: 2rem;    
+  }
+  .custom-popup-title-utilizar {
+    font-size: 1.5rem;   
+    width: 15rem;
+    height: 3rem;
+    transform: translateY(20px);
+    top: 1.8rem;
+    left: 5rem;
+  }
+  
+
+  .popup-caixa-creditos,
+  .popup-caixa-utilizar {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    left: 5rem;
+  }  
+  
+
+  .popup-caixa-creditos {    
+    max-height: calc(100vh - 100px);
+    left: 2rem;
+  }
+  .popup-caixa-utilizar {
+    overflow-y: auto;
+    max-height: calc(85vh - 140px);
+  }
+  
+  .popup-item,
+  .creditos-texto-formatado {  
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  .popup-subtitle {
+    font-weight: 700;
+    color: #6d3ba9;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  .popup-caixa-creditos::before {
+    width: calc(100% - 11.39rem);
+  }
+  .popup-caixa-utilizar::before {
+    width: calc(100% - 14.5rem);
+  }
+
+  
+  .btn-close-custom-styled {
+    position: absolute;
+    right: 1rem;
+    top: 9.5rem;
+    background: none;
+    border: none;
+    width: 60px;
+    height: 60px;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .btn-close-custom-styled img {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+#menuModal .modal-content .box-wrapper-creditos > .custom-popup-title,
+#menuModal .modal-content .box-wrapper-utilizar > .custom-popup-title-utilizar {
+  position: relative;  
+  top: 0;              
+
+  transform: none;
+  margin: 0;           
+  padding: 0.25rem 0.6rem 0; 
+  border-bottom: none; 
+  z-index: 6;         
+}
+/* ==================================================
+                MODAL GALERIA  1980PX
+===================================================== */ 
+  #galleryModal .gallery-card {
+    width: 120rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 85vh;
+    position: relative;          
+    box-sizing: border-box;      
+    contain: layout style paint; 
+  }
+
+  #galleryModal .card-title-wrapper { top: 4.5rem; left: 45.75rem; border: 1px solid red; }
+  #galleryModal .card-title-wrapper.long-title { left: 26.5rem; }
+  #galleryModal .card-title-wrapper.extra-long-title { left: 26rem; }
+  #galleryModal .card-title { font-size: 3rem; }
+  
+  #galleryModal .close-btn { top: 4.3rem; right: 30.9rem; width: 6.4rem; height: 6.4rem; }
+  #galleryModal .nav-arrow { width: 8.2rem; height: 7.2rem; }
+  #galleryModal .nav-arrow.left { left: 6.4rem; }
+  #galleryModal .nav-arrow.right { right: 6.4rem; }
+  
+  #galleryModal .card-description-wrapper { bottom: 11rem; max-width: 65.1rem; } 
+  #galleryModal .card-description-wrapper.long-description { bottom: 13rem; max-width: 65.1rem; } 
+  #galleryModal .card-description-wrapper.extra-long-description { bottom: 14rem; max-width: 65.1rem; }
+  #galleryModal .card-description { font-size: 1.9rem; }
+  
+  #galleryModal .vertical-label { bottom: 0; right: 24.6rem; font-size: 1.28rem; max-width: 48.8rem; }
+/*============================================
+               AJUSTES ESPECIFICOS 1200PX
+  ============================================ */
+  #galleryModal .gallery-card.img_g2f4 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g4f6 .card-description-wrapper { 
+    bottom: 15.5rem; 
+    max-width: 65.2rem; 
+  }
+  #galleryModal .gallery-card.img_g4f5 .card-description-wrapper { 
+    bottom: 14.5rem; 
+    max-width: 65.2rem; 
+  }
+  #galleryModal .gallery-card.img_g4f11 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g4f7 .card-description-wrapper { 
+    bottom: 12.5rem; 
+    max-width: 65.2rem; 
+  }
+  #galleryModal .gallery-card.img_g5f1 .card-description-wrapper { 
+    bottom: 11rem; 
+    max-width: 65.2rem; 
+    left: 1.5rem; 
+  }
+  #galleryModal .gallery-card.img_g4f3 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g5f4 .card-description-wrapper,
+  #galleryModal .gallery-card.img_g7f2 .card-description-wrapper { 
+    bottom: 14.5rem; 
+    max-width: 65.2rem; 
+  }
+  #galleryModal .gallery-card.img_g4f12 .card-description-wrapper { 
+    bottom: 12.7rem; 
+    max-width: 65.2rem; 
+  }
+  #galleryModal .gallery-card.img_g5f3 .card-description-wrapper { 
+    bottom: 13.5rem; 
+    max-width: 65.8rem; 
+    text-align: left; 
+    font-size: 1rem;
+  }
+  #galleryModal .gallery-card.img_g6f3 .card-description-wrapper { 
+    bottom: 13rem; 
+    max-width: 65.8rem; 
+  }
+
+}
+
+
+/* =========================================================
+   BP LOCK incorporado — sem !important, sem @layer
+   - Travar por breakpoint com classes de estado no <html>
+   - Fullscreen estável (dvh/dvw + scrollbar-gutter + prefixos)
+========================================================= */
+
+/* Estabilidade de largura ao aparecer/desaparecer a barra de rolagem */
+html { scrollbar-gutter: stable both-edges; }
+
+/* Fullscreen estável — classe e pseudo-classes com prefixos */
+html.is-fullscreen #galleryModal .modal-content,
+html:fullscreen #galleryModal .modal-content,
+:-webkit-full-screen #galleryModal .modal-content,
+:-moz-full-screen #galleryModal .modal-content {
+  width: 100dvw;
+  height: 100dvh;
+}
+
+/* ===== MOBILE ≤767.98 ===== */
+@media (max-width: 767.98px) {
+  html.lock-bp-mobile body #galleryModal .gallery-card {
+    width: 92vw;           /* segue seu base */
+    max-width: 40rem;      /* segue seu base */
+  }
+}
+
+/* ===== TABLET PORTRAIT 768–991.98 ===== */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  html.lock-bp-tab-p body #galleryModal .gallery-card {
+    width: 96vw;
+    max-width: none;
+    min-height: 85vh;
+  }
+  html.lock-bp-tab-p body #galleryModal .card-title-wrapper { top: 7rem; left: 7.8rem; }
+  html.lock-bp-tab-p body #galleryModal .close-btn { top: 6.3rem; right: 2.5rem; }
+  html.lock-bp-tab-p body #galleryModal .card-description-wrapper { bottom: 13.5rem; max-width: 64rem; }
+}
+
+/* ===== 992–1199.98 ===== */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  html.lock-bp-992 body #galleryModal .gallery-card { width: 96vw; min-height: 85vh; }
+  html.lock-bp-992 body #galleryModal .card-title-wrapper { left: 25rem; top: 4.3rem; }
+  html.lock-bp-992 body #galleryModal .close-btn { top: 5.4rem; right: 21.2rem; }
+  html.lock-bp-992 body #galleryModal .card-description-wrapper { bottom: 8rem; max-width: 45rem; }
+}
+
+/* ===== 1200–1799.98 ===== */
+@media (min-width: 1200px) and (max-width: 1799.98px) {
+  /* Modal usa viewport estável (evita pulo no FS) */
+  html.lock-bp-1200 body #galleryModal .modal-content { width: 100dvw; height: 100dvh; border: none; }
+
+  /* Header não desloca por vw nessa faixa */
+  html.lock-bp-1200 body .header-container { left: auto; transform: none; margin-left: auto; margin-right: auto; }
+
+  /* Frame fixo da galeria — 1200px */
+  html.lock-bp-1200 body #galleryModal .gallery-card {
+    width: 120rem;              /* 1200px se html=62.5% */
+    max-width: 120rem;
+    margin: 0 auto;
+    min-height: 85vh;
+    position: relative;
+    box-sizing: border-box;
+    contain: layout style paint;
+  }
+
+  /* Offsets estáveis */
+  html.lock-bp-1200 body #galleryModal .card-title-wrapper { top: 4.5rem; left: 27.75rem; }
+  html.lock-bp-1200 body #galleryModal .card-title-wrapper.long-title { left: 26.5rem; }
+  html.lock-bp-1200 body #galleryModal .card-title-wrapper.extra-long-title { left: 26rem; }
+  html.lock-bp-1200 body #galleryModal .card-title { font-size: 3rem; }
+
+  html.lock-bp-1200 body #galleryModal .close-btn { top: 4.3rem; right: 20.9rem; width: 6.4rem; height: 6.4rem; }
+  html.lock-bp-1200 body #galleryModal .nav-arrow { width: 8.2rem; height: 7.2rem; }
+  html.lock-bp-1200 body #galleryModal .nav-arrow.left { left: 6.4rem; }
+  html.lock-bp-1200 body #galleryModal .nav-arrow.right { right: 6.4rem; }
+
+  html.lock-bp-1200 body #galleryModal .card-description-wrapper { bottom: 11rem; max-width: 65.1rem; }
+  html.lock-bp-1200 body #galleryModal .card-description-wrapper.long-description { bottom: 13rem; }
+  html.lock-bp-1200 body #galleryModal .card-description-wrapper.extra-long-description { bottom: 14rem; }
+  html.lock-bp-1200 body #galleryModal .vertical-label { bottom: 0; right: 24.6rem; font-size: 1.28rem; max-width: 48.8rem; }
+
+  /* Blindagem contra ajustes \"por imagem\" */
+  html.lock-bp-1200 body #galleryModal .gallery-card[class*="img_g"] .card-description-wrapper { bottom: 11rem; }
+}
+
+/* ===== ≥1800 ===== */
+@media (min-width: 1800px) {
+  html.lock-bp-1800 body #galleryModal .gallery-card { width: 120rem; max-width: 120rem; margin: 0 auto; }
+  html.lock-bp-1800 body #galleryModal .card-title-wrapper { top: 4.5rem; left: 26.5rem; }   /* ajuste conforme seu 1800+ */
+  html.lock-bp-1800 body #galleryModal .close-btn { top: 4.5rem; right: 18.9rem; }           /* ajuste conforme seu 1800+ */
+  html.lock-bp-1800 body #galleryModal .card-description-wrapper { bottom: 11rem; max-width: 65.1rem; }
 }
