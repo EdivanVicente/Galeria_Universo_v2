@@ -1892,7 +1892,7 @@ text-indent: 16rem;
 }
 
 /* ======================
-   MOBILE
+   MOBILE portrait
 ====================== */
 @media (max-width: 767px) {
   #galleryModal .card-title-wrapper {
@@ -1941,4 +1941,666 @@ text-indent: 16rem;
   font-size: 0.8rem;   /* ajuste fino desktop */
   line-height: 1.3;
   color: var(--color-primary);
+}
+/* ================================================
+iphone landscape
+================================================ */
+@media (max-width: 991px) and (orientation: landscape) {
+
+  /* ======================
+     FRAME
+  ====================== */
+  #galleryModal .gallery-stage {
+    height: 100vh;
+  }
+
+  /* ======================
+     TÍTULO
+  ====================== */
+  /* TÍTULO */
+  #galleryModal .card-title-wrapper {
+    position: absolute;
+    top: 4.8rem;
+    left: 19.4rem;
+    right: auto;
+  }
+
+  #galleryModal .card-title {
+    font-size: 1.5rem;
+  }
+
+  /* BOTÃO FECHAR */
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 4.2rem;
+    right: 13.4rem;
+    left: auto;
+  }
+
+  #galleryModal .close-btn img {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+
+
+  /* ======================
+     SETAS
+  ====================== */
+#galleryModal .nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SETA ESQUERDA */
+#galleryModal .nav-arrow.left {
+  left: 7.2rem;
+}
+
+/* SETA DIREITA */
+#galleryModal .nav-arrow.right {
+  right: 7.2rem;
+}
+
+#galleryModal .nav-arrow img {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+
+/* garante que a imagem fique abaixo */
+#galleryModal .image-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+  /* ======================
+     IMAGEM
+  ====================== */
+
+  #galleryModal .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 75vh;
+    width: 100%;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  /* ======================
+     DESCRIÇÃO
+  ====================== */
+  #galleryModal .card-description-wrapper {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 40%;
+    text-align: center;
+  }
+
+  #galleryModal #galleryCaption {
+    font-size: 0.8rem;
+    line-height: 1.25;
+   
+  }
+
+  #galleryModal .vertical-label {
+    position: absolute;
+    bottom: 5.2rem;
+    right: 19.2rem;
+    max-width: 45%;
+    font-size: 0.7rem;
+    text-align: right;
+  }
+}
+/* ======================
+   TABLET PORTRAIT
+====================== */
+@media (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+
+  #galleryModal .gallery-stage {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  #galleryModal .image-wrapper {
+    max-height: 60vh;
+    margin-top: -3rem;
+  }
+#galleryModal .image-wrapper img {
+  max-height: 100%;
+  max-width: 88%;
+  object-fit: contain;
+}
+  #galleryModal .card-title-wrapper {
+   top: 24.3rem;
+  left: 9.3rem;
+  }
+  #galleryModal .card-title {
+    font-size: 2.8rem;
+  }
+  #galleryModal .close-btn {
+    top: 23.2rem;
+    right: 2.6rem;
+  }
+  #galleryModal .close-btn img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: -1rem;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: -1rem;
+  }
+  #galleryModal .nav-arrow img {
+  width: 5rem;
+  height: 5rem;
+}
+
+
+  #galleryModal .card-description-wrapper {
+    max-width: 75%;
+    bottom: 28rem;
+  }
+
+  #galleryModal #galleryCaption {
+    font-size: 1.5rem;
+  }
+
+  #galleryModal .vertical-label {
+    right: 8.5rem;
+    font-size: 1rem;
+    max-width: 60%;
+    bottom: 27.5rem;
+  }
+}
+/* ======================
+   TABLET LANDSCAPE – AJUSTE FINAL
+====================== */
+@media (min-width: 992px) and (max-width: 1199px) and (orientation: landscape) {
+
+  #galleryModal .gallery-stage {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  #galleryModal .image-wrapper {
+    max-height: 60vh;
+    margin-top: -3rem;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-height: 100%;
+    max-width: 88%;
+    object-fit: contain;
+  }
+
+  /* TÍTULO */
+  #galleryModal .card-title-wrapper {
+    top: 14.8rem;
+    left: 12.5rem;
+    }
+  }
+
+  #galleryModal .card-title {
+    font-size: 2.5rem;
+  }
+
+  /* BOTÃO FECHAR */
+  #galleryModal .close-btn {
+    top: 13.2rem;
+    right: 6.6rem;
+  }
+
+  #galleryModal .close-btn img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  /* SETAS */
+  #galleryModal .nav-arrow {
+    top: 45%;
+    transform: translateY(-50%);
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: -1rem;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: -1rem;
+  }
+
+  #galleryModal .nav-arrow img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  /* DESCRIÇÃO */
+  #galleryModal .card-description-wrapper {
+    max-width: 66%;
+    bottom: 18rem;
+  }
+
+  #galleryModal #galleryCaption {
+    font-size: 1.2rem;
+  }
+
+  /* CRÉDITO */
+  #galleryModal .vertical-label {
+    right: 12rem;
+    bottom: 17.5rem;
+    font-size: 1rem;
+    max-width: 60%;
+  }
+
+/* ======================
+   DESKTOP – 1200px
+====================== */
+/* =========================================================
+   DESKTOP 1200px
+   ESTRUTURA BASEADA NO IPHONE LANDSCAPE
+========================================================= */
+@media (min-width: 1200px) and (max-width: 1439px) {
+
+  /* ======================
+     CONTAINER GERAL
+  ====================== */
+  .container {
+    max-width: 1200px;
+    padding: 0;
+  }
+
+  /* ======================
+     HEADER
+  ====================== */
+
+.header-container {
+ width: 70%;
+ height: 8rem;
+  margin: 2rem 0 0 2rem;
+
+  transform: none
+  
+ 
+}
+
+.header-row {
+   display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  
+  
+}
+
+/* botão menu */
+.btn-menu {
+  position: relative;
+  transform: none;
+  
+}
+.btn-menu img{
+  width: 5rem;
+  height: 10rem;
+}
+
+/* título */
+.main-title {
+  font-size: 4.4rem; /* valor original, escala faz o resto */
+  text-align: left;
+  white-space: nowrap;
+}
+  /* ======================
+     GRID (IGUAL LANDSCAPE)
+  ====================== */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+  }
+
+  /* SEGUNDA LINHA = NOVO GRID */
+  .gallery-row-second {
+    grid-column: 1 / -1;              /* ocupa toda a largura */
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: center;          /* 👈 ISSO é o que você quer */
+    gap: 2.4rem;
+    margin-top: 2.4rem;
+  }
+
+  /* cards da segunda linha */
+  .gallery-row-second .category-grid-item {
+    justify-self: center;
+  }
+
+ 
+  .category-grid-item {
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  .category-card {
+    max-width: 100%;
+  }
+
+  .category-title {
+    max-width: 14rem;
+    font-size: 0.95rem;
+    bottom: -2.2rem;
+  }
+
+
+
+  .category-title.long-title {
+    font-size: 1.25rem;
+    width: 85%;
+  }
+
+  /* ======================
+     SEGUNDA LINHA GRID
+  ====================== */
+  .gallery-row-second {
+    margin-top: 2rem;
+  }
+
+  /* ======================
+     MODAL CRÉDITOS 1200
+  ====================== */
+  .custom-popup-content { 
+      width: 95vw; 
+      max-width: 85rem;
+      min-height: 90vh;
+      margin: 1rem auto;
+      padding: 1.5rem; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      position: relative; 
+        top: 8rem;
+    }
+  
+      .popup-row { 
+      display: flex;
+      flex-direction: row; 
+      gap: 1.5rem; 
+      width: 90%; 
+      padding: 1.5rem;
+      background: url("../assets/background.jpg") center / cover no-repeat; 
+      border: 0.5rem solid #fff;
+      border-radius: 1rem;
+      overflow: hidden; 
+    
+    } 
+    
+    .box-wrapper-creditos, .box-wrapper-utilizar {
+      flex: 1;
+      min-width: 40%;
+      padding: 1rem;
+      max-height: calc(85vh - 6rem);
+      overflow-y: auto;
+    } 
+    .box-wrapper-utilizar { 
+      margin-left: 1.5rem; 
+    } 
+    .custom-popup-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      position: relative; 
+      left: 0;
+      top:0.8rem 
+    } 
+    .custom-popup-title-utilizar { 
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem; 
+      position: relative; 
+      left: 0; 
+      width: 17rem;
+      top: 0.8rem;
+    } 
+    .popup-item, .creditos-texto-formatado {
+      font-size: 1rem; 
+      line-height: 1.4;
+      margin-left: 1rem; 
+    } .popup-subtitle {
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-left: 1rem;
+    } 
+    .btn-close-custom-styled { 
+      top: -1.6rem;
+      right: 6.1rem;
+      width: 5.5rem;
+      height: 5.5rem;
+    } 
+    .btn-close-custom-styled img { 
+      width: 5rem; 
+    }
+.popup-caixa-creditos::before {
+  width: calc(100% - 12.4rem);
+}
+
+.popup-caixa-utilizar::before {
+  width: calc(100% - 16.4rem);
+}
+
+  /* ======================
+     LOGO ABRE PALAVRA
+  ====================== */
+  .open-word-logo-global {
+    width: 9rem;
+    bottom: 2rem;
+    right: 2rem;
+  }
+
+  /* =====================================================
+            modal galeria 1200px
+  ===================================================== */
+   #galleryModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #galleryModal .gallery-stage {
+    width: 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+
+  #galleryModal .image-wrapper {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #galleryModal .image-wrapper img { max-width: 90%; max-height: 100%; object-fit: contain; } 
+  /* TÍTULO */
+ 
+  #galleryModal .card-title-wrapper {
+    position: absolute;
+    top: 13.5rem;
+    left: 49.5%;
+    transform: translateX(-50%);
+  }
+  #galleryModal .card-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+  /* BOTÃO FECHAR */ 
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 12rem;
+    right: 22rem;
+  }
+  #galleryModal .close-btn img { width: 5rem; height: 5rem; } 
+  /* SETAS */   
+  #galleryModal .nav-arrow.left { left: 8rem; }
+  #galleryModal .nav-arrow.right { right: 8rem; }
+  #galleryModal .nav-arrow img { width: 5rem; height: 5rem; }
+  /* DESCRIÇÃO */
+    #galleryModal .card-description-wrapper {
+    max-width: 55%;
+    margin: 0 auto;
+    bottom: 17rem;
+  }
+  #galleryModal #galleryCaption { font-size: 1.4rem; } 
+  /* CRÉDITO */
+  #galleryModal .vertical-label {
+    right: 30rem;
+    bottom: 13.5rem;
+    max-width: 40%;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1599px) {
+
+  /* ======================
+     CONTAINER GERAL
+  ====================== */
+  .container {
+    max-width: 1440px;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  /* ======================
+     HEADER
+  ====================== */
+  .header-container {
+    width: 70%;
+    height: 8rem;
+    margin: 2.5rem 0 0 3rem;
+  }
+
+  .btn-menu img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .main-title {
+    font-size: 4.2rem;
+  }
+
+  /* ======================
+     GRID
+  ====================== */
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+
+  .category-grid-item {
+    max-width: 26rem;
+  }
+
+  .category-title {
+    font-size: 1.05rem;
+  }
+
+  .category-title.long-title {
+    font-size: 1.35rem;
+  }
+
+  /* SEGUNDA LINHA (BLOCO) */
+  .gallery-row-second {
+    grid-template-columns: repeat(3, max-content);
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  /* ======================
+     MODAL CRÉDITOS
+  ====================== */
+  .custom-popup-content {
+    width: 1440px;
+    max-width: 1440px;
+    min-height: 90vh;
+    margin: 0 auto;
+    padding: 2rem;
+    top: 0;
+  }
+
+  .popup-row {
+    max-width: 110rem;
+    gap: 3.5rem;
+  }
+
+  .box-wrapper-creditos,
+  .box-wrapper-utilizar {
+    max-width: 50rem;
+  }
+
+  .btn-close-custom-styled {
+    top: 2.5rem;
+    right: 2.5rem;
+  }
+
+  /* ======================
+     MODAL GALERIA
+  ====================== */
+  #galleryModal .gallery-stage {
+    width: 1440px;
+    max-width: 1440px;
+  }
+  #galleryModal .image-wrapper {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #galleryModal .image-wrapper img {
+     max-width: 80%; 
+     max-height: 100%; 
+     object-fit: contain;
+     } 
+  #galleryModal .card-title-wrapper {
+    top: 14.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #galleryModal .card-title {
+    font-size: 3.6rem;
+  }
+
+  #galleryModal .close-btn {
+    top: 13rem;
+    right: 28rem;
+  }
+
+  #galleryModal .nav-arrow.left { left: 10rem; }
+  #galleryModal .nav-arrow.right { right: 10rem; }
+
+  #galleryModal .card-description-wrapper {
+    max-width: 60%;
+    bottom: 18rem;
+  }
+
+  #galleryModal .vertical-label {
+    right: 34rem;
+    bottom: 14rem;
+    font-size: 1.2rem;
+  }
+
+  /* ======================
+     LOGO
+  ====================== */
+  .open-word-logo-global {
+    width: 10rem;
+    bottom: 2.5rem;
+    right: 2.5rem;
+  }
 }
