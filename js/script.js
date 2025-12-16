@@ -1,6 +1,6 @@
 /* =========================================================
-   DADOS DAS GALERIAS (NÃO ALTERAR)
-   ========================================================= */
+   DADOS DAS GALERIAS (NÃO ALTERAR CONTEÚDO)
+========================================================= */
 
 const galleryData = {
   galaxias: {
@@ -32,14 +32,13 @@ const galleryData = {
       },
       {
         src: "./assets/img_g1f5.svg",
-        caption:
-          "A GALÁXIA ANÃ NGC 1705 É PEQUENA E DE FORMATO IRREGULAR.",
+        caption: "A GALÁXIA ANÃ NGC 1705 É PEQUENA E DE FORMATO IRREGULAR.",
         credit: "ESA/Hubble & NASA, R. Chandar",
       },
       {
         src: "./assets/img_g1f6.svg",
         caption:
-          "DUAS GALÁXIAS SE ENCONTRAM: IC 2163, A MENOR, E A GALÁXIA MAIOR, NGC 2207.",
+          "DUAS GALÁXIAS SE ENCONTRAM: IC 2163, A MENOR, E A GALÁXIA MAIOR, NGC 2207. ESSA IMAGEM FOI GERADA COM DADOS DO TELESCÓPIO ESPACIAL JAMES WEBB E DO TELESCÓPIO ESPACIAL HUBBLE.",
         credit: "NASA, ESA, CSA, STScI / Flickr",
       },
     ],
@@ -51,14 +50,20 @@ const galleryData = {
       {
         src: "./assets/img_g2f1.svg",
         caption:
-          "O SOL É A ESTRELA CENTRAL DO SISTEMA SOLAR.",
+          "O SOL É A ESTRELA CENTRAL DO SISTEMA SOLAR. ESTA IMAGEM MOSTRA A LUZ BRILHANTE DE UMA ERUPÇÃO SOLAR.",
         credit: "NASA/Goddard/SDO",
       },
       {
         src: "./assets/img_g2f2.svg",
         caption:
-          "PROTOESTRELA COM APENAS CERCA DE 100 MIL ANOS.",
+          "A IMAGEM MOSTRA UMA FUTURA ESTRELA: UMA PROTOESTRELA. COM APENAS CERCA DE 100 MIL ANOS, ESTE JOVEM OBJETO ESTÁ EM MEIO A UMA NUVEM DE GÁS E POEIRA EM FORMA DE AMPULHETA.",
         credit: "NASA, ESA, CSA, STScI / Flickr",
+      },
+      {
+        src: "./assets/img_g2f3.svg",
+        caption:
+          "PRÓXIMA CENTAURI É A ESTRELA MAIS PRÓXIMA DO SOL, A POUCO MAIS DE 4 ANOS-LUZ DE DISTÂNCIA.",
+        credit: "ESA/Hubble & NASA",
       },
     ],
   },
@@ -69,8 +74,14 @@ const galleryData = {
       {
         src: "./assets/img_g3f1.svg",
         caption:
-          "ILUSTRAÇÃO COM PLANETAS MAIS PRÓXIMOS DO QUE NA REALIDADE.",
+          "NESTA ILUSTRAÇÃO, OS PLANETAS SÃO RETRATADOS MUITO MAIS PRÓXIMOS DO QUE REALMENTE ESTÃO.",
         credit: "NASA/JPL",
+      },
+      {
+        src: "./assets/img_g3f2.svg",
+        caption:
+          "CONCEITO ARTÍSTICO DO SISTEMA KEPLER-90. UM SISTEMA COM UMA ESTRELA SEMELHANTE AO SOL.",
+        credit: "NASA/Ames Research Center",
       },
     ],
   },
@@ -81,8 +92,14 @@ const galleryData = {
       {
         src: "./assets/img_g4f1.svg",
         caption:
-          "IMAGEM DA TERRA PELO SATÉLITE GOES-8.",
+          "IMAGEM DA TERRA, TERCEIRO PLANETA EM DISTÂNCIA DO SOL.",
         credit: "GOES-8 / NASA",
+      },
+      {
+        src: "./assets/img_g4f2.svg",
+        caption:
+          "IMAGEM DE MERCÚRIO, O PLANETA MAIS PRÓXIMO DO SOL.",
+        credit: "NASA/JHUAPL",
       },
     ],
   },
@@ -105,7 +122,7 @@ const galleryData = {
       {
         src: "./assets/img_g6f1.svg",
         caption:
-          "COMETA ISON PASSANDO PELA CONSTELAÇÃO DE VIRGEM.",
+          "IMAGEM DO COMETA ISON PASSANDO PELA CONSTELAÇÃO DE VIRGEM.",
         credit: "NASA Goddard",
       },
     ],
@@ -117,7 +134,7 @@ const galleryData = {
       {
         src: "./assets/img_g7f1.svg",
         caption:
-          "SONDA CHINESA CHANG'E 4 NO LADO OCULTO DA LUA.",
+          "EM 2019, A SONDA CHINESA CHANG'E 4 FOI A PRIMEIRA A POUSAR NO LADO OCULTO DA LUA.",
         credit: "CSNA",
       },
     ],
@@ -125,77 +142,59 @@ const galleryData = {
 };
 
 /* =========================================================
-   ESTADO DA GALERIA
-   ========================================================= */
+   CONTROLE DE ESTADO
+========================================================= */
 
 let currentTheme = null;
 let currentIndex = 0;
 
 /* =========================================================
-   PRELOAD DE IMAGENS
-   ========================================================= */
-
-function preloadAdjacentImages(theme, index) {
-  if (!galleryData[theme]) return;
-  const images = galleryData[theme].images;
-  if (images.length <= 1) return;
-
-  if (images[index + 1]) new Image().src = images[index + 1].src;
-  if (images[index - 1]) new Image().src = images[index - 1].src;
-}
-
-/* =========================================================
-   ATUALIZA CONTEÚDO DO MODAL
-   ========================================================= */
+   ATUALIZA GALERIA
+========================================================= */
 
 function updateGallery() {
   if (!currentTheme) return;
 
   const themeData = galleryData[currentTheme];
   const item = themeData.images[currentIndex];
+  const total = themeData.images.length;
 
-  const mainImage = document.getElementById("main-image");
-  const titleEl = document.getElementById("gallery-title");
-  const descEl = document.querySelector(".gallery-description");
-  const creditEl = document.querySelector(".gallery-credit");
+  const img = document.getElementById("galleryImage");
+  const title = document.getElementById("galleryTitle");
+  const caption = document.getElementById("galleryCaption");
+  const credit = document.getElementById("galleryCredit");
 
-  if (!mainImage || !titleEl || !descEl || !creditEl) return;
+  img.src = item.src;
+  img.alt = `${themeData.title} — ${item.caption}`;
 
-  mainImage.src = item.src;
-  mainImage.setAttribute("width", "1000");
-  mainImage.setAttribute("height", "1000");
-  mainImage.alt = `${themeData.title} — ${item.caption}`;
+  title.textContent = themeData.title;
+  caption.textContent = item.caption;
+  credit.textContent = item.credit || "";
 
-  titleEl.textContent = themeData.title;
-  descEl.textContent = item.caption;
-  creditEl.textContent = item.credit || "";
+  const left = document.querySelector(".nav-arrow.left");
+  const right = document.querySelector(".nav-arrow.right");
 
-  const leftArrow = document.querySelector(".nav-arrow.left");
-  const rightArrow = document.querySelector(".nav-arrow.right");
-
-  if (leftArrow && rightArrow) {
-    leftArrow.style.display = currentIndex === 0 ? "none" : "flex";
-    rightArrow.style.display =
-      currentIndex === themeData.images.length - 1 ? "none" : "flex";
+  if (total <= 1) {
+    left.style.display = "none";
+    right.style.display = "none";
+  } else {
+    left.style.display = currentIndex === 0 ? "none" : "flex";
+    right.style.display = currentIndex === total - 1 ? "none" : "flex";
   }
-
-  preloadAdjacentImages(currentTheme, currentIndex);
 }
 
 /* =========================================================
    NAVEGAÇÃO
-   ========================================================= */
+========================================================= */
 
-function goToPrev() {
-  if (!currentTheme) return;
+function goPrev() {
   if (currentIndex > 0) {
     currentIndex--;
     updateGallery();
   }
 }
 
-function goToNext() {
-  if (!currentTheme) return;
+function goNext() {
   const total = galleryData[currentTheme].images.length;
   if (currentIndex < total - 1) {
     currentIndex++;
@@ -204,73 +203,58 @@ function goToNext() {
 }
 
 /* =========================================================
-   ABERTURA DA GALERIA
-   ========================================================= */
+   ABERTURA DO MODAL
+========================================================= */
 
-document.querySelectorAll(".open-gallery").forEach((card) => {
+document.querySelectorAll(".open-gallery").forEach(card => {
   card.addEventListener("click", () => {
-    const tema = card.dataset.tema;
-    if (!galleryData[tema]) return;
+    const theme = card.dataset.tema;
+    if (!galleryData[theme]) return;
 
-    currentTheme = tema;
+    currentTheme = theme;
     currentIndex = 0;
     updateGallery();
 
-    const modal = new bootstrap.Modal(
-      document.getElementById("galleryModal")
-    );
+    const modalEl = document.getElementById("galleryModal");
+    let modal = bootstrap.Modal.getInstance(modalEl);
+    if (!modal) modal = new bootstrap.Modal(modalEl);
     modal.show();
   });
 });
 
 /* =========================================================
-   EVENTOS (CLICK / TECLADO)
-   ========================================================= */
+   EVENTOS
+========================================================= */
 
-document.body.addEventListener("click", (e) => {
-  if (e.target.closest(".nav-arrow.left")) goToPrev();
-  if (e.target.closest(".nav-arrow.right")) goToNext();
+document.addEventListener("click", e => {
+  if (e.target.closest(".nav-arrow.left")) goPrev();
+  if (e.target.closest(".nav-arrow.right")) goNext();
 });
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", e => {
   const modal = document.getElementById("galleryModal");
-  if (!modal || !modal.classList.contains("show")) return;
+  if (!modal.classList.contains("show")) return;
 
-  if (e.key === "ArrowLeft") goToPrev();
-  if (e.key === "ArrowRight") goToNext();
+  if (e.key === "ArrowLeft") goPrev();
+  if (e.key === "ArrowRight") goNext();
   if (e.key === "Escape") {
     bootstrap.Modal.getInstance(modal)?.hide();
   }
 });
 
 /* =========================================================
-   FECHAR MODAL AO CLICAR FORA
-   ========================================================= */
-
-document.querySelectorAll(".modal").forEach((modal) => {
-  modal.addEventListener("mousedown", (e) => {
-    const dialog = modal.querySelector(".modal-dialog");
-    if (dialog && !dialog.contains(e.target)) {
-      bootstrap.Modal.getInstance(modal)?.hide();
-    }
-  });
-});
-
-/* =========================================================
-   FULLSCREEN
-   ========================================================= */
+   FULLSCREEN (SEM ALTERAR LAYOUT)
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const btnFullscreen = document.getElementById("btnFullscreen");
-  if (!btnFullscreen) return;
+  const btn = document.getElementById("btnFullscreen");
+  if (!btn) return;
 
-  btnFullscreen.addEventListener("click", () => {
+  btn.addEventListener("click", () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
-      document.documentElement.classList.add("is-fullscreen");
     } else {
       document.exitFullscreen();
-      document.documentElement.classList.remove("is-fullscreen");
     }
   });
 });

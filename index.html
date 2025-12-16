@@ -133,41 +133,47 @@
         </div> <!-- .modal-dialog -->
     </div> <!-- #menuModal -->
 
-    <!-- Modal Galeria -->
-    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="gallery-title">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="gallery-card" role="document">
-                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Fechar">
-                        <img src="./assets/icone_fechar.svg" alt="Fechar" />
-                    </button>
+   <!-- MODAL GALERIA -->
+<div class="modal fade" id="galleryModal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
 
-                    <button type="button" class="nav-arrow left" aria-label="Imagem Anterior">
-                        <img src="./assets/icone_anterior.svg" alt="Anterior" />
-                    </button>
-                    <button type="button" class="nav-arrow right" aria-label="Próxima Imagem">
-                        <img src="./assets/icone_prox.svg" alt="Próximo" />
-                    </button>
-                    
-                    <div class="card-content-wrapper">
-                        <div class="card-title-wrapper">
-                            <h2 class="card-title" id="gallery-title">Título da Imagem</h2>
-                        </div>
-                        
-                        <div class="image-wrapper">
-                            <img id="main-image" src="" alt="Descrição da imagem exibida na galeria" />
-                            <div class="vertical-label"></div>
-                        </div>
+      <div class="gallery-frame">
+        <div class="gallery-stage">
 
-                        <div class="card-description-wrapper">
-                            <p class="card-description">Descrição detalhada da imagem.</p>
-                        </div>
-                    </div>
-                </div> <!-- .gallery-card -->
-            </div> <!-- .modal-content -->
-        </div> <!-- .modal-dialog -->
-    </div> <!-- #galleryModal -->
+          <button class="close-btn" data-bs-dismiss="modal">
+            <img src="./assets/icone_fechar.svg">
+          </button>
 
+         <button type="button" class="nav-arrow left" aria-label="Imagem Anterior">
+    <img src="./assets/icone_anterior.svg" alt="Anterior" />
+</button>
+
+<button type="button" class="nav-arrow right" aria-label="Próxima Imagem">
+    <img src="./assets/icone_prox.svg" alt="Próximo" />
+</button>
+
+
+          <div class="card-title-wrapper">
+            <span class="card-title" id="galleryTitle"></span>
+          </div>
+
+          <div class="image-wrapper">
+            <img id="galleryImage">
+          </div>
+
+          <div class="card-description-wrapper">
+            <p id="galleryCaption"></p>
+          </div>
+
+          <div class="vertical-label" id="galleryCredit"></div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
     <img src="./assets/img_logo.svg" alt="Abre Palavra" class="open-word-logo-global" onerror="this.style.display='none'"/>
 
     <script src="js/bootstrap.bundle.min.js"></script>
