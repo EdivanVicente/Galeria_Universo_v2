@@ -765,7 +765,7 @@ main {
     border-top: 0.3rem solid #fff;
     width: calc(100% - 7rem);      /* largura do título + respiro */
   }
-  .popup-caixa-utilizer::before {
+  .popup-caixa-utilizar::before {
     content: "";
     position: absolute;
     top: 0;
@@ -871,11 +871,11 @@ main {
   .custom-popup-title,
   .custom-popup-title-utilizar {
     position: absolute;
-    top: 1.6rem;
+    top: 1.2rem;
     left: 1rem;
 
     padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
 
     color: #fff;
     background-color: #8a2be2;
@@ -886,15 +886,23 @@ main {
     z-index: 2;
   }
 
-  /* borda superior quebrada */
   .popup-caixa::before {
     content: "";
     position: absolute;
     top: 0;
-    left: calc(13rem + 1rem);
     right: 0;
     height: 0;
     border-top: 0.3rem solid #fff;
+    width: calc(100% - 12.4rem);      /* largura do título + respiro */
+  }
+  .popup-caixa-utilizar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+    width: calc(100% - 8.4rem);      /* largura do título + respiro */
   }
 
   /* caixas */
@@ -918,14 +926,385 @@ main {
 
   /* botão fechar */
   #menuModal .btn-close-custom-styled {
-    top: 0;
-    right: -7rem;
-    width: 3rem;
-    height: 3rem;
+    top: 3rem;
+    right: -13rem;
+    width: 4.5rem;
+    height: 4.5rem;
   }
 
   #menuModal .btn-close-custom-styled img {
     width: 5rem;
     height: 5rem;
+  }
+}
+/* =========================================================
+   MODAL CRÉDITOS — iPAD PORTRAIT
+   (CLONE DO iPHONE PORTRAIT)
+========================================================= */
+/* =========================================================
+   MODAL CRÉDITOS — iPAD PORTRAIT
+   (proporção do CSS antigo preservada)
+========================================================= */
+@media (min-width: 768px) and (orientation: portrait) {
+
+    /* 🔥 REMOVE O LIMITE DO BOOTSTRAP */
+  #menuModal .modal-dialog {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+    #menuModal .modal-content {
+    width: 100%;
+  }
+
+  #menuModal .custom-popup-content {
+    width: min(95svw, 120rem);
+    max-width: none;
+    padding-top: 9rem;
+    margin: 0 auto;
+  }
+  
+  /* linha */
+  #menuModal .popup-row {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+  }
+  
+  /* AGORA O WIDTH RESPONDE */
+  #menuModal .box-wrapper-creditos,
+  #menuModal .box-wrapper-utilizar {
+    width: 100%;
+    max-width: 96rem; /* ajuste aqui */
+    margin: 0 auto;
+  }
+  #menuModal .box-wrapper-creditos {
+    
+    max-width: 120rem;
+  }
+  
+  /* títulos — MESMA PROPORÇÃO VISUAL */
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: -0.5rem;
+    left:0;
+    
+    height: 5.5rem;
+    font-size: 2.7rem;
+    padding-top: 1rem;
+    
+    border-radius: 1.5rem 1.5rem 0 0;
+  }
+  
+  .custom-popup-title {
+    width: 18rem;
+  }
+  
+  .custom-popup-title-utilizar {
+    width: 25.8rem;
+  }
+  
+  /* caixas */
+  .popup-caixa {
+    margin-top: 5rem;
+    font-size: 1.6rem;
+    text-align: center;
+   position: relative; /* OBRIGATÓRIO para o ::before */
+    
+  }
+  /* padrão */
+.popup-caixa::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  border-top: 0.3rem solid #fff;
+}
+
+/* CRÉDITOS */
+.popup-caixa-creditos::before {
+  width: calc(100% - 17.5rem); /* largura do título CRÉDITOS */
+}
+
+/* COMO UTILIZAR */
+.popup-caixa-utilizar::before {
+  width: calc(100% - 25.2rem); /* largura do título UTILIZAR */
+}
+  /* textos internos */
+  .popup-subtitle,
+  .popup-item,
+  .creditos-texto-formatado {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  
+  /* botão fechar — mesma proporção */
+  #menuModal .btn-close-custom-styled {
+    top: 9rem;
+    right: -4rem;
+    width: 9.2rem;
+    height: 11.2rem;
+  }
+  
+  #menuModal .btn-close-custom-styled img {
+    width: 5rem;
+    height: auto;
+  }
+  
+}
+/* =========================================================
+   MODAL CRÉDITOS — DESKTOP (BASE)
+   Layout lado a lado (herda landscape)
+========================================================= */
+/* =========================================================
+   MODAL CRÉDITOS — DESKTOP 1200px (LIMPO)
+========================================================= */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+
+  /* libera modal do Bootstrap */
+  #menuModal .modal-dialog {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  #menuModal .custom-popup-content {
+    width: min(92vw, 120rem);
+    padding-top: 6rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* linha principal */
+  #menuModal .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+
+    padding: 3rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.4rem solid #fff;
+    border-radius: 1.5rem;
+  }
+
+  /* colunas */
+  #menuModal .box-wrapper-creditos,
+  #menuModal .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+
+  /* =====================================================
+     TÍTULOS — LIBERADOS (MESMA LÓGICA DO 1440)
+  ===================================================== */
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    top: 0;
+    left: 0;
+
+    height: 5.2rem;
+    font-size: 2rem;
+
+    width: auto;                 /* 🔓 sem trava */
+    max-width: 90%;
+
+    padding-block: 0.8rem;
+    padding-inline: clamp(2rem, 1.6vw, 3.6rem);
+
+    white-space: nowrap;
+  }
+
+  /* =====================================================
+     BORDA SUPERIOR — SINCRONIZADA COM O TÍTULO
+  ===================================================== */
+  .popup-caixa::before {
+    right: 0;
+    left: var(--title-offset, 14.2rem);
+  }
+
+  .popup-caixa-utilizar::before {
+    right: 0;
+    left: var(--title-offset-utilizar, 20rem);
+  }
+
+  /* =====================================================
+     CAIXAS
+  ===================================================== */
+  .popup-caixa {
+    margin-top: 5.2rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+
+  /* botão fechar */
+  #menuModal .btn-close-custom-styled {
+    top: 4.6rem;
+    right: 1.6rem;
+  
+  }
+    #menuModal .btn-close-custom-styled img{
+     width: 5rem;
+    height: 5rem;
+  
+  }
+}
+
+/* =========================================================
+   MODAL CRÉDITOS — DESKTOP 1440px
+========================================================= */
+@media (min-width: 1440px) {
+
+  /* libera modal do Bootstrap */
+  #menuModal .modal-dialog {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  #menuModal .custom-popup-content {
+    width: min(90vw, 140rem);
+    padding-top: 6rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* linha principal */
+  #menuModal .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+
+    width: 100%;
+    max-width: 140rem;
+    margin: 0 auto;
+
+    padding: 3.6rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.4rem solid #fff;
+    border-radius: 1.5rem;
+  }
+
+  /* colunas */
+  #menuModal .box-wrapper-creditos,
+  #menuModal .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+
+  /* =====================================================
+     TÍTULOS — TOTALMENTE LIVRES
+  ===================================================== */
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    top: 0.1rem;
+    left: 0;                  /* referência leve, não trava */
+    
+    height: 5.2rem;
+    font-size: 2.2rem;
+
+    width: auto;                 /* 🔓 liberdade total */
+    max-width: 90%;              /* segurança */
+
+    padding-block: 0.8rem;
+    padding-inline: clamp(1.4rem, 2vw, 4.8rem);
+
+    white-space: nowrap;
+  }
+
+  /* =====================================================
+     BORDA SUPERIOR — ALINHADA AO TÍTULO
+  ===================================================== */
+  .popup-caixa::before {
+    right: 0;
+    left: var(--title-offset, 17.1rem);
+   
+  }
+
+  .popup-caixa-utilizar::before {
+    right: 0;
+    left: var(--title-offset-utilizar, 23.2rem);
+  }
+
+  /* =====================================================
+     CAIXAS
+  ===================================================== */
+  .popup-caixa {
+    margin-top: 5.2rem;
+    font-size: 1.8rem;
+    line-height: 1.5;
+  }
+
+  /* botão fechar */
+  #menuModal .btn-close-custom-styled {
+    top: 3.6rem;
+    right: 0.6rem;
+  }
+   #menuModal .btn-close-custom-styled img {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+/* =========================================================
+   MODAL CRÉDITOS — DESKTOP 1800px+
+   (escala máxima, layout lado a lado)
+========================================================= */
+@media (min-width: 1800px) {
+
+  #menuModal .custom-popup-content {
+    width: 100vw;
+    max-width: none;
+    padding-inline: 8rem;
+  }
+
+  #menuModal .popup-row {
+    width: 100%;
+    max-width: 120rem;
+    padding: 6rem;
+    gap: 8rem;
+    margin: 0 auto;
+
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.5rem solid #fff;
+    border-radius: 2rem;
+  }
+
+  #menuModal .box-wrapper-creditos {
+    flex: 0 0 50rem;
+  }
+
+  #menuModal .box-wrapper-utilizar {
+    flex: 0 0 40rem;
+  }
+
+  .popup-caixa {
+    padding: 3rem;
+    font-size: 1.7rem;
+    line-height: 1.6;
+  }
+
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    font-size: 2.4rem;
+    padding: 1rem 3.2rem;
+    border-width: 0.4rem;
+  }
+    #menuModal .btn-close-custom-styled {
+            top: 4.6rem;
+        right: 26.6rem;
+  }
+   #menuModal .btn-close-custom-styled img {
+    width: 6rem;
+    height: 6rem;
   }
 }
