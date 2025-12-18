@@ -133,6 +133,20 @@ main {
   width: 80%;
   font-size: 1.4rem;
 }
+/* ===================================
+   HEADER — FADE FIXO NA VIEWPORT
+=================================== */
+.main-title {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  color: white;
+  text-shadow: 0.2rem 0.2rem 0 #00008b, 
+               0.3rem 0.3rem 0 #00008b,
+               0.4rem 0.4rem 0.2rem rgba(0, 0, 139, 0.6);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* =========================================================
    HEADER
@@ -166,17 +180,19 @@ main {
   border-radius: 50%;
 }
 
-.main-title {
-  margin: 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-shadow: 0.2rem 0.2rem 0 #00008b, 0.3rem 0.3rem 0 #00008b,
-    0.4rem 0.4rem 0.2rem rgba(0, 0, 139, 0.6);
+.header-container {
+  background: linear-gradient(
+    to right,
+    #8045dd 0%,
+    #8045dd 75%,
+    rgba(128, 69, 221, 0.85) 85%,
+    rgba(128, 69, 221, 0.4) 93%,
+    rgba(128, 69, 221, 0) 100%
+  );
+
+  box-shadow: var(--shadow-sm);
 }
+
 
 /* =========================================================
    MODAL GALERIA
@@ -419,7 +435,7 @@ main {
 ========================================================= */
 #menuModal .btn-close-custom-styled {
   position: absolute;
-  top: 2.4rem;
+  top: 20.4rem;
   right: 1.6rem;
   z-index: 1100;
 }
@@ -717,16 +733,16 @@ main {
 
 }
 
-  /* wrappers (cada coluna) */
-  .box-wrapper-creditos,
-  .box-wrapper-utilizar {
-    flex: 1;
-    min-width: 0; /* evita overflow em flex */
-    padding: 1rem;
-    max-height: calc(90svh - 8rem);
-    overflow-y: auto;
-    position: relative;
-  }
+.box-wrapper-creditos,
+.box-wrapper-utilizar {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem;
+  max-height: calc(90svh - 8rem);
+  overflow: hidden;   /* 🔒 wrapper não se move */
+  position: relative;
+}
+
 
   /* pequeno afastamento visual do segundo bloco */
   .box-wrapper-utilizar {
@@ -789,7 +805,7 @@ main {
     line-height: 1.4;
 
     max-height: calc(90svh - 12rem);
-    overflow-y: auto;
+  overflow-y: auto;   /* ✅ scroll SOMENTE aqui */
   }
 
   /* botão fechar (igual ao antigo) */
@@ -805,12 +821,12 @@ main {
     height: 5rem;
   }
 }
-/* ====================================================
-        landscape modal credito tablet
-==================================================== */
+
+
+
 /* =========================================================
    MODAL CRÉDITOS — iPAD LANDSCAPE
-   (CLONE DO iPHONE LANDSCAPE)
+  
 ========================================================= */
 @media (min-width: 768px) and (max-width: 1199.98px) and (orientation: landscape) {
 
@@ -1306,5 +1322,442 @@ main {
    #menuModal .btn-close-custom-styled img {
     width: 6rem;
     height: 6rem;
+  }
+}
+/* ====================================================
+        GRIND CARDS 
+==================================================== */
+@media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
+
+  /* ===============================
+     HEADER — TABLET PORTRAIT
+  =============================== */
+  .header-container {
+    width: 60rem;          /* 🔽 menor que antes */
+    height: 7rem;
+    margin-left: 2.4rem;
+  }
+
+  .main-title {
+    font-size: 3.2rem;
+  }
+
+  /* ===============================
+     GRID — TABLET PORTRAIT
+  =============================== */
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;           /* 🔽 aproxima as colunas */
+    max-width: 88rem;      /* 🔒 evita espalhar demais */
+    padding: 4rem 4rem 0 4rem;
+    padding-bottom: none;
+  }
+
+  .category-grid-item {
+    max-width: 30rem;      /* mantém proporção */
+  }
+  .btn-menu img {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+}
+  .category-title.long-title {
+    font-size: 2rem;
+    width: 85%;
+  }
+   .gallery-row-second .category-grid-item:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+  /* ===============================
+     GRIND — TABLET LANDSCAPE
+  =============================== */
+
+@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+
+  /* ===============================
+     HEADER — TABLET LANDSCAPE
+  =============================== */
+  .header-container {
+    width: 55%;        /* 🔽 diminui largura */
+    height: 6.2rem;
+    margin-left: 2.4rem;
+  }
+
+  .main-title {
+    font-size: 2.6rem;
+  }
+ .category-title.long-title {
+    font-size: 2rem;
+    width: 85%;
+  }
+  /* ===============================
+     GRID — TABLET LANDSCAPE
+     (SEM ALTERAÇÃO)
+  =============================== */
+}
+/* ===================================
+GRID — DESKTOP 1200px
+(1200px – 1439.98px)
+=================================== */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+
+  /* ===============================
+     GRID PRINCIPAL — DESKTOP 1200
+  =============================== */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3.2rem;
+    padding-top:5rem;
+    max-width: 120rem;
+    margin: 4rem auto;
+    justify-items: center;
+
+  }
+  .main-title {
+    font-size: 3.2rem;
+  }
+
+  .header-container{
+    font-size: 2rem;
+  }
+  .category-grid-item {
+    width: 100%;
+    max-width: 26rem; /* 🔼 maior que tablet */
+  }
+  .btn-menu img{
+    width: 5rem;
+    height: 5rem;
+  }
+ .category-title{
+    font-size: 2.5rem;
+    width: 85%;
+  }.category-title.long-title {
+    font-size: 2rem;
+    width: 85%;
+  }
+  /* ===============================
+     SEGUNDA LINHA (3 CARDS CENTRALIZADOS)
+  =============================== */
+  .gallery-row-second {
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 26rem);
+    justify-content: center;
+    gap: 3.2rem;
+
+    margin-top: 3.2rem;
+  }
+}
+
+/* ===================================
+GRID + HEADER — DESKTOP 1440
+(1440px – 1799.98px)
+=================================== */
+
+@media (min-width: 1440px) and (max-width: 1799.98px) {
+
+  /* ===============================
+     GRID PRINCIPAL — DESKTOP 1440
+  =============================== */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3.6rem;
+
+    padding-top: 6rem;
+
+    max-width: 136rem;   /* 🔒 TRAVA VISUAL */
+    margin: 4rem auto;
+
+    justify-items: center;
+  }
+
+  .category-grid-item {
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  /* ===============================
+     HEADER
+  =============================== */
+  .header-container {
+    position: relative;
+
+    width: 72rem;
+    height: 8.5rem;
+
+    margin-left: calc(-50vw + 50% + 2rem);
+    /* ⬆️ isso ANCORA NA VIEWPORT, não no grid */
+
+    margin-top: 2.4rem;
+
+    border-radius: 1.2rem 0 0 1.2rem;
+  }
+
+  /* libera conteúdo interno */
+  .header-row {
+    max-width: none;
+    margin: 0;
+    padding-left: 1.6rem;
+  }
+  .header-container {
+    font-size: 2.2rem;
+  }
+
+  .main-title {
+    font-size: 3.8rem;
+  }
+
+  .btn-menu img {
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+
+  /* ===============================
+     TÍTULOS DOS CARDS
+  =============================== */
+  .category-title {
+    font-size: 2.8rem;
+    width: 85%;
+  }
+
+  .category-title.long-title {
+    font-size: 2.2rem;
+    width: 85%;
+  }
+
+  /* ===============================
+     SEGUNDA LINHA (3 CENTRALIZADOS)
+  =============================== */
+  .gallery-row-second {
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 28rem);
+    justify-content: center;
+
+    gap: 3.6rem;
+    margin-top: 3.6rem;
+  }
+}
+
+/* ===================================
+GRID + HEADER — DESKTOP 1800+
+(1800px em diante)
+=================================== */
+
+@media (min-width: 1800px) {
+
+  /*===========================
+     HEADER
+  =============================== */
+  .header-container {
+    position: relative;
+  
+    width: 84rem;
+    height: 10rem;
+  
+    margin-left: calc(-50vw + 50% + 2rem);
+    /* ⬆️ MESMA ÂNCORA DO 1440 */
+  
+    margin-top: 3.2rem;
+  
+    border-radius: 1.6rem 0 0 1.6rem;
+    font-size: 2.4rem;
+  }
+  
+  /* libera conteúdo interno */
+  .header-row {
+    max-width: none;
+    margin: 0;
+    padding-left: 2.4rem;
+  }
+  
+  .main-title {
+    font-size: 4.6rem;
+  }
+  
+  .btn-menu img {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+  /* ===============================
+     GRID PRINCIPAL — DESKTOP 1800+
+  =============================== */
+  /* ===============================
+     GRID PRINCIPAL — DESKTOP 1440
+  =============================== */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3.6rem;
+
+    padding-top: 6rem;
+
+    max-width: 136rem;   /* 🔒 TRAVA VISUAL */
+    margin: 4rem auto;
+
+    justify-items: center;
+  }
+
+  .category-grid-item {
+    width: 100%;
+    max-width: 40rem;
+  }
+    /* ===============================
+     SEGUNDA LINHA (3 CENTRALIZADOS)
+  =============================== */
+  .gallery-row-second {
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 30rem);
+    justify-content: center;
+
+    gap: 3.6rem;
+    margin-top: 3.6rem;
+  }
+
+  /* ===============================
+     HEADER
+  =============================== */
+  .header-container {
+    position: relative;
+
+    width: 72rem;
+    height: 8.5rem;
+
+    margin-left: calc(-50vw + 50% + 2rem);
+    /* ⬆️ isso ANCORA NA VIEWPORT, não no grid */
+
+    margin-top: 2.4rem;
+
+    border-radius: 1.2rem 0 0 1.2rem;
+  }
+
+  /* libera conteúdo interno */
+  .header-row {
+    max-width: none;
+    margin: 0;
+    padding-left: 1.6rem;
+  }
+  .header-container {
+    font-size: 2.2rem;
+  }
+
+  .main-title {
+    font-size: 3.8rem;
+  }
+
+  .btn-menu img {
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+
+  /* ===============================
+     TÍTULOS DOS CARDS
+  =============================== */
+  .category-title {
+    font-size: 2.8rem;
+    width: 85%;
+  }
+
+  .category-title.long-title {
+    font-size: 2.5rem;
+    width: 85%;
+  }
+}
+/* ===================================================
+            INICIO MODAL GALEIRA 
+=================================================== */
+
+/* =========================================================
+   iPHONE PORTRAIT — LAYOUT FECHADO (SEM DRIFT)
+   até 430px
+========================================================= */
+@media (max-width: 430px) {
+
+  /* ===== STAGE ===== */
+  #galleryModal .gallery-stage {
+    width: 375px;          /* 🔒 largura fixa */
+    height: 667px;         /* 🔒 altura fixa (iPhone padrão) */
+    max-width: 375px;
+    max-height: 667px;
+  }
+
+  /* ===== IMAGEM ===== */
+  #galleryModal .image-wrapper {
+    width: 375px;
+    height: 480px;         /* 🔒 slot fixo */
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 300px;
+    max-height: 410px;
+  }
+  /* ===== SETAS ===== */
+  #galleryModal .nav-arrow {
+    top: 310px;           /* 🔒 posição fixa */
+    transform: none;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 12px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 12px;
+  }
+  /* ===== FECHAR ===== */
+  #galleryModal .close-btn {
+    top: 206px;
+    right: 24px;
+  }
+  #galleryModal .close-btn img {
+    width: 30px;
+    height: 30px;         /* 🔒 slot fixo */
+  }
+
+  /* ===== TÍTULO ===== */
+  #galleryModal .card-title-wrapper {
+     top: 209px;
+    left: 57px;
+  }  
+  #galleryModal .card-title-wrapper.long-title {
+     
+      left: 42px;
+  }
+ #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 14px;   /* antes maior → agora menor */
+  
+  }
+  
+  #galleryModal .card-title {
+    font-size: 15px;
+  }
+  
+
+  /* ===== DESCRIÇÃO ===== */
+  #galleryModal .card-description-wrapper {
+    bottom: 200px;
+    max-width: 320px;
+    font-size: 7px;
+    border: 1px solid red;
+  }
+
+  #galleryModal .card-description {
+    line-height: 1.1;
+  }
+
+
+
+  /* ===== LABEL VERTICAL ===== */
+  #galleryModal .vertical-label {
+    display: none;
   }
 }

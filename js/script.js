@@ -284,7 +284,6 @@ const galleryData = {
   },
 };
 
-
 /* =========================================================
    CONTROLE DE ESTADO
 ========================================================= */
@@ -293,7 +292,24 @@ let currentTheme = null;
 let currentIndex = 0;
 
 /* =========================================================
-   ATUALIZA GALERIA
+   PRELOAD (mantido)
+========================================================= */
+
+function preloadAdjacentImages(theme, index) {
+  if (!galleryData[theme]) return;
+
+  const images = galleryData[theme].images;
+  if (images.length <= 1) return;
+
+  const next = index + 1;
+  const prev = index - 1;
+
+  if (next < images.length) new Image().src = images[next].src;
+  if (prev >= 0) new Image().src = images[prev].src;
+}
+
+/* =========================================================
+   ATUALIZA GALERIA (LÓGICA ORIGINAL ADAPTADA)
 ========================================================= */
 
 function updateGallery() {
@@ -303,18 +319,70 @@ function updateGallery() {
   const item = themeData.images[currentIndex];
   const total = themeData.images.length;
 
+  /* ===== IMAGEM ===== */
   const img = document.getElementById("galleryImage");
-  const title = document.getElementById("galleryTitle");
-  const caption = document.getElementById("galleryCaption");
-  const credit = document.getElementById("galleryCredit");
-
   img.src = item.src;
-  img.alt = `${themeData.title} — ${item.caption}`;
+  img.alt = item.caption?.split(".")[0] || themeData.title;
 
+  /* ===== TÍTULO ===== */
+  const title = document.getElementById("galleryTitle");
   title.textContent = themeData.title;
-  caption.textContent = item.caption;
-  credit.textContent = item.credit || "";
 
+  const titleWrapper = title.closest(".card-title-wrapper");
+  if (titleWrapper) {
+    titleWrapper.classList.remove("long-title", "extra-long-title");
+
+    const wordCount = themeData.title.trim().split(/\s+/).length;
+
+    if (wordCount >= 2) titleWrapper.classList.add("long-title");
+    if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
+  }
+
+  /* ===== DESCRIÇÃO ===== */
+  const caption = document.getElementById("galleryCaption");
+  caption.textContent = item.caption || "";
+
+  const descriptionWrapper = caption.closest(".card-description-wrapper");
+  if (descriptionWrapper) {
+    descriptionWrapper.classList.remove(
+      "short-description",
+      "long-description",
+      "extra-long-description"
+    );
+
+    const len = item.caption?.length || 0;
+
+    if (len > 190) {
+      descriptionWrapper.classList.add("extra-long-description");
+    } else if (len > 150) {
+      descriptionWrapper.classList.add("long-description");
+    } else {
+      descriptionWrapper.classList.add("short-description");
+    }
+  }
+
+  /* ===== CRÉDITO / LABEL VERTICAL ===== */
+  const verticalLabel = document.querySelector(".vertical-label");
+  if (verticalLabel) {
+    verticalLabel.textContent = item.credit || "";
+
+    verticalLabel.classList.remove("long-credit", "extra-long-credit");
+
+    const creditLen = item.credit?.length || 0;
+
+    if (creditLen > 200) {
+      verticalLabel.classList.add("extra-long-credit");
+    } else if (creditLen > 45) {
+      verticalLabel.classList.add("long-credit");
+    }
+
+    /* força repaint (mantém sua lógica antiga) */
+    verticalLabel.style.display = "none";
+    verticalLabel.offsetHeight;
+    verticalLabel.style.display = "block";
+  }
+
+  /* ===== SETAS ===== */
   const left = document.querySelector(".nav-arrow.left");
   const right = document.querySelector(".nav-arrow.right");
 
@@ -325,6 +393,8 @@ function updateGallery() {
     left.style.display = currentIndex === 0 ? "none" : "flex";
     right.style.display = currentIndex === total - 1 ? "none" : "flex";
   }
+
+  preloadAdjacentImages(currentTheme, currentIndex);
 }
 
 /* =========================================================
@@ -339,7 +409,7 @@ function goPrev() {
 }
 
 function goNext() {
-  const total = galleryData[currentTheme].images.length;
+  const total = galleryData[currentTheme]?.images.length || 0;
   if (currentIndex < total - 1) {
     currentIndex++;
     updateGallery();
@@ -384,21 +454,4 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     bootstrap.Modal.getInstance(modal)?.hide();
   }
-});
-
-/* =========================================================
-   FULLSCREEN (SEM ALTERAR LAYOUT)
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("btnFullscreen");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  });
 });
