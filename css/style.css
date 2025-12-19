@@ -50,7 +50,16 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
-
+.btn-fullscreen {
+  display: none;
+}
+@media (min-width: 1200px) {
+  .btn-fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 /* =========================================================
    ESTRUTURA E GRID
 ========================================================= */
@@ -303,7 +312,7 @@ main {
   height: 2.4rem;
 }
 /* =========================================================
-   MODAL MENU / CRÉDITOS — GLOBAL
+          MODAL MENU / CRÉDITOS — GLOBAL
 ========================================================= */
 
 #menuModal {
@@ -336,7 +345,7 @@ main {
   width: 100%;
   max-width: 85rem;
   padding: 2.4rem;
-  padding-top: 18rem;              /* espaço superior geral */
+  padding-top: 18rem;              
   position: relative;
   display: flex;
   flex-direction: column;
@@ -348,14 +357,14 @@ main {
 .popup-row {
   display: flex;
   flex-direction: column;
-  gap: 4rem;                      /* separação ENTRE os blocos */
+  gap: 4rem;                     
 }
 
 /* =========================================================
    WRAPPERS (CONTEXTO DOS TÍTULOS)
 ========================================================= */
 .box-wrapper {
-  position: relative;             /* referência para o título */
+  position: relative;            
 }
 
 /* =========================================================
@@ -400,7 +409,7 @@ main {
    BOXES DE CONTEÚDO
 ========================================================= */
 .popup-caixa {
-  margin-top: 2.8rem;             /* reserva espaço para o título */
+  margin-top: 2.8rem;            
   padding: 1.2rem;
 
   background-color: #f2befa;
@@ -418,7 +427,7 @@ main {
 }
 
 /* =========================================================
-   BORDA SUPERIOR COM “QUEBRA” PARA O TÍTULO
+        BORDA SUPERIOR COM “QUEBRA” PARA O TÍTULO
 ========================================================= */
 .popup-caixa::before {
   content: "";
@@ -427,11 +436,11 @@ main {
   right: 0;
   height: 0;
   border-top: 0.3rem solid #fff;
-  width: calc(100% - 12.4rem);      /* largura do título + respiro */
+  width: calc(100% - 12.4rem);      
 }
 
 /* =========================================================
-   BOTÃO FECHAR
+                    BOTÃO FECHAR
 ========================================================= */
 #menuModal .btn-close-custom-styled {
   position: absolute;
@@ -447,7 +456,7 @@ main {
 
 
 /* =========================================================
-   ELEMENTOS FIXOS
+                    ELEMENTOS FIXOS
 ========================================================= */
 .open-word-logo-global {
   position: fixed;
@@ -475,7 +484,7 @@ main {
                   FIM DA BASE
 ========================================================= */
 /* =========================================================
-   MEDIA QUERIES (MOBILE / TABLET)
+            MEDIA QUERIES (MOBILE / TABLET)
 ========================================================= */
 @media (max-width: 767px) {
   #galleryModal .card-title {
@@ -492,7 +501,7 @@ main {
 }
 
 /* =========================================================
-            MOBILE LANDSCAPE
+                     MOBILE LANDSCAPE
 ========================================================= */
 
 @media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
@@ -522,9 +531,51 @@ main {
   }
 }
 
+@media (orientation: landscape) {
+  main {
+    padding-bottom: 0;
+    
+  }
+   .category-grid {
+    margin-bottom: 0;
+  }
+}
+/* =========================================================
+   MOBILE LARGE LANDSCAPE (Galaxy A51 / similares)
+========================================================= */
+@media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
 
+  /* herda tudo do iPhone landscape automaticamente */
 
-/* Tablet Landscape */
+  .category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+  .category-grid-item {
+    max-width: 14rem;
+  }
+  .category-title {
+    font-size: 1.3rem;   
+    bottom: -2.2rem;
+  } 
+  .category-title.long-title {
+    font-size: 1rem;    
+    bottom: -2.2rem;
+  }
+  #galleryModal .image-wrapper {
+    max-height: 65vh;
+  }
+  #galleryModal .card-description-wrapper {
+    bottom: 4rem;
+    max-width: 85%;
+  }
+
+}
+/* ================================
+      Tablet Landscape 
+================================ */
 @media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
   .category-grid {
     display: flex;
@@ -545,10 +596,13 @@ main {
 }
 
 /* =========================================================
-   MEDIA QUERIES (DESKTOP)
+              MEDIA QUERIES (DESKTOP)
 ========================================================= */
 
-/* Desktop 1200px */
+/* =========================================================
+                  DESKTOP 1200px 
+========================================================= */
+
 @media (min-width: 1200px) and (max-width: 1439.98px) {
   .header-container {
     width: 70%;
@@ -576,8 +630,10 @@ main {
     max-width: 90%;
   }
 }
+/* =========================================================
+                  DESKTOP 1400px 
+========================================================= */
 
-/* Desktop 1440px */
 @media (min-width: 1440px) and (max-width: 1799.98px) {
   .header-container {
     width: 70%;
@@ -606,8 +662,10 @@ main {
     font-size: 3.6rem;
   }
 }
+/* =========================================================
+                  DESKTOP 1800px 
+========================================================= */
 
-/* Desktop 1800px+ (FHD/4K) */
 @media (min-width: 1800px) {
   .container {
     max-width: 1600px;
@@ -670,8 +728,7 @@ main {
 ==================================== */
 
 /* =========================================================
-   MODAL CRÉDITOS — iPHONE LANDSCAPE
-   (visual antigo preservado / arquitetura nova)
+        MODAL CRÉDITOS — iPHONE LANDSCAPE  
 ========================================================= */
 @media (max-width: 767.98px) and (orientation: landscape) {
 
@@ -692,27 +749,22 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-     justify-content: center; /* 👈 centraliza verticalmente */
+     justify-content: center; 
   }
 
-/* linha principal com BACKGROUND (landscape) */
+
 .popup-row {
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
-
-  width: 96%;              /* 👈 aumenta lateralmente */
-  margin: 0 auto;          /* 👈 centraliza */
-
-  padding: 2rem;           /* 👈 mais área visível do background */
-
+  width: 96%;             
+  margin: 0 auto; 
+  padding: 2rem;  
   background: url("../assets/background.jpg") center / cover no-repeat;
   border: 0.5rem solid #fff;
   border-radius: 1rem;
   margin: -2rem auto 0;
   margin-left: clamp(4rem, 15vw, 24rem);
-
-
 }
 
 .box-wrapper-creditos,
@@ -721,17 +773,12 @@ main {
   min-width: 0;
   padding: 1rem;
   max-height: calc(90svh - 8rem);
-  overflow: hidden;   /* 🔒 wrapper não se move */
+  overflow: hidden;   
   position: relative;
 }
-
-
-  /* pequeno afastamento visual do segundo bloco */
   .box-wrapper-utilizar {
     margin-left: 1.5rem;
   }
-
-  /* títulos (mesma ideia do antigo, mas estáveis) */
   .custom-popup-title,
   .custom-popup-title-utilizar {
     position: absolute;
@@ -761,7 +808,7 @@ main {
     right: 0;
     height: 0;
     border-top: 0.3rem solid #fff;
-    width: calc(100% - 7rem);      /* largura do título + respiro */
+    width: calc(100% - 7rem);      
   }
   .popup-caixa-utilizar::before {
     content: "";
@@ -770,7 +817,7 @@ main {
     right: 0;
     height: 0;
     border-top: 0.3rem solid #fff;
-    width: calc(100% - 8.4rem);      /* largura do título + respiro */
+    width: calc(100% - 8.4rem);      
   }
   .popup-caixa {
     margin-top: 3.2rem;
@@ -787,10 +834,10 @@ main {
     line-height: 1.4;
 
     max-height: calc(90svh - 12rem);
-  overflow-y: auto;   /* ✅ scroll SOMENTE aqui */
+  overflow-y: auto;   
   }
 
-  /* botão fechar (igual ao antigo) */
+  /* botão fechar*/
   #menuModal .btn-close-custom-styled {
     top: 0;
     right: -7rem;
@@ -804,15 +851,143 @@ main {
   }
 }
 
+/* =========================================================
+   MOBILE LARGE LANDSCAPE (Galaxy A51 / similares)
+========================================================= */
+@media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
+    
+  #menuModal {
+    overflow: hidden;
+  }
 
+  /* container principal */
+  #menuModal .custom-popup-content {
+    width: min(95svw, 85rem);
+    min-height: 90svh;
+
+    margin: 1rem auto;
+    padding: 1.5rem;
+    padding-top: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     justify-content: center; 
+  }
+.popup-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  width: 96%;              
+  margin: 0 auto;          
+
+  padding: 2rem;           
+
+  background: url("../assets/background.jpg") center / cover no-repeat;
+  border: 0.5rem solid #fff;
+  border-radius: 1rem;
+  margin: -2rem auto 0;
+  margin-left: clamp(4rem, 15vw, 24rem);
+transform: translateX(8rem);
+
+
+}
+
+.box-wrapper-creditos,
+.box-wrapper-utilizar {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem;
+  max-height: calc(90svh - 8rem);
+  overflow: hidden;   
+  position: relative;
+}
+
+ 
+  .box-wrapper-utilizar {
+    margin-left: 1.5rem;
+  }
+
+  
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: 1.6rem;
+    left: 1rem;
+    
+    width: auto;
+    padding: 0.6rem 1.2rem;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.3rem solid #fff;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    
+    z-index: 2;
+  }
+  /* caixas internas */
+  .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+    width: calc(100% - 7rem);      
+  }
+  .popup-caixa-utilizar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+    width: calc(100% - 8.4rem);      
+  }
+  .popup-caixa {
+    margin-top: 3.2rem;
+    padding: 1.2rem;
+
+    background-color: #f2befa;
+    color: #6d3ba9;
+
+    border: 0.3rem solid #fff;
+    border-top: none;
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+
+    font-size: 1rem;
+    line-height: 1.4;
+    
+    max-height: calc(90svh - 12rem);
+  overflow-y: auto;   
+  }
+
+  /* botão fechar */
+  #menuModal .btn-close-custom-styled {
+    top: 0;
+    right: -19rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  #menuModal .btn-close-custom-styled img {
+    width: 5rem;
+    height: 5rem;
+  }
+}
 
 /* =========================================================
-   MODAL CRÉDITOS — iPAD LANDSCAPE
-  
+              MODAL CRÉDITOS — iPAD LANDSCAPE  
 ========================================================= */
-@media (min-width: 768px) and (max-width: 1199.98px) and (orientation: landscape) {
+@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
 
-  /* trava overflow geral */
+ 
   #menuModal {
     overflow: hidden;
   }
@@ -832,7 +1007,7 @@ main {
     justify-content: center;
   }
 
-  /* linha principal com BACKGROUND */
+
   .popup-row {
     display: flex;
     flex-direction: row;
@@ -891,7 +1066,7 @@ main {
     right: 0;
     height: 0;
     border-top: 0.3rem solid #fff;
-    width: calc(100% - 12.4rem);      /* largura do título + respiro */
+    width: calc(100% - 12.4rem);      
   }
   .popup-caixa-utilizar::before {
     content: "";
@@ -900,7 +1075,7 @@ main {
     right: 0;
     height: 0;
     border-top: 0.3rem solid #fff;
-    width: calc(100% - 8.4rem);      /* largura do título + respiro */
+    width: calc(100% - 8.4rem);      
   }
 
   /* caixas */
@@ -937,15 +1112,11 @@ main {
 }
 /* =========================================================
    MODAL CRÉDITOS — iPAD PORTRAIT
-   (CLONE DO iPHONE PORTRAIT)
 ========================================================= */
-/* =========================================================
-   MODAL CRÉDITOS — iPAD PORTRAIT
-   (proporção do CSS antigo preservada)
-========================================================= */
+
 @media (min-width: 768px) and (orientation: portrait) {
 
-    /* 🔥 REMOVE O LIMITE DO BOOTSTRAP */
+
   #menuModal .modal-dialog {
     max-width: none;
     width: 100%;
@@ -962,26 +1133,25 @@ main {
     margin: 0 auto;
   }
   
-  /* linha */
+
   #menuModal .popup-row {
     width: 100%;
     max-width: none;
     margin: 0 auto;
   }
   
-  /* AGORA O WIDTH RESPONDE */
+
   #menuModal .box-wrapper-creditos,
   #menuModal .box-wrapper-utilizar {
     width: 100%;
-    max-width: 96rem; /* ajuste aqui */
+    max-width: 96rem; 
     margin: 0 auto;
   }
-  #menuModal .box-wrapper-creditos {
-    
+  #menuModal .box-wrapper-creditos {    
     max-width: 120rem;
   }
   
-  /* títulos — MESMA PROPORÇÃO VISUAL */
+  /* títulos */
   .custom-popup-title,
   .custom-popup-title-utilizar {
     position: absolute;
@@ -1008,7 +1178,7 @@ main {
     margin-top: 5rem;
     font-size: 1.6rem;
     text-align: center;
-   position: relative; /* OBRIGATÓRIO para o ::before */
+   position: relative; 
     
   }
   /* padrão */
@@ -1023,12 +1193,12 @@ main {
 
 /* CRÉDITOS */
 .popup-caixa-creditos::before {
-  width: calc(100% - 17.5rem); /* largura do título CRÉDITOS */
+  width: calc(100% - 17.5rem); 
 }
 
 /* COMO UTILIZAR */
 .popup-caixa-utilizar::before {
-  width: calc(100% - 25.2rem); /* largura do título UTILIZAR */
+  width: calc(100% - 25.2rem);
 }
   /* textos internos */
   .popup-subtitle,
@@ -1038,7 +1208,7 @@ main {
     text-align: center;
   }
   
-  /* botão fechar — mesma proporção */
+  /* botão fechar */
   #menuModal .btn-close-custom-styled {
     top: 9rem;
     right: -4rem;
@@ -1053,15 +1223,14 @@ main {
   
 }
 /* =========================================================
-   MODAL CRÉDITOS — DESKTOP (BASE)
-   Layout lado a lado (herda landscape)
+            MODAL CRÉDITOS — DESKTOP (BASE)      
 ========================================================= */
 /* =========================================================
-   MODAL CRÉDITOS — DESKTOP 1200px (LIMPO)
+        MODAL CRÉDITOS — DESKTOP 1200px 
 ========================================================= */
 @media (min-width: 1200px) and (max-width: 1439.98px) {
 
-  /* libera modal do Bootstrap */
+  
   #menuModal .modal-dialog {
     max-width: none;
     width: 100%;
@@ -1100,9 +1269,7 @@ main {
     position: relative;
   }
 
-  /* =====================================================
-     TÍTULOS — LIBERADOS (MESMA LÓGICA DO 1440)
-  ===================================================== */
+
   .custom-popup-title,
   .custom-popup-title-utilizar {
     top: 0;
@@ -1111,7 +1278,7 @@ main {
     height: 5.2rem;
     font-size: 2rem;
 
-    width: auto;                 /* 🔓 sem trava */
+    width: auto;                 
     max-width: 90%;
 
     padding-block: 0.8rem;
@@ -1120,9 +1287,7 @@ main {
     white-space: nowrap;
   }
 
-  /* =====================================================
-     BORDA SUPERIOR — SINCRONIZADA COM O TÍTULO
-  ===================================================== */
+
   .popup-caixa::before {
     right: 0;
     left: var(--title-offset, 14.2rem);
@@ -1133,9 +1298,6 @@ main {
     left: var(--title-offset-utilizar, 20rem);
   }
 
-  /* =====================================================
-     CAIXAS
-  ===================================================== */
   .popup-caixa {
     margin-top: 5.2rem;
     font-size: 1.6rem;
@@ -1156,11 +1318,11 @@ main {
 }
 
 /* =========================================================
-   MODAL CRÉDITOS — DESKTOP 1440px
+               MODAL CRÉDITOS — DESKTOP 1440px
 ========================================================= */
 @media (min-width: 1440px) {
 
-  /* libera modal do Bootstrap */
+
   #menuModal .modal-dialog {
     max-width: none;
     width: 100%;
@@ -1199,29 +1361,23 @@ main {
     position: relative;
   }
 
-  /* =====================================================
-     TÍTULOS — TOTALMENTE LIVRES
-  ===================================================== */
+
   .custom-popup-title,
   .custom-popup-title-utilizar {
     top: 0.1rem;
-    left: 0;                  /* referência leve, não trava */
+    left: 0;                  
     
     height: 5.2rem;
     font-size: 2.2rem;
 
-    width: auto;                 /* 🔓 liberdade total */
-    max-width: 90%;              /* segurança */
+    width: auto;                
+    max-width: 90%;             
 
     padding-block: 0.8rem;
     padding-inline: clamp(1.4rem, 2vw, 4.8rem);
 
     white-space: nowrap;
-  }
-
-  /* =====================================================
-     BORDA SUPERIOR — ALINHADA AO TÍTULO
-  ===================================================== */
+  }  
   .popup-caixa::before {
     right: 0;
     left: var(--title-offset, 17.1rem);
@@ -1232,10 +1388,7 @@ main {
     right: 0;
     left: var(--title-offset-utilizar, 23.2rem);
   }
-
-  /* =====================================================
-     CAIXAS
-  ===================================================== */
+  
   .popup-caixa {
     margin-top: 5.2rem;
     font-size: 1.8rem;
@@ -1254,8 +1407,7 @@ main {
 }
 
 /* =========================================================
-   MODAL CRÉDITOS — DESKTOP 1800px+
-   (escala máxima, layout lado a lado)
+            MODAL CRÉDITOS — DESKTOP 1800px+
 ========================================================= */
 @media (min-width: 1800px) {
 
@@ -1315,7 +1467,7 @@ main {
      HEADER — TABLET PORTRAIT
   =============================== */
   .header-container {
-    width: 60rem;          /* 🔽 menor que antes */
+    width: 60rem;         
     height: 7rem;
     margin-left: 2.4rem;
   }
@@ -1329,14 +1481,14 @@ main {
   =============================== */
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;           /* 🔽 aproxima as colunas */
-    max-width: 88rem;      /* 🔒 evita espalhar demais */
+    gap: 1.6rem;           
+    max-width: 88rem;      
     padding: 4rem 4rem 0 4rem;
     padding-bottom: none;
   }
 
   .category-grid-item {
-    max-width: 30rem;      /* mantém proporção */
+    max-width: 30rem;      
   }
   .btn-menu img {
   width: 4.2rem;
@@ -1361,14 +1513,11 @@ main {
      GRIND — TABLET LANDSCAPE
   =============================== */
 /* ===================================
-GRID — DESKTOP 1200px
-(1200px – 1439.98px)
+        GRID — DESKTOP 1200px
 =================================== */
 @media (min-width: 1200px) and (max-width: 1439.98px) {
 
-  /* ===============================
-     GRID PRINCIPAL — DESKTOP 1200
-  =============================== */
+ 
   .category-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1388,7 +1537,7 @@ GRID — DESKTOP 1200px
   }
   .category-grid-item {
     width: 100%;
-    max-width: 26rem; /* 🔼 maior que tablet */
+    max-width: 26rem; 
   }
   .btn-menu img{
     width: 5rem;
@@ -1401,9 +1550,7 @@ GRID — DESKTOP 1200px
     font-size: 2rem;
     width: 85%;
   }
-  /* ===============================
-     SEGUNDA LINHA (3 CARDS CENTRALIZADOS)
-  =============================== */
+
   .gallery-row-second {
     grid-column: 1 / -1;
 
@@ -1416,10 +1563,7 @@ GRID — DESKTOP 1200px
   }
 }
 
-/* ===================================
-GRID + HEADER — DESKTOP 1440
-(1440px – 1799.98px)
-=================================== */
+
 
 @media (min-width: 1440px) and (max-width: 1799.98px) {
 
@@ -1433,7 +1577,7 @@ GRID + HEADER — DESKTOP 1440
 
     padding-top: 6rem;
 
-    max-width: 136rem;   /* 🔒 TRAVA VISUAL */
+    max-width: 136rem;   
     margin: 4rem auto;
 
     justify-items: center;
@@ -1444,24 +1588,16 @@ GRID + HEADER — DESKTOP 1440
     max-width: 28rem;
   }
 
-  /* ===============================
-     HEADER
-  =============================== */
   .header-container {
     position: relative;
-
     width: 72rem;
     height: 8.5rem;
-
     margin-left: calc(-50vw + 50% + 2rem);
-    /* ⬆️ isso ANCORA NA VIEWPORT, não no grid */
-
     margin-top: 2.4rem;
-
     border-radius: 1.2rem 0 0 1.2rem;
   }
 
-  /* libera conteúdo interno */
+ 
   .header-row {
     max-width: none;
     margin: 0;
@@ -1480,9 +1616,7 @@ GRID + HEADER — DESKTOP 1440
     height: 5.6rem;
   }
 
-  /* ===============================
-     TÍTULOS DOS CARDS
-  =============================== */
+  
   .category-title {
     font-size: 2.8rem;
     width: 85%;
@@ -1492,10 +1626,6 @@ GRID + HEADER — DESKTOP 1440
     font-size: 2.2rem;
     width: 85%;
   }
-
-  /* ===============================
-     SEGUNDA LINHA (3 CENTRALIZADOS)
-  =============================== */
   .gallery-row-second {
     grid-column: 1 / -1;
 
@@ -1510,7 +1640,6 @@ GRID + HEADER — DESKTOP 1440
 
 /* ===================================
 GRID + HEADER — DESKTOP 1800+
-(1800px em diante)
 =================================== */
 
 @media (min-width: 1800px) {
@@ -1519,16 +1648,11 @@ GRID + HEADER — DESKTOP 1800+
      HEADER
   =============================== */
   .header-container {
-    position: relative;
-  
+    position: relative;  
     width: 84rem;
-    height: 10rem;
-  
-    margin-left: calc(-50vw + 50% + 2rem);
-    /* ⬆️ MESMA ÂNCORA DO 1440 */
-  
-    margin-top: 3.2rem;
-  
+    height: 10rem;  
+    margin-left: calc(-50vw + 50% + 2rem); 
+    margin-top: 3.2rem;  
     border-radius: 1.6rem 0 0 1.6rem;
     font-size: 2.4rem;
   }
@@ -1551,9 +1675,7 @@ GRID + HEADER — DESKTOP 1800+
   /* ===============================
      GRID PRINCIPAL — DESKTOP 1800+
   =============================== */
-  /* ===============================
-     GRID PRINCIPAL — DESKTOP 1440
-  =============================== */
+  
   .category-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1561,7 +1683,7 @@ GRID + HEADER — DESKTOP 1800+
 
     padding-top: 6rem;
 
-    max-width: 136rem;   /* 🔒 TRAVA VISUAL */
+    max-width: 136rem;   
     margin: 4rem auto;
 
     justify-items: center;
@@ -1571,9 +1693,7 @@ GRID + HEADER — DESKTOP 1800+
     width: 100%;
     max-width: 40rem;
   }
-    /* ===============================
-     SEGUNDA LINHA (3 CENTRALIZADOS)
-  =============================== */
+  
   .gallery-row-second {
     grid-column: 1 / -1;
 
@@ -1585,24 +1705,16 @@ GRID + HEADER — DESKTOP 1800+
     margin-top: 3.6rem;
   }
 
-  /* ===============================
-     HEADER
-  =============================== */
+ 
   .header-container {
     position: relative;
-
     width: 72rem;
     height: 8.5rem;
-
     margin-left: calc(-50vw + 50% + 2rem);
-    /* ⬆️ isso ANCORA NA VIEWPORT, não no grid */
-
     margin-top: 2.4rem;
-
     border-radius: 1.2rem 0 0 1.2rem;
   }
 
-  /* libera conteúdo interno */
   .header-row {
     max-width: none;
     margin: 0;
@@ -1621,9 +1733,6 @@ GRID + HEADER — DESKTOP 1800+
     height: 5.6rem;
   }
 
-  /* ===============================
-     TÍTULOS DOS CARDS
-  =============================== */
   .category-title {
     font-size: 2.8rem;
     width: 85%;
@@ -1639,8 +1748,7 @@ GRID + HEADER — DESKTOP 1800+
 =================================================== */
 
 /* =========================================================
-   iPHONE PORTRAIT — LAYOUT FECHADO (SEM DRIFT)
-   até 430px
+                  iPHONE PORTRAIT 
 ========================================================= */
 @media (max-width: 430px) {
   #galleryModal #galleryCaption {
@@ -1649,8 +1757,8 @@ GRID + HEADER — DESKTOP 1800+
   }
   /* ===== STAGE ===== */
   #galleryModal .gallery-stage {
-    width: 375px;          /* 🔒 largura fixa */
-    height: 667px;         /* 🔒 altura fixa (iPhone padrão) */
+    width: 375px;         
+    height: 667px;        
     max-width: 375px;
     max-height: 667px;
   }
@@ -1658,16 +1766,16 @@ GRID + HEADER — DESKTOP 1800+
   /* ===== IMAGEM ===== */
   #galleryModal .image-wrapper {
     width: 375px;
-    height: 480px;         /* 🔒 slot fixo */
+    height: 480px;         
   }
 
   #galleryModal .image-wrapper img {
     max-width: 300px;
     max-height: 410px;
   }
-  /* ===== SETAS ===== */
+
   #galleryModal .nav-arrow {
-    top: 310px;           /* 🔒 posição fixa */
+    top: 310px;          
     transform: none;
   }
 
@@ -1678,37 +1786,32 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .nav-arrow.right {
     right: 12px;
   }
-  /* ===== FECHAR ===== */
+ 
   #galleryModal .close-btn {
     top: 206px;
     right: 24px;
   }
   #galleryModal .close-btn img {
     width: 30px;
-    height: 30px;         /* 🔒 slot fixo */
+    height: 30px;         
   }
 
-  /* ===== TÍTULO ===== */
+  
   #galleryModal .card-title-wrapper {
      top: 209px;
     left: 57px;
   }  
-  #galleryModal .card-title-wrapper.long-title {
-     
+  #galleryModal .card-title-wrapper.long-title {     
       left: 59px;
   }  
-  #galleryModal .card-title-wrapper.extra-long-title {
-     
-      left: 59px;
-      
+  #galleryModal .card-title-wrapper.extra-long-title {     
+      left: 59px;      
   }
  #galleryModal .card-title-wrapper.long-title .card-title {
-    font-size: 13px;   /* antes maior → agora menor */
-  
+    font-size: 13px;    
   }
    #galleryModal .card-title-wrapper.extra-long-title .card-title {
-    font-size: 12px;   /* antes maior → agora menor */
-  
+    font-size: 12px;     
   }
   
   #galleryModal .card-title {
@@ -1745,7 +1848,7 @@ GRID + HEADER — DESKTOP 1800+
 
 
 /* ===============================
-   DESLOCAMENTO LEVE (215–218px)
+       AJUSTES ESPECIFICOS
 =============================== */
 
 #galleryModal.img_g1f3 .card-description-wrapper,
@@ -1773,11 +1876,6 @@ GRID + HEADER — DESKTOP 1800+
 #galleryModal.img_g2f3 .card-description-wrapper {
   bottom: 207px;
 }
-
-/* ===============================
-   DESCRIÇÕES MAIS ALTAS
-=============================== */
-
 #galleryModal.img_g2f4 .card-description-wrapper,
 #galleryModal.img_g3f1 .card-description-wrapper,
 #galleryModal.img_g4f4 .card-description-wrapper {
@@ -1787,20 +1885,10 @@ GRID + HEADER — DESKTOP 1800+
 #galleryModal.img_g1f5 .card-description-wrapper {
   bottom: 228px;
 }
-
-/* ===============================
-   DESCRIÇÕES MUITO LONGAS
-=============================== */
-
 #galleryModal.img_g4f5 .card-description-wrapper,
 #galleryModal.img_g4f6 .card-description-wrapper {
   bottom: 230px;
 }
-
-/* ===============================
-   EXCEÇÕES DE ALINHAMENTO
-=============================== */
-
 #galleryModal.img_g5f3 .card-description-wrapper,
 #galleryModal.img_g6f3 .card-description-wrapper {
   bottom: 205px;
@@ -1811,20 +1899,11 @@ GRID + HEADER — DESKTOP 1800+
   max-width: 260px;
 }
 
-/* ===============================
-   EXCEÇÕES DE ALINHAMENTO
-=============================== */
-
 #galleryModal.img_g5f3 .card-description-wrapper,
 #galleryModal.img_g6f3 .card-description-wrapper {
   bottom: 205px;
   text-align: left;
 }
-
-
-/* ===============================
-   GALERIA 7
-=============================== */
 
 #galleryModal.img_g7f2 .card-description-wrapper,
 #galleryModal.img_g7f3 .card-description-wrapper,
@@ -1832,7 +1911,7 @@ GRID + HEADER — DESKTOP 1800+
   bottom: 212px;
 }
 /* ===================================================
-   LABEL VERTICAL — PADRÃO + VARIAÇÕES
+                 LABEL VERTICAL 
 =================================================== */
 
 #galleryModal .vertical-label {
@@ -1842,7 +1921,6 @@ GRID + HEADER — DESKTOP 1800+
   color: var(--color-primary);
 }
 
-/* variações semânticas */
 #galleryModal .vertical-label.long-credit {
   max-width: 200px;
 }
@@ -1853,8 +1931,7 @@ GRID + HEADER — DESKTOP 1800+
 }
 }
 /* =========================================================
-   iPHONE LANDSCAPE — LAYOUT FECHADO (SEM DRIFT)
-   568px – 767.98px
+                IPHONE LANDSCAPE 
 ========================================================= */
 @media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
 
@@ -1864,15 +1941,15 @@ GRID + HEADER — DESKTOP 1800+
   }
   /* ===== STAGE ===== */
   #galleryModal .gallery-stage {
-    width: 667px;          /* 🔒 largura fixa */
-    height: 375px;         /* 🔒 altura fixa */
+    width: 667px;          
+    height: 375px;         
     max-width: 667px;
     max-height: 375px;
   }
 
   /* ===== IMAGEM ===== */
   #galleryModal .image-wrapper {
-    width: 480px;          /* slot horizontal */
+    width: 480px;          
     height: 320px;
   }
 
@@ -1883,7 +1960,7 @@ GRID + HEADER — DESKTOP 1800+
 
   /* ===== SETAS ===== */
   #galleryModal .nav-arrow {
-    top: 160px;           /* 🔒 centro vertical fixo */
+    top: 160px;           
     transform: none;
   }
 
@@ -1938,20 +2015,17 @@ GRID + HEADER — DESKTOP 1800+
 
   /* curtas */
   #galleryModal .card-description-wrapper.short-description {
-    bottom: 50px;
-    border: 1px solid red;
+    bottom: 50px; 
   }
 
   /* médias */
   #galleryModal .card-description-wrapper.long-description {
-    bottom: 47px;
-     border: 1px solid yellow;
+    bottom: 47px;   
   }
 
   /* longas */
   #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 37px;
-    border: 1px solid green;
+    bottom: 37px;   
   }
 /* ================================================
       Ajustes especificos iphone landscape
@@ -2010,10 +2084,163 @@ GRID + HEADER — DESKTOP 1800+
     max-width: 260px;
     font-size: 6.5px;
   }
-}/* =========================================================
-   iPAD PORTRAIT — MODAL GALERIA
-   LAYOUT FECHADO (SEM DRIFT)
-   768px – 991.98px
+}
+@media (min-width: 768px) and (max-width: 991.98px) and (orientation: landscape) {
+    #galleryModal #galleryCaption {
+    color: var(--color-primary);
+    
+  }
+  /* ===== STAGE ===== */
+  #galleryModal .gallery-stage {
+    width: 667px;          
+    height: 375px;         
+    max-width: 667px;
+    max-height: 375px;
+  }
+
+  /* ===== IMAGEM ===== */
+  #galleryModal .image-wrapper {
+    width: 480px;          
+    height: 320px;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 440px;
+    max-height: 300px;
+  }
+
+  /* ===== SETAS ===== */
+  #galleryModal .nav-arrow {
+    top: 160px;           
+    transform: none;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 60px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 60px;
+  }
+
+  /* ===== FECHAR ===== */
+  #galleryModal .close-btn {
+    top: 35px;
+    right: 138px;
+  }
+
+  #galleryModal .close-btn img {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* ===== TÍTULO ===== */
+  #galleryModal .card-title-wrapper {
+    top: 40px;
+    left: 185px;
+  }
+
+  #galleryModal .card-title {
+    font-size: 15px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+    top: 40px;
+    left: 180px;
+  }
+  #galleryModal .card-title-wrapper.extra-long-title {
+    top: 40px;
+    left: 177px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 15px;
+  }
+
+  /* ===== DESCRIÇÃO (BASE) ===== */
+  #galleryModal .card-description-wrapper {
+    max-width: 300px;
+    font-size: 8px;
+    text-align: center;
+  }
+
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 50px;  
+  }
+
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 47px;    
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 37px;
+  }
+/* ================================================
+      Ajustes especificos iphone landscape
+================================================ */
+#galleryModal.img_g1f5 .card-description-wrapper,
+#galleryModal.img_g2f4 .card-description-wrapper,
+#galleryModal.img_g4f4 .card-description-wrapper,
+#galleryModal.img_g4f5 .card-description-wrapper{
+  bottom: 60px;
+}
+#galleryModal.img_g4f3 .card-description-wrapper,
+#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g7f6 .card-description-wrapper{
+  bottom: 45px;
+}
+#galleryModal.img_g4f5 .card-description-wrapper,
+#galleryModal.img_g4f6 .card-description-wrapper{
+  bottom: 68px;
+}
+#galleryModal.img_g4f6 .card-description-wrapper{
+  bottom: 68px;
+}
+#galleryModal.img_g4f10 .card-description-wrapper{
+  bottom: 40px;
+}
+#galleryModal.img_g4f12 .card-description-wrapper,
+#galleryModal.img_g6f3 .card-description-wrapper,
+#galleryModal.img_g7f4 .card-description-wrapper{
+  bottom: 35px;
+}
+#galleryModal.img_g5f3 .card-description-wrapper{
+  bottom: 38px;
+  text-align: left;
+}
+#galleryModal.img_g7f6 .card-description-wrapper{
+  bottom: 45px;
+
+}
+/* ================================================
+                LABEL VERTICAL 
+================================================ */
+
+  
+  #galleryModal .vertical-label {
+    bottom: 40px;
+    right: 178px;
+    font-size: 7px;
+    color: var(--color-primary);
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 240px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 260px;
+    font-size: 6.5px;
+  }
+
+
+}
+
+/* =========================================================
+              IPAD PORTRAIT — MODAL GALERIA
 ========================================================= */
 @media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
 
@@ -2024,7 +2251,7 @@ GRID + HEADER — DESKTOP 1800+
 
   /* ===== STAGE ===== */
   #galleryModal .gallery-stage {
-    width: 820px;          /* 🔒 proporcional ao iPad */
+    width: 820px;          
     height: 900px;
     max-width: 820px;
     max-height: 900px;
@@ -2071,14 +2298,10 @@ GRID + HEADER — DESKTOP 1800+
     top: 211px;
     left: 133px;
     }
-  
-
   #galleryModal .card-title {
     font-size: 25px;
   }
-
   #galleryModal .card-title-wrapper.long-title {
-   
     left: 130px;
   }
 
@@ -2088,7 +2311,6 @@ GRID + HEADER — DESKTOP 1800+
 
   #galleryModal .card-title-wrapper.long-title .card-title {
     font-size: 25px;
-
   }
 
   /* ===== DESCRIÇÃO — BASE ===== */
@@ -2101,19 +2323,16 @@ GRID + HEADER — DESKTOP 1800+
   /* curta */
   #galleryModal .card-description-wrapper.short-description {
     bottom: 230px;
-    border: 1px solid red;
   }
 
   /* média */
   #galleryModal .card-description-wrapper.long-description {
     bottom: 230px;
-    border: 1px solid yellow;
   }
 
   /* longa */
   #galleryModal .card-description-wrapper.extra-long-description {
     bottom: 228px;
-    border: 1px solid green;
   }
 /* ================================================
     Ajustes especificos tablet portrait landscape
@@ -2172,7 +2391,7 @@ GRID + HEADER — DESKTOP 1800+
    TABLET LANDSCAPE — LAYOUT FECHADO (SEM DRIFT)
    iPad landscape
 ========================================================= */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 992px) and (orientation: landscape) {
 
   #galleryModal #galleryCaption {
     color: var(--color-primary);
@@ -2180,8 +2399,8 @@ GRID + HEADER — DESKTOP 1800+
 
   /* ===== STAGE ===== */
   #galleryModal .gallery-stage {
-    width: 1024px;         /* 🔒 largura fixa */
-    height: 768px;         /* 🔒 altura fixa */
+    width: 1024px;         
+    height: 768px;        
     max-width: 1024px;
     max-height: 768px;
   }
@@ -2199,7 +2418,7 @@ GRID + HEADER — DESKTOP 1800+
 
   /* ===== SETAS ===== */
   #galleryModal .nav-arrow {
-    top: 350px;           /* centro vertical fixo */
+    top: 350px;           
     transform: none;
     width: 50px;
     height: 50px;
@@ -2263,19 +2482,16 @@ GRID + HEADER — DESKTOP 1800+
   /* curtas */
   #galleryModal .card-description-wrapper.short-description {
     bottom: 164px;
-    border: 1px solid red;
   }
 
   /* médias */
   #galleryModal .card-description-wrapper.long-description {
     bottom: 138px;
-     border: 1px solid yellow;
   }
 
   /* longas */
   #galleryModal .card-description-wrapper.extra-long-description {
     bottom: 135px;
-     border: 1px solid green;
   }
 /* =================================================
       AJUSTES ESPECIFICOS TABLET LANDSCAPE
@@ -2287,16 +2503,13 @@ GRID + HEADER — DESKTOP 1800+
 #galleryModal.img_g7f6 .card-description-wrapper{
   bottom: 145px;
 
-}#galleryModal.img_g1f5 .card-description-wrapper{
+}
+#galleryModal.img_g1f5 .card-description-wrapper{
   bottom: 185px;
-
 }
 
-#galleryModal.img_g2f4 .card-description-wrapper
-
-{
+#galleryModal.img_g2f4 .card-description-wrapper{
   bottom: 170px;
-
 }
 #galleryModal.img_g2f2 .card-description-wrapper,
 #galleryModal.img_g2f5 .card-description-wrapper,
@@ -2305,7 +2518,6 @@ GRID + HEADER — DESKTOP 1800+
 #galleryModal.img_g4f9 .card-description-wrapper,
 #galleryModal.img_g4f11 .card-description-wrapper{
   bottom: 155px;
-
 }
 #galleryModal.img_g4f3 .card-description-wrapper,
 #galleryModal.img_g5f4 .card-description-wrapper,
@@ -2314,32 +2526,28 @@ GRID + HEADER — DESKTOP 1800+
 #galleryModal.img_g7f2 .card-description-wrapper,
 #galleryModal.img_g7f3 .card-description-wrapper{
   bottom: 150px;
-
 }
-#galleryModal.img_g4f4 .card-description-wrapper
-{
+#galleryModal.img_g4f4 .card-description-wrapper{
   bottom: 175px;
-
 }
 #galleryModal.img_g4f5 .card-description-wrapper,
-#galleryModal.img_g4f6 .card-description-wrapper
-{
+#galleryModal.img_g4f6 .card-description-wrapper{
   bottom: 195px;
-
 }
 #galleryModal.img_g4f7 .card-description-wrapper{
   bottom:160px
-}#galleryModal.img_g4f8 .card-description-wrapper,
+}
+#galleryModal.img_g4f8 .card-description-wrapper,
 #galleryModal.img_g4f10 .card-description-wrapper,
 #galleryModal.img_g7f2 .card-description-wrapper{
   bottom:140px
-}#galleryModal.img_g5f3 .card-description-wrapper{
+}
+#galleryModal.img_g5f3 .card-description-wrapper{
   bottom:140px;
   text-align: left;
 }
 #galleryModal.img_g7f2 .card-description-wrapper{
   bottom:150px;
-
 }
 /* =================================================
               LABEL VERTICAL 
@@ -2396,7 +2604,6 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .image-wrapper {
     width: 900px;
     height: 540px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2413,7 +2620,7 @@ GRID + HEADER — DESKTOP 1800+
   ===================================== */
   #galleryModal .nav-arrow {
     position: absolute;
-    top: 320px;            /* centro real (720 / 2) */
+    top: 320px;            
     transform: none;
     z-index: 30;
   }
@@ -2432,7 +2639,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     BOTÃO FECHAR
+           BOTÃO FECHAR
   ===================================== */
   #galleryModal .close-btn {
     position: absolute;
@@ -2447,7 +2654,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     TÍTULO
+                TÍTULO
   ===================================== */
   #galleryModal .card-title-wrapper {
     position: absolute;
@@ -2489,19 +2696,16 @@ GRID + HEADER — DESKTOP 1800+
   /* curtas */
   #galleryModal .card-description-wrapper.short-description {
     bottom: 130px;
-    border: 1px solid red;
   }
 
   /* médias */
   #galleryModal .card-description-wrapper.long-description {
     bottom: 105px;
-     border: 1px solid yellow;
   }
 
   /* longas */
   #galleryModal .card-description-wrapper.extra-long-description {
     bottom: 105px;
-     border: 1px solid green;
   }
 
   /* =====================================
@@ -2551,19 +2755,22 @@ GRID + HEADER — DESKTOP 1800+
   bottom:120px;
 }#galleryModal.img_g4f4 .card-description-wrapper{
   bottom:145px;
-}#galleryModal.img_g4f5 .card-description-wrapper{
+}
+#galleryModal.img_g4f5 .card-description-wrapper{
   bottom:160px;
-}#galleryModal.img_g4f6 .card-description-wrapper{
+}
+#galleryModal.img_g4f6 .card-description-wrapper{
   bottom:167px;
 }
 #galleryModal.img_g5f1 .card-description-wrapper{
   bottom:110px;
-}#galleryModal.img_g5f3 .card-description-wrapper{
+}
+#galleryModal.img_g5f3 .card-description-wrapper{
   bottom:105px;
   text-align: left;
-}#galleryModal.img_g7f5 .card-description-wrapper{
+}
+#galleryModal.img_g7f5 .card-description-wrapper{
   bottom:125px;
-  
 }
   /* =====================================
      LABEL VERTICAL
@@ -2587,9 +2794,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 }
 /* =========================================================
-   MODAL GALERIA — DESKTOP 1440px
-   1440px – 1799.98px
-   Layout fechado (SEM DRIFT)
+   MODAL GALERIA — DESKTOP 1440px  
 ========================================================= */
 @media (min-width: 1440px) and (max-width: 1799.98px) {
 
@@ -2602,13 +2807,10 @@ GRID + HEADER — DESKTOP 1800+
 
   #galleryModal .gallery-stage {
     position: relative;
-
     width: 1440px;
     height: 864px;
-
     max-width: 1440px;
     max-height: 864px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2620,7 +2822,6 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .image-wrapper {
     width: 1080px;
     height: 648px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2633,11 +2834,11 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     SETAS
+                SETAS
   ===================================== */
   #galleryModal .nav-arrow {
     position: absolute;
-    top: 380px;            /* centro real (864 / 2) */
+    top: 380px;            
     transform: none;
     z-index: 30;
   }
@@ -2656,7 +2857,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     BOTÃO FECHAR
+             BOTÃO FECHAR
   ===================================== */
   #galleryModal .close-btn {
     position: absolute;
@@ -2671,7 +2872,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     TÍTULO
+               TÍTULO
   ===================================== */
   #galleryModal .card-title-wrapper {
     position: absolute;
@@ -2703,7 +2904,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     DESCRIÇÃO
+                DESCRIÇÃO
   ===================================== */
   #galleryModal .card-description-wrapper {
     max-width: 600px;
@@ -2783,7 +2984,8 @@ GRID + HEADER — DESKTOP 1800+
 
   #galleryModal.img_g4f6 .card-description-wrapper {
     bottom: 200px;
-  }  #galleryModal.img_g4f12 .card-description-wrapper {
+  } 
+   #galleryModal.img_g4f12 .card-description-wrapper {
     bottom: 140px;
   }
 
@@ -2814,9 +3016,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 }
 /* =========================================================
-   MODAL GALERIA — DESKTOP 1800px+
-   1800px em diante
-   Layout fechado (SEM DRIFT)
+   MODAL GALERIA — DESKTOP 1800px
 ========================================================= */
 @media (min-width: 1800px) {
 
@@ -2864,7 +3064,7 @@ GRID + HEADER — DESKTOP 1800+
   ===================================== */
   #galleryModal .nav-arrow {
     position: absolute;
-    top: 430px;            /* centro real (1008 / 2) */
+    top: 430px;           
     transform: none;
     z-index: 30;
   }
@@ -2883,7 +3083,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     BOTÃO FECHAR
+               BOTÃO FECHAR
   ===================================== */
   #galleryModal .close-btn {
     position: absolute;
@@ -2898,12 +3098,12 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     TÍTULO
+                 TÍTULO
   ===================================== */
   #galleryModal .card-title-wrapper {
     position: absolute;
     top: 156px;
-    left: 470px;
+    left: 478px;
     z-index: 25;
   }
 
@@ -2914,7 +3114,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   #galleryModal .card-title-wrapper.long-title {
-    left: 466px;
+    left: 485px;
   }
 
   #galleryModal .card-title-wrapper.long-title .card-title {
@@ -2922,7 +3122,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   #galleryModal .card-title-wrapper.extra-long-title {
-    left: 462px;
+    left: 477px;
   }
 
   #galleryModal .card-title-wrapper.extra-long-title .card-title {
@@ -2930,7 +3130,7 @@ GRID + HEADER — DESKTOP 1800+
   }
 
   /* =====================================
-     DESCRIÇÃO
+                 DESCRIÇÃO
   ===================================== */
   #galleryModal .card-description-wrapper {
     max-width: 720px;
@@ -2956,71 +3156,64 @@ GRID + HEADER — DESKTOP 1800+
   /* =====================================
      AJUSTES ESPECÍFICOS — 1800px
   ===================================== */
-  #galleryModal.img_g1f1 .card-description-wrapper,
-  #galleryModal.img_g1f2 .card-description-wrapper,
-  #galleryModal.img_g4f10 .card-description-wrapper,
-  #galleryModal.img_g7f4 .card-description-wrapper {
-    bottom: 160px;
-  }
+/* =========================================================
+        CARD DESCRIPTION — AJUSTES POR IMAGEM
+========================================================= */
 
-  #galleryModal.img_g1f5 .card-description-wrapper {
-    bottom: 215px;
-  }
+/* bottom: 160px */
+#galleryModal.img_g1f1 .card-description-wrapper,
+#galleryModal.img_g4f10 .card-description-wrapper {
+  bottom: 160px;
+}
 
-  #galleryModal.img_g2f2 .card-description-wrapper,
-  #galleryModal.img_g2f5 .card-description-wrapper,
-  #galleryModal.img_g4f1 .card-description-wrapper,
-  #galleryModal.img_g4f7 .card-description-wrapper,
-  #galleryModal.img_g4f11 .card-description-wrapper,
-  #galleryModal.img_g5f6 .card-description-wrapper,
-  #galleryModal.img_g6f1 .card-description-wrapper,
-  #galleryModal.img_g7f5 .card-description-wrapper,
-  #galleryModal.img_g7f6 .card-description-wrapper {
-    bottom: 180px;
-  }
+#galleryModal.img_g4f12 .card-description-wrapper {
+  bottom: 170px;
+}
+#galleryModal.img_g4f3 .card-description-wrapper,
+#galleryModal.img_g4f9 .card-description-wrapper,
+#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g7f2 .card-description-wrapper,
+#galleryModal.img_g7f3 .card-description-wrapper {
+  bottom: 175px;
+}
 
-  #galleryModal.img_g2f4 .card-description-wrapper {
-    bottom: 220px;
-    line-height: 1.2;
-    max-width: 780px;
-  }
+#galleryModal.img_g2f3 .card-description-wrapper,
+#galleryModal.img_g2f5 .card-description-wrapper,
+#galleryModal.img_g4f2 .card-description-wrapper,
+#galleryModal.img_g6f3 .card-description-wrapper {
+  bottom: 190px;
+}
+#galleryModal.img_g4f7 .card-description-wrapper {
+  bottom: 195px;
+}
 
-  #galleryModal.img_g3f1 .card-description-wrapper {
-    bottom: 205px;
-  }
+#galleryModal.img_g5f3 .card-description-wrapper {
+  bottom: 196px;
+}
 
-  #galleryModal.img_g4f3 .card-description-wrapper,
-  #galleryModal.img_g4f9 .card-description-wrapper,
-  #galleryModal.img_g5f4 .card-description-wrapper,
-  #galleryModal.img_g7f2 .card-description-wrapper,
-  #galleryModal.img_g7f3 .card-description-wrapper {
-    bottom: 175px;
-  }
+#galleryModal.img_g5f1 .card-description-wrapper {
+  bottom: 200px;
+}
+#galleryModal.img_g3f1 .card-description-wrapper,
+#galleryModal.img_g4f4 .card-description-wrapper {
+  bottom: 205px;
+}
+#galleryModal.img_g1f5 .card-description-wrapper {
+  bottom: 215px;
+}
+#galleryModal.img_g2f4 .card-description-wrapper {
+  bottom: 220px;
+  line-height: 1.2;
+  max-width: 780px;
+}
+#galleryModal.img_g4f5 .card-description-wrapper {
+  bottom: 225px;
+}
 
-  #galleryModal.img_g4f4 .card-description-wrapper {
-    bottom: 205px;
-  }
+#galleryModal.img_g4f6 .card-description-wrapper {
+  bottom: 235px;
+}
 
-  #galleryModal.img_g4f5 .card-description-wrapper {
-    bottom: 225px;
-  }
-
-  #galleryModal.img_g6f3 .card-description-wrapper {
-    bottom: 165px;
-  }
-
-  #galleryModal.img_g4f6 .card-description-wrapper {
-    bottom: 235px;
-  }
-
-  #galleryModal.img_g4f12 .card-description-wrapper {
-    bottom: 170px;
-  }
-
-  #galleryModal.img_g5f3 .card-description-wrapper {
-    bottom: 155px;
-    text-align: left;
-  }
 
   /* =====================================
      LABEL VERTICAL
@@ -3041,5 +3234,17 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .vertical-label.extra-long-credit {
     max-width: 460px;
     font-size: 11px;
+  }
+}
+@media (min-width: 1800px) {
+    html,
+  body {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  main {
+    flex: unset;
+    transform: translateY(-5rem);
   }
 }
