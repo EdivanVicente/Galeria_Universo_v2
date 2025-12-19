@@ -7,7 +7,7 @@
   --color-card: hsl(230, 30%, 12%);
   --color-muted: hsl(215, 20%, 65%);
   --color-border: hsl(230, 25%, 18%);
-  --font-primary: "Open Sans", "Helvetica Neue", sans-serif;
+  --font-primary: "Open Sans","OpenSans-Bold", "OpenSans-ExtraBold", "OpenSans-Semibold", "Helvetica Neue", sans-serif;
   --header-height: 5rem;
   --shadow-sm: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 0.6rem 2rem rgba(0, 0, 0, 0.4);
@@ -195,7 +195,7 @@ main {
 
 
 /* =========================================================
-   MODAL GALERIA
+   MODAL GALERIA GLOBAL
 ========================================================= */
 #galleryModal {
   background: url("../assets/img_blackout.png") center / cover no-repeat;
@@ -303,7 +303,7 @@ main {
   height: 2.4rem;
 }
 /* =========================================================
-   MODAL MENU / CRÉDITOS — BASE LIMPA E ESTÁVEL
+   MODAL MENU / CRÉDITOS — GLOBAL
 ========================================================= */
 
 #menuModal {
@@ -472,6 +472,9 @@ main {
 }
 
 /* =========================================================
+                  FIM DA BASE
+========================================================= */
+/* =========================================================
    MEDIA QUERIES (MOBILE / TABLET)
 ========================================================= */
 @media (max-width: 767px) {
@@ -488,7 +491,10 @@ main {
   }
 }
 
-/* Mobile Landscape */
+/* =========================================================
+            MOBILE LANDSCAPE
+========================================================= */
+
 @media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
   .category-grid {
     display: flex;
@@ -500,7 +506,11 @@ main {
     max-width: 14rem;
   }
   .category-title {
-    font-size: 0.9rem;
+    font-size: 1.3rem;   
+    bottom: -2.2rem;
+  } 
+  .category-title.long-title {
+    font-size: 1rem;    
     bottom: -2.2rem;
   }
   #galleryModal .image-wrapper {
@@ -512,35 +522,7 @@ main {
   }
 }
 
-/* Tablet Portrait */
-@media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
-  .header-container {
-    width: 48rem;
-    margin-left: 3.2rem;
-    height: 5.1rem;
-  }
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 99.1rem;
-  }
-  .category-grid-item {
-    max-width: 28.4rem;
-  }
-  .category-title {
-    font-size: 2.5rem;
-    bottom: -2.7rem;
-  }
-  #galleryModal .gallery-stage {
-    max-width: 720px;
-  }
-  #galleryModal .card-title {
-    font-size: 2.2rem;
-  }
-  #galleryModal .nav-arrow img {
-    width: 4.8rem;
-    height: 4.8rem;
-  }
-}
+
 
 /* Tablet Landscape */
 @media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
@@ -1325,7 +1307,7 @@ main {
   }
 }
 /* ====================================================
-        GRIND CARDS 
+        GRIND CARDS portrait
 ==================================================== */
 @media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
 
@@ -1361,8 +1343,12 @@ main {
   height: 4.2rem;
   border-radius: 50%;
 }
-  .category-title.long-title {
-    font-size: 2rem;
+  
+   .category-title {
+    font-size: 2.7rem;
+    width: 85%;
+  } .category-title.long-title {
+    font-size: 2.2rem;
     width: 85%;
   }
    .gallery-row-second .category-grid-item:nth-child(3) {
@@ -1374,30 +1360,6 @@ main {
   /* ===============================
      GRIND — TABLET LANDSCAPE
   =============================== */
-
-@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
-
-  /* ===============================
-     HEADER — TABLET LANDSCAPE
-  =============================== */
-  .header-container {
-    width: 55%;        /* 🔽 diminui largura */
-    height: 6.2rem;
-    margin-left: 2.4rem;
-  }
-
-  .main-title {
-    font-size: 2.6rem;
-  }
- .category-title.long-title {
-    font-size: 2rem;
-    width: 85%;
-  }
-  /* ===============================
-     GRID — TABLET LANDSCAPE
-     (SEM ALTERAÇÃO)
-  =============================== */
-}
 /* ===================================
 GRID — DESKTOP 1200px
 (1200px – 1439.98px)
@@ -1681,7 +1643,10 @@ GRID + HEADER — DESKTOP 1800+
    até 430px
 ========================================================= */
 @media (max-width: 430px) {
-
+  #galleryModal #galleryCaption {
+    color: var(--color-primary);
+    
+  }
   /* ===== STAGE ===== */
   #galleryModal .gallery-stage {
     width: 375px;          /* 🔒 largura fixa */
@@ -1730,10 +1695,19 @@ GRID + HEADER — DESKTOP 1800+
   }  
   #galleryModal .card-title-wrapper.long-title {
      
-      left: 42px;
+      left: 59px;
+  }  
+  #galleryModal .card-title-wrapper.extra-long-title {
+     
+      left: 59px;
+      
   }
  #galleryModal .card-title-wrapper.long-title .card-title {
-    font-size: 14px;   /* antes maior → agora menor */
+    font-size: 13px;   /* antes maior → agora menor */
+  
+  }
+   #galleryModal .card-title-wrapper.extra-long-title .card-title {
+    font-size: 12px;   /* antes maior → agora menor */
   
   }
   
@@ -1744,20 +1718,1328 @@ GRID + HEADER — DESKTOP 1800+
 
   /* ===== DESCRIÇÃO ===== */
   #galleryModal .card-description-wrapper {
-    bottom: 200px;
-    max-width: 320px;
+
+    max-width: 250px;
     font-size: 7px;
+    
+  }
+  
+  /* LEGENDA CURTA */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 207px;
+   
+    
+  }
+
+  /* LEGENDA MÉDIA */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 203px;
+   
+  }
+
+  /* LEGENDA LONGA */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 200px;
+ 
+  }
+
+
+/* ===============================
+   DESLOCAMENTO LEVE (215–218px)
+=============================== */
+
+#galleryModal.img_g1f3 .card-description-wrapper,
+#galleryModal.img_g1f4 .card-description-wrapper,
+#galleryModal.img_g2f1 .card-description-wrapper,
+#galleryModal.img_g3f2 .card-description-wrapper,
+#galleryModal.img_g4f1 .card-description-wrapper,
+#galleryModal.img_g4f7 .card-description-wrapper,
+#galleryModal.img_g4f9 .card-description-wrapper,
+#galleryModal.img_g5f6 .card-description-wrapper,
+#galleryModal.img_g7f1 .card-description-wrapper {
+  bottom: 215px;
+}
+
+#galleryModal.img_g4f2 .card-description-wrapper,
+#galleryModal.img_g5f1 .card-description-wrapper,
+#galleryModal.img_g5f2 .card-description-wrapper {
+  bottom: 217px;
+}
+
+#galleryModal.img_g2f2 .card-description-wrapper {
+  bottom: 214px;
+}
+
+#galleryModal.img_g2f3 .card-description-wrapper {
+  bottom: 207px;
+}
+
+/* ===============================
+   DESCRIÇÕES MAIS ALTAS
+=============================== */
+
+#galleryModal.img_g2f4 .card-description-wrapper,
+#galleryModal.img_g3f1 .card-description-wrapper,
+#galleryModal.img_g4f4 .card-description-wrapper {
+  bottom: 225px;
+}
+
+#galleryModal.img_g1f5 .card-description-wrapper {
+  bottom: 228px;
+}
+
+/* ===============================
+   DESCRIÇÕES MUITO LONGAS
+=============================== */
+
+#galleryModal.img_g4f5 .card-description-wrapper,
+#galleryModal.img_g4f6 .card-description-wrapper {
+  bottom: 230px;
+}
+
+/* ===============================
+   EXCEÇÕES DE ALINHAMENTO
+=============================== */
+
+#galleryModal.img_g5f3 .card-description-wrapper,
+#galleryModal.img_g6f3 .card-description-wrapper {
+  bottom: 205px;
+  text-align: left;
+}
+
+#galleryModal.img_g5f3 .card-description-wrapper {
+  max-width: 260px;
+}
+
+/* ===============================
+   EXCEÇÕES DE ALINHAMENTO
+=============================== */
+
+#galleryModal.img_g5f3 .card-description-wrapper,
+#galleryModal.img_g6f3 .card-description-wrapper {
+  bottom: 205px;
+  text-align: left;
+}
+
+
+/* ===============================
+   GALERIA 7
+=============================== */
+
+#galleryModal.img_g7f2 .card-description-wrapper,
+#galleryModal.img_g7f3 .card-description-wrapper,
+#galleryModal.img_g7f5 .card-description-wrapper {
+  bottom: 212px;
+}
+/* ===================================================
+   LABEL VERTICAL — PADRÃO + VARIAÇÕES
+=================================================== */
+
+#galleryModal .vertical-label {
+  bottom: 210px;
+  right: 60px;
+  font-size: 6px;
+  color: var(--color-primary);
+}
+
+/* variações semânticas */
+#galleryModal .vertical-label.long-credit {
+  max-width: 200px;
+}
+
+#galleryModal .vertical-label.extra-long-credit {
+  max-width: 230px;
+  font-size: 5.5px;
+}
+}
+/* =========================================================
+   iPHONE LANDSCAPE — LAYOUT FECHADO (SEM DRIFT)
+   568px – 767.98px
+========================================================= */
+@media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
+
+    #galleryModal #galleryCaption {
+    color: var(--color-primary);
+    
+  }
+  /* ===== STAGE ===== */
+  #galleryModal .gallery-stage {
+    width: 667px;          /* 🔒 largura fixa */
+    height: 375px;         /* 🔒 altura fixa */
+    max-width: 667px;
+    max-height: 375px;
+  }
+
+  /* ===== IMAGEM ===== */
+  #galleryModal .image-wrapper {
+    width: 480px;          /* slot horizontal */
+    height: 320px;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 440px;
+    max-height: 300px;
+  }
+
+  /* ===== SETAS ===== */
+  #galleryModal .nav-arrow {
+    top: 160px;           /* 🔒 centro vertical fixo */
+    transform: none;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 60px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 60px;
+  }
+
+  /* ===== FECHAR ===== */
+  #galleryModal .close-btn {
+    top: 35px;
+    right: 138px;
+  }
+
+  #galleryModal .close-btn img {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* ===== TÍTULO ===== */
+  #galleryModal .card-title-wrapper {
+    top: 40px;
+    left: 185px;
+  }
+
+  #galleryModal .card-title {
+    font-size: 15px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+    top: 40px;
+    left: 180px;
+  }
+  #galleryModal .card-title-wrapper.extra-long-title {
+    top: 40px;
+    left: 177px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 15px;
+  }
+
+  /* ===== DESCRIÇÃO (BASE) ===== */
+  #galleryModal .card-description-wrapper {
+    max-width: 300px;
+    font-size: 8px;
+    text-align: center;
+  }
+
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 50px;
     border: 1px solid red;
   }
 
-  #galleryModal .card-description {
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 47px;
+     border: 1px solid yellow;
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 37px;
+    border: 1px solid green;
+  }
+/* ================================================
+      Ajustes especificos iphone landscape
+================================================ */
+#galleryModal.img_g1f5 .card-description-wrapper,
+#galleryModal.img_g2f4 .card-description-wrapper,
+#galleryModal.img_g4f4 .card-description-wrapper,
+#galleryModal.img_g4f5 .card-description-wrapper{
+  bottom: 60px;
+}
+#galleryModal.img_g4f3 .card-description-wrapper,
+#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g7f6 .card-description-wrapper{
+  bottom: 45px;
+}
+#galleryModal.img_g4f5 .card-description-wrapper,
+#galleryModal.img_g4f6 .card-description-wrapper{
+  bottom: 68px;
+}
+#galleryModal.img_g4f6 .card-description-wrapper{
+  bottom: 68px;
+}
+#galleryModal.img_g4f10 .card-description-wrapper{
+  bottom: 40px;
+}
+#galleryModal.img_g4f12 .card-description-wrapper,
+#galleryModal.img_g6f3 .card-description-wrapper,
+#galleryModal.img_g7f4 .card-description-wrapper{
+  bottom: 35px;
+}
+#galleryModal.img_g5f3 .card-description-wrapper{
+  bottom: 38px;
+  text-align: left;
+}
+#galleryModal.img_g7f6 .card-description-wrapper{
+  bottom: 45px;
+
+}
+/* ================================================
+                LABEL VERTICAL 
+================================================ */
+
+  
+  #galleryModal .vertical-label {
+    bottom: 40px;
+    right: 178px;
+    font-size: 7px;
+    color: var(--color-primary);
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 240px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 260px;
+    font-size: 6.5px;
+  }
+}/* =========================================================
+   iPAD PORTRAIT — MODAL GALERIA
+   LAYOUT FECHADO (SEM DRIFT)
+   768px – 991.98px
+========================================================= */
+@media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
+
+  /* ===== COR DA DESCRIÇÃO ===== */
+  #galleryModal #galleryCaption {
+    color: var(--color-primary);
+  }
+
+  /* ===== STAGE ===== */
+  #galleryModal .gallery-stage {
+    width: 820px;          /* 🔒 proporcional ao iPad */
+    height: 900px;
+    max-width: 820px;
+    max-height: 900px;
+  }
+
+  /* ===== IMAGEM ===== */
+  #galleryModal .image-wrapper {
+    width: 720px;
+    height: 600px;
+  }
+
+  #galleryModal .image-wrapper img {
+    width: 640px;
+    height: 500px;
+  }
+
+  /* ===== SETAS ===== */
+  #galleryModal .nav-arrow {
+    top: 420px;
+    transform: none;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 24px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 24px;
+  }
+
+  /* ===== FECHAR ===== */
+  #galleryModal .close-btn {
+    top: 199px;
+    right: 58px;
+  }
+
+  #galleryModal .close-btn img {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* ===== TÍTULO ===== */
+  #galleryModal .card-title-wrapper {
+    top: 211px;
+    left: 133px;
+    }
+  
+
+  #galleryModal .card-title {
+    font-size: 25px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+   
+    left: 130px;
+  }
+
+  #galleryModal .card-title-wrapper.extra-long-title {
+    left: 125px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 25px;
+
+  }
+
+  /* ===== DESCRIÇÃO — BASE ===== */
+  #galleryModal .card-description-wrapper {
+    max-width: 520px;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  /* curta */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 230px;
+    border: 1px solid red;
+  }
+
+  /* média */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 230px;
+    border: 1px solid yellow;
+  }
+
+  /* longa */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 228px;
+    border: 1px solid green;
+  }
+/* ================================================
+    Ajustes especificos tablet portrait landscape
+================================================ */
+#galleryModal.img_g1f1 .card-description-wrapper{
+  bottom: 215px;
+
+}
+#galleryModal.img_g1f5 .card-description-wrapper{
+  bottom: 250px;
+
+}
+#galleryModal.img_g4f3 .card-description-wrapper{
+  bottom: 225px;
+
+}
+#galleryModal.img_g4f4 .card-description-wrapper{
+  bottom: 245px;
+
+}#galleryModal.img_g4f5 .card-description-wrapper,
+#galleryModal.img_g4f6 .card-description-wrapper{
+  bottom: 260px;
+
+}
+#galleryModal.img_g4f12 .card-description-wrapper{
+  bottom: 208px;
+
+}
+#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g7f2 .card-description-wrapper{
+  bottom: 220px;
+
+}
+
+/* ================================================
+            LABEL VERTICAL
+================================================ */
+  
+  #galleryModal .vertical-label {
+    bottom: 207px;
+    right: 120px;   
+    font-size: 10px;
+    color: var(--color-primary);
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 360px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 420px;
+    font-size: 8px;
+  }
+}
+/* =========================================================
+   TABLET LANDSCAPE — LAYOUT FECHADO (SEM DRIFT)
+   iPad landscape
+========================================================= */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  #galleryModal #galleryCaption {
+    color: var(--color-primary);
+  }
+
+  /* ===== STAGE ===== */
+  #galleryModal .gallery-stage {
+    width: 1024px;         /* 🔒 largura fixa */
+    height: 768px;         /* 🔒 altura fixa */
+    max-width: 1024px;
+    max-height: 768px;
+  }
+
+  /* ===== IMAGEM ===== */
+  #galleryModal .image-wrapper {
+    width: 760px;
+    height: 520px;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 700px;
+    max-height: 500px;
+  }
+
+  /* ===== SETAS ===== */
+  #galleryModal .nav-arrow {
+    top: 350px;           /* centro vertical fixo */
+    transform: none;
+    width: 50px;
+    height: 50px;
+  }  
+  #galleryModal .nav-arrow img{   
+    width: 50px;
+    height: 50px;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 90px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 90px;
+  }
+
+  /* ===== FECHAR ===== */
+  #galleryModal .close-btn {
+    top: 130px;
+    right: 183px;
+  }
+
+  #galleryModal .close-btn img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* ===== TÍTULO ===== */
+  #galleryModal .card-title-wrapper {
+    top: 145px;
+    left: 260px;
+  }
+
+  #galleryModal .card-title {
+    font-size: 26px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+    left: 250px;
+  }
+
+  #galleryModal .card-title-wrapper.extra-long-title {
+    left: 255px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 26px;
+  } 
+  #galleryModal .card-title-wrapper.extra-long-title .card-title {
+    font-size: 25px;
+  }
+
+  /* ===== DESCRIÇÃO (BASE) ===== */
+  #galleryModal .card-description-wrapper {
+    max-width: 500px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 164px;
+    border: 1px solid red;
+  }
+
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 138px;
+     border: 1px solid yellow;
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 135px;
+     border: 1px solid green;
+  }
+/* =================================================
+      AJUSTES ESPECIFICOS TABLET LANDSCAPE
+================================================= */
+
+#galleryModal.img_g1f1 .card-description-wrapper,
+#galleryModal.img_g1f2 .card-description-wrapper,
+#galleryModal.img_g7f4 .card-description-wrapper,
+#galleryModal.img_g7f6 .card-description-wrapper{
+  bottom: 145px;
+
+}#galleryModal.img_g1f5 .card-description-wrapper{
+  bottom: 185px;
+
+}
+
+#galleryModal.img_g2f4 .card-description-wrapper
+
+{
+  bottom: 170px;
+
+}
+#galleryModal.img_g2f2 .card-description-wrapper,
+#galleryModal.img_g2f5 .card-description-wrapper,
+#galleryModal.img_g3f2 .card-description-wrapper,
+#galleryModal.img_g4f1 .card-description-wrapper,
+#galleryModal.img_g4f9 .card-description-wrapper,
+#galleryModal.img_g4f11 .card-description-wrapper{
+  bottom: 155px;
+
+}
+#galleryModal.img_g4f3 .card-description-wrapper,
+#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g5f6 .card-description-wrapper,
+#galleryModal.img_g6f1 .card-description-wrapper,
+#galleryModal.img_g7f2 .card-description-wrapper,
+#galleryModal.img_g7f3 .card-description-wrapper{
+  bottom: 150px;
+
+}
+#galleryModal.img_g4f4 .card-description-wrapper
+{
+  bottom: 175px;
+
+}
+#galleryModal.img_g4f5 .card-description-wrapper,
+#galleryModal.img_g4f6 .card-description-wrapper
+{
+  bottom: 195px;
+
+}
+#galleryModal.img_g4f7 .card-description-wrapper{
+  bottom:160px
+}#galleryModal.img_g4f8 .card-description-wrapper,
+#galleryModal.img_g4f10 .card-description-wrapper,
+#galleryModal.img_g7f2 .card-description-wrapper{
+  bottom:140px
+}#galleryModal.img_g5f3 .card-description-wrapper{
+  bottom:140px;
+  text-align: left;
+}
+#galleryModal.img_g7f2 .card-description-wrapper{
+  bottom:150px;
+
+}
+/* =================================================
+              LABEL VERTICAL 
+================================================= */
+  /* ===== LABEL VERTICAL ===== */
+  #galleryModal .vertical-label {
+    bottom: 139px;
+    right: 253px;
+    font-size: 10px;
+    color: var(--color-primary);
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 253px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 300px;
+    font-size: 7.5px;
+  }
+
+}
+/* =========================================================
+   MODAL GALERIA — DESKTOP 1200px
+   1200px – 1439.98px
+   Layout fechado (SEM DRIFT)
+========================================================= */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+
+  /* =====================================
+     STAGE
+  ===================================== */
+   #galleryModal #galleryCaption {
+    color: var(--color-primary);
+  }
+
+  #galleryModal .gallery-stage {
+    position: relative;
+
+    width: 1200px;
+    height: 720px;
+
+    max-width: 1200px;
+    max-height: 720px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* =====================================
+     IMAGEM
+  ===================================== */
+  #galleryModal .image-wrapper {
+    width: 900px;
+    height: 540px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 860px;
+    max-height: 520px;
+    object-fit: contain;
+  }
+
+  /* =====================================
+     SETAS
+  ===================================== */
+  #galleryModal .nav-arrow {
+    position: absolute;
+    top: 320px;            /* centro real (720 / 2) */
+    transform: none;
+    z-index: 30;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 140px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 140px;
+  }
+
+  #galleryModal .nav-arrow img {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* =====================================
+     BOTÃO FECHAR
+  ===================================== */
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 97px;
+    right: 264px;
+    z-index: 35;
+  }
+
+  #galleryModal .close-btn img {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* =====================================
+     TÍTULO
+  ===================================== */
+  #galleryModal .card-title-wrapper {
+    position: absolute;
+    top: 109px;
+    left: 335px;
+    z-index: 25;
+  }
+
+  #galleryModal .card-title {
+    font-size: 28px;
     line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+    left: 332px;
+  }
+#galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 26px;
+  }  
+  #galleryModal .card-title-wrapper.extra-long-title {
+    left: 332px;
+  }
+  #galleryModal .card-title-wrapper.extra-long-title .card-title {
+    font-size: 26px;
   }
 
 
+  /* =====================================
+     DESCRIÇÃO
+  ===================================== */
 
-  /* ===== LABEL VERTICAL ===== */
+    #galleryModal .card-description-wrapper {
+    max-width: 500px;
+    font-size: 14.5px;
+    text-align: center;
+  }
+  
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 130px;
+    border: 1px solid red;
+  }
+
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 105px;
+     border: 1px solid yellow;
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 105px;
+     border: 1px solid green;
+  }
+
+  /* =====================================
+    AJUSTES ESPECIFICOS 1200px
+  ===================================== */
+  #galleryModal.img_g1f1 .card-description-wrapper,
+   #galleryModal.img_g1f2 .card-description-wrapper,
+   #galleryModal.img_g4f8 .card-description-wrapper,
+   #galleryModal.img_g4f10 .card-description-wrapper,
+   #galleryModal.img_g5f1 .card-description-wrapper,
+   #galleryModal.img_g6f2 .card-description-wrapper,
+   #galleryModal.img_g7f4 .card-description-wrapper{
+  bottom:110px;
+
+}
+#galleryModal.img_g1f5 .card-description-wrapper{
+  bottom:152px;
+
+}#galleryModal.img_g2f2 .card-description-wrapper,
+#galleryModal.img_g2f5 .card-description-wrapper,
+#galleryModal.img_g4f1 .card-description-wrapper,
+#galleryModal.img_g4f7 .card-description-wrapper,
+#galleryModal.img_g4f11 .card-description-wrapper,
+#galleryModal.img_g5f6 .card-description-wrapper,
+#galleryModal.img_g6f1 .card-description-wrapper,
+#galleryModal.img_g7f5 .card-description-wrapper,
+#galleryModal.img_g7f6 .card-description-wrapper{
+  bottom:125px;
+
+}
+#galleryModal.img_g2f4 .card-description-wrapper{
+  bottom:155px;
+  line-height: 1.2;
+  max-width: 550px;
+
+}
+
+#galleryModal.img_g3f1 .card-description-wrapper{
+  bottom:145px;
+}
+
+#galleryModal.img_g4f3 .card-description-wrapper,
+#galleryModal.img_g4f9 .card-description-wrapper,
+#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g7f2 .card-description-wrapper,
+#galleryModal.img_g7f3 .card-description-wrapper{
+  bottom:120px;
+}#galleryModal.img_g4f4 .card-description-wrapper{
+  bottom:145px;
+}#galleryModal.img_g4f5 .card-description-wrapper{
+  bottom:160px;
+}#galleryModal.img_g4f6 .card-description-wrapper{
+  bottom:167px;
+}
+#galleryModal.img_g5f1 .card-description-wrapper{
+  bottom:110px;
+}#galleryModal.img_g5f3 .card-description-wrapper{
+  bottom:105px;
+  text-align: left;
+}#galleryModal.img_g7f5 .card-description-wrapper{
+  bottom:125px;
+  
+}
+  /* =====================================
+     LABEL VERTICAL
+  ===================================== */
   #galleryModal .vertical-label {
-    display: none;
+    position: absolute;
+    bottom: 108px;
+    right: 331px;
+    font-size: 10px;
+    text-align: right;
+    z-index: 25;
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 300px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 340px;
+    font-size: 10px;
+  }
+}
+/* =========================================================
+   MODAL GALERIA — DESKTOP 1440px
+   1440px – 1799.98px
+   Layout fechado (SEM DRIFT)
+========================================================= */
+@media (min-width: 1440px) and (max-width: 1799.98px) {
+
+  /* =====================================
+     STAGE
+  ===================================== */
+  #galleryModal #galleryCaption {
+    color: var(--color-primary);
+  }
+
+  #galleryModal .gallery-stage {
+    position: relative;
+
+    width: 1440px;
+    height: 864px;
+
+    max-width: 1440px;
+    max-height: 864px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* =====================================
+     IMAGEM
+  ===================================== */
+  #galleryModal .image-wrapper {
+    width: 1080px;
+    height: 648px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 1040px;
+    max-height: 620px;
+    object-fit: contain;
+  }
+
+  /* =====================================
+     SETAS
+  ===================================== */
+  #galleryModal .nav-arrow {
+    position: absolute;
+    top: 380px;            /* centro real (864 / 2) */
+    transform: none;
+    z-index: 30;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 180px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 180px;
+  }
+
+  #galleryModal .nav-arrow img {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* =====================================
+     BOTÃO FECHAR
+  ===================================== */
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 118px;
+    right: 317px;
+    z-index: 35;
+  }
+
+  #galleryModal .close-btn img {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* =====================================
+     TÍTULO
+  ===================================== */
+  #galleryModal .card-title-wrapper {
+    position: absolute;
+    top: 132px;
+    left: 402px;
+    z-index: 25;
+  }
+
+  #galleryModal .card-title {
+    font-size: 32px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+    left: 407px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 30px;
+  }
+
+  #galleryModal .card-title-wrapper.extra-long-title {
+    left: 398px;
+  }
+
+  #galleryModal .card-title-wrapper.extra-long-title .card-title {
+    font-size: 30px;
+  }
+
+  /* =====================================
+     DESCRIÇÃO
+  ===================================== */
+  #galleryModal .card-description-wrapper {
+    max-width: 600px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 155px;
+  }
+
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 160px;
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 128px;
+  }
+
+  /* =====================================
+     AJUSTES ESPECÍFICOS — 1440px
+  ===================================== */
+  #galleryModal.img_g1f1 .card-description-wrapper,
+  #galleryModal.img_g1f2 .card-description-wrapper,  
+  #galleryModal.img_g4f10 .card-description-wrapper, 
+  #galleryModal.img_g7f4 .card-description-wrapper {
+    bottom: 132px;
+  }
+
+  #galleryModal.img_g1f5 .card-description-wrapper {
+    bottom: 182px;
+  }
+
+  #galleryModal.img_g2f2 .card-description-wrapper,
+  #galleryModal.img_g2f5 .card-description-wrapper,
+  #galleryModal.img_g4f1 .card-description-wrapper,
+  #galleryModal.img_g4f7 .card-description-wrapper,
+  #galleryModal.img_g4f11 .card-description-wrapper,
+  #galleryModal.img_g5f6 .card-description-wrapper,
+  #galleryModal.img_g6f1 .card-description-wrapper,
+  #galleryModal.img_g7f5 .card-description-wrapper,
+  #galleryModal.img_g7f6 .card-description-wrapper {
+    bottom: 150px;
+  }
+
+  #galleryModal.img_g2f4 .card-description-wrapper {
+    bottom: 186px;
+    line-height: 1.2;
+    max-width: 660px;
+  }
+
+  #galleryModal.img_g3f1 .card-description-wrapper {
+    bottom: 174px;
+  }
+
+  #galleryModal.img_g4f3 .card-description-wrapper,
+  #galleryModal.img_g4f9 .card-description-wrapper,
+  #galleryModal.img_g5f4 .card-description-wrapper,
+  #galleryModal.img_g7f2 .card-description-wrapper,
+  #galleryModal.img_g7f3 .card-description-wrapper {
+    bottom: 144px;
+  }
+
+  #galleryModal.img_g4f4 .card-description-wrapper {
+    bottom: 174px;
+  }
+
+  #galleryModal.img_g4f5 .card-description-wrapper {
+    bottom: 192px;
+  }
+  #galleryModal.img_g6f3 .card-description-wrapper {
+    bottom: 135px;
+  }
+
+  #galleryModal.img_g4f6 .card-description-wrapper {
+    bottom: 200px;
+  }  #galleryModal.img_g4f12 .card-description-wrapper {
+    bottom: 140px;
+  }
+
+  #galleryModal.img_g5f3 .card-description-wrapper {
+    bottom: 128px;
+    text-align: left;
+  }
+
+  /* =====================================
+     LABEL VERTICAL
+  ===================================== */
+  #galleryModal .vertical-label {
+    position: absolute;
+    bottom: 130px;
+    right: 398px;
+    font-size: 11px;
+    text-align: right;
+    z-index: 25;
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 360px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 400px;
+    font-size: 10px;
+  }
+}
+/* =========================================================
+   MODAL GALERIA — DESKTOP 1800px+
+   1800px em diante
+   Layout fechado (SEM DRIFT)
+========================================================= */
+@media (min-width: 1800px) {
+
+  /* =====================================
+     STAGE
+  ===================================== */
+  #galleryModal #galleryCaption {
+    color: var(--color-primary);
+  }
+
+  #galleryModal .gallery-stage {
+    position: relative;
+
+    width: 1680px;
+    height: 1008px;
+
+    max-width: 1680px;
+    max-height: 1008px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* =====================================
+     IMAGEM
+  ===================================== */
+  #galleryModal .image-wrapper {
+    width: 1260px;
+    height: 756px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #galleryModal .image-wrapper img {
+    max-width: 1200px;
+    max-height: 720px;
+    object-fit: contain;
+  }
+
+  /* =====================================
+     SETAS
+  ===================================== */
+  #galleryModal .nav-arrow {
+    position: absolute;
+    top: 430px;            /* centro real (1008 / 2) */
+    transform: none;
+    z-index: 30;
+  }
+
+  #galleryModal .nav-arrow.left {
+    left: 220px;
+  }
+
+  #galleryModal .nav-arrow.right {
+    right: 220px;
+  }
+
+  #galleryModal .nav-arrow img {
+    width: 72px;
+    height: 72px;
+  }
+
+  /* =====================================
+     BOTÃO FECHAR
+  ===================================== */
+  #galleryModal .close-btn {
+    position: absolute;
+    top: 138px;
+    right: 372px;
+    z-index: 35;
+  }
+
+  #galleryModal .close-btn img {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* =====================================
+     TÍTULO
+  ===================================== */
+  #galleryModal .card-title-wrapper {
+    position: absolute;
+    top: 156px;
+    left: 470px;
+    z-index: 25;
+  }
+
+  #galleryModal .card-title {
+    font-size: 36px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  #galleryModal .card-title-wrapper.long-title {
+    left: 466px;
+  }
+
+  #galleryModal .card-title-wrapper.long-title .card-title {
+    font-size: 34px;
+  }
+
+  #galleryModal .card-title-wrapper.extra-long-title {
+    left: 462px;
+  }
+
+  #galleryModal .card-title-wrapper.extra-long-title .card-title {
+    font-size: 34px;
+  }
+
+  /* =====================================
+     DESCRIÇÃO
+  ===================================== */
+  #galleryModal .card-description-wrapper {
+    max-width: 720px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 180px;
+  }
+
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 170px;
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 155px;
+  }
+
+  /* =====================================
+     AJUSTES ESPECÍFICOS — 1800px
+  ===================================== */
+  #galleryModal.img_g1f1 .card-description-wrapper,
+  #galleryModal.img_g1f2 .card-description-wrapper,
+  #galleryModal.img_g4f10 .card-description-wrapper,
+  #galleryModal.img_g7f4 .card-description-wrapper {
+    bottom: 160px;
+  }
+
+  #galleryModal.img_g1f5 .card-description-wrapper {
+    bottom: 215px;
+  }
+
+  #galleryModal.img_g2f2 .card-description-wrapper,
+  #galleryModal.img_g2f5 .card-description-wrapper,
+  #galleryModal.img_g4f1 .card-description-wrapper,
+  #galleryModal.img_g4f7 .card-description-wrapper,
+  #galleryModal.img_g4f11 .card-description-wrapper,
+  #galleryModal.img_g5f6 .card-description-wrapper,
+  #galleryModal.img_g6f1 .card-description-wrapper,
+  #galleryModal.img_g7f5 .card-description-wrapper,
+  #galleryModal.img_g7f6 .card-description-wrapper {
+    bottom: 180px;
+  }
+
+  #galleryModal.img_g2f4 .card-description-wrapper {
+    bottom: 220px;
+    line-height: 1.2;
+    max-width: 780px;
+  }
+
+  #galleryModal.img_g3f1 .card-description-wrapper {
+    bottom: 205px;
+  }
+
+  #galleryModal.img_g4f3 .card-description-wrapper,
+  #galleryModal.img_g4f9 .card-description-wrapper,
+  #galleryModal.img_g5f4 .card-description-wrapper,
+  #galleryModal.img_g7f2 .card-description-wrapper,
+  #galleryModal.img_g7f3 .card-description-wrapper {
+    bottom: 175px;
+  }
+
+  #galleryModal.img_g4f4 .card-description-wrapper {
+    bottom: 205px;
+  }
+
+  #galleryModal.img_g4f5 .card-description-wrapper {
+    bottom: 225px;
+  }
+
+  #galleryModal.img_g6f3 .card-description-wrapper {
+    bottom: 165px;
+  }
+
+  #galleryModal.img_g4f6 .card-description-wrapper {
+    bottom: 235px;
+  }
+
+  #galleryModal.img_g4f12 .card-description-wrapper {
+    bottom: 170px;
+  }
+
+  #galleryModal.img_g5f3 .card-description-wrapper {
+    bottom: 155px;
+    text-align: left;
+  }
+
+  /* =====================================
+     LABEL VERTICAL
+  ===================================== */
+  #galleryModal .vertical-label {
+    position: absolute;
+    bottom: 165px;
+    right: 470px;
+    font-size: 12px;
+    text-align: right;
+    z-index: 25;
+  }
+
+  #galleryModal .vertical-label.long-credit {
+    max-width: 420px;
+  }
+
+  #galleryModal .vertical-label.extra-long-credit {
+    max-width: 460px;
+    font-size: 11px;
   }
 }

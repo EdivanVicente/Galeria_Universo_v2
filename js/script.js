@@ -285,113 +285,101 @@ const galleryData = {
 };
 
 /* =========================================================
-   CONTROLE DE ESTADO
+   ESTADO
 ========================================================= */
-
 let currentTheme = null;
 let currentIndex = 0;
 
 /* =========================================================
-   PRELOAD (mantido)
+   PRELOAD
 ========================================================= */
-
 function preloadAdjacentImages(theme, index) {
   if (!galleryData[theme]) return;
 
   const images = galleryData[theme].images;
   if (images.length <= 1) return;
 
-  const next = index + 1;
-  const prev = index - 1;
-
-  if (next < images.length) new Image().src = images[next].src;
-  if (prev >= 0) new Image().src = images[prev].src;
+  if (index + 1 < images.length) new Image().src = images[index + 1].src;
+  if (index - 1 >= 0) new Image().src = images[index - 1].src;
 }
 
 /* =========================================================
-   ATUALIZA GALERIA (LÓGICA ORIGINAL ADAPTADA)
+   UPDATE GALERIA (ADAPTADO)
 ========================================================= */
-
 function updateGallery() {
   if (!currentTheme) return;
 
   const themeData = galleryData[currentTheme];
   const item = themeData.images[currentIndex];
-  const total = themeData.images.length;
+  const totalImages = themeData.images.length;
 
   /* ===== IMAGEM ===== */
   const img = document.getElementById("galleryImage");
   img.src = item.src;
   img.alt = item.caption?.split(".")[0] || themeData.title;
 
+  /* ===== MODAL (classe dinâmica por imagem) ===== */
+  const modal = document.getElementById("galleryModal");
+
+  [...modal.classList].forEach(c => {
+    if (c.startsWith("img_")) modal.classList.remove(c);
+  });
+
+  const match = item.src.match(/(img_g\d+f\d+)/i);
+  if (match) modal.classList.add(match[1]);
+
   /* ===== TÍTULO ===== */
   const title = document.getElementById("galleryTitle");
   title.textContent = themeData.title;
 
   const titleWrapper = title.closest(".card-title-wrapper");
-  if (titleWrapper) {
-    titleWrapper.classList.remove("long-title", "extra-long-title");
+  titleWrapper.classList.remove("long-title", "extra-long-title");
 
-    const wordCount = themeData.title.trim().split(/\s+/).length;
-
-    if (wordCount >= 2) titleWrapper.classList.add("long-title");
-    if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
-  }
+  const wordCount = themeData.title.trim().split(/\s+/).length;
+  if (wordCount >= 2) titleWrapper.classList.add("long-title");
+  if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
 
   /* ===== DESCRIÇÃO ===== */
   const caption = document.getElementById("galleryCaption");
   caption.textContent = item.caption || "";
 
-  const descriptionWrapper = caption.closest(".card-description-wrapper");
-  if (descriptionWrapper) {
-    descriptionWrapper.classList.remove(
-      "short-description",
-      "long-description",
-      "extra-long-description"
-    );
+  const descWrapper = caption.closest(".card-description-wrapper");
+  descWrapper.classList.remove(
+    "short-description",
+    "long-description",
+    "extra-long-description"
+  );
 
-    const len = item.caption?.length || 0;
+  const len = item.caption?.length || 0;
+  if (len > 190) descWrapper.classList.add("extra-long-description");
+  else if (len > 150) descWrapper.classList.add("long-description");
+  else descWrapper.classList.add("short-description");
 
-    if (len > 190) {
-      descriptionWrapper.classList.add("extra-long-description");
-    } else if (len > 150) {
-      descriptionWrapper.classList.add("long-description");
-    } else {
-      descriptionWrapper.classList.add("short-description");
-    }
-  }
+  /* ===== CRÉDITO ===== */
+  const verticalLabel = modal.querySelector(".vertical-label");
+  verticalLabel.textContent = item.credit || "";
 
-  /* ===== CRÉDITO / LABEL VERTICAL ===== */
-  const verticalLabel = document.querySelector(".vertical-label");
-  if (verticalLabel) {
-    verticalLabel.textContent = item.credit || "";
+  verticalLabel.classList.remove("long-credit", "extra-long-credit");
 
-    verticalLabel.classList.remove("long-credit", "extra-long-credit");
+  const creditLen = item.credit?.length || 0;
+  if (creditLen > 200) verticalLabel.classList.add("extra-long-credit");
+  else if (creditLen > 45) verticalLabel.classList.add("long-credit");
 
-    const creditLen = item.credit?.length || 0;
-
-    if (creditLen > 200) {
-      verticalLabel.classList.add("extra-long-credit");
-    } else if (creditLen > 45) {
-      verticalLabel.classList.add("long-credit");
-    }
-
-    /* força repaint (mantém sua lógica antiga) */
-    verticalLabel.style.display = "none";
-    verticalLabel.offsetHeight;
-    verticalLabel.style.display = "block";
-  }
+  /* força repaint (mantém sua lógica antiga) */
+  verticalLabel.style.display = "none";
+  verticalLabel.offsetHeight;
+  verticalLabel.style.display = "block";
 
   /* ===== SETAS ===== */
-  const left = document.querySelector(".nav-arrow.left");
-  const right = document.querySelector(".nav-arrow.right");
+  const left = modal.querySelector(".nav-arrow.left");
+  const right = modal.querySelector(".nav-arrow.right");
 
-  if (total <= 1) {
+  if (totalImages <= 1) {
     left.style.display = "none";
     right.style.display = "none";
   } else {
     left.style.display = currentIndex === 0 ? "none" : "flex";
-    right.style.display = currentIndex === total - 1 ? "none" : "flex";
+    right.style.display = currentIndex === totalImages - 1 ? "none" : "flex";
   }
 
   preloadAdjacentImages(currentTheme, currentIndex);
@@ -400,7 +388,6 @@ function updateGallery() {
 /* =========================================================
    NAVEGAÇÃO
 ========================================================= */
-
 function goPrev() {
   if (currentIndex > 0) {
     currentIndex--;
@@ -409,7 +396,7 @@ function goPrev() {
 }
 
 function goNext() {
-  const total = galleryData[currentTheme]?.images.length || 0;
+  const total = galleryData[currentTheme].images.length;
   if (currentIndex < total - 1) {
     currentIndex++;
     updateGallery();
@@ -419,7 +406,6 @@ function goNext() {
 /* =========================================================
    ABERTURA DO MODAL
 ========================================================= */
-
 document.querySelectorAll(".open-gallery").forEach(card => {
   card.addEventListener("click", () => {
     const theme = card.dataset.tema;
@@ -439,7 +425,6 @@ document.querySelectorAll(".open-gallery").forEach(card => {
 /* =========================================================
    EVENTOS
 ========================================================= */
-
 document.addEventListener("click", e => {
   if (e.target.closest(".nav-arrow.left")) goPrev();
   if (e.target.closest(".nav-arrow.right")) goNext();
