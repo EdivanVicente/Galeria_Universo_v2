@@ -283,7 +283,6 @@ const galleryData = {
     ],
   },
 };
-
 /* =========================================================
    ESTADO
 ========================================================= */
@@ -304,7 +303,7 @@ function preloadAdjacentImages(theme, index) {
 }
 
 /* =========================================================
-   UPDATE GALERIA (ADAPTADO)
+   UPDATE GALERIA (ACESSÍVEL)
 ========================================================= */
 function updateGallery() {
   if (!currentTheme) return;
@@ -316,7 +315,12 @@ function updateGallery() {
   /* ===== IMAGEM ===== */
   const img = document.getElementById("galleryImage");
   img.src = item.src;
-  img.alt = item.caption?.split(".")[0] || themeData.title;
+
+  // 🔊 ALT acessível
+  img.alt =
+    item.alt ||
+    item.caption?.split(".")[0] ||
+    `${themeData.title}, imagem ${currentIndex + 1} de ${totalImages}`;
 
   /* ===== MODAL (classe dinâmica por imagem) ===== */
   const modal = document.getElementById("galleryModal");
@@ -339,7 +343,7 @@ function updateGallery() {
   if (wordCount >= 2) titleWrapper.classList.add("long-title");
   if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
 
-  /* ===== DESCRIÇÃO ===== */
+  /* ===== DESCRIÇÃO (aria-live já cuida da leitura) ===== */
   const caption = document.getElementById("galleryCaption");
   caption.textContent = item.caption || "";
 
@@ -382,6 +386,12 @@ function updateGallery() {
     right.style.display = currentIndex === totalImages - 1 ? "none" : "flex";
   }
 
+  /* 🔊 Anúncio leve de navegação */
+  caption.setAttribute(
+    "aria-label",
+    `Imagem ${currentIndex + 1} de ${totalImages}. ${item.caption || ""}`
+  );
+
   preloadAdjacentImages(currentTheme, currentIndex);
 }
 
@@ -404,7 +414,7 @@ function goNext() {
 }
 
 /* =========================================================
-   ABERTURA DO MODAL
+   ABERTURA DO MODAL (FOCO ACESSÍVEL)
 ========================================================= */
 document.querySelectorAll(".open-gallery").forEach(card => {
   card.addEventListener("click", () => {
@@ -419,6 +429,9 @@ document.querySelectorAll(".open-gallery").forEach(card => {
     let modal = bootstrap.Modal.getInstance(modalEl);
     if (!modal) modal = new bootstrap.Modal(modalEl);
     modal.show();
+
+    // 🔊 move foco para o modal
+    setTimeout(() => modalEl.focus(), 300);
   });
 });
 
@@ -440,101 +453,44 @@ document.addEventListener("keydown", e => {
     bootstrap.Modal.getInstance(modal)?.hide();
   }
 });
-/* =========================================================
-   FULLSCREEN
-========================================================= */
-
-function toggleFullscreen() {
-  const modal = document.getElementById("galleryModal");
-
-  if (!document.fullscreenElement) {
-    modal.requestFullscreen?.();
-    modal.classList.add("is-fullscreen");
-  } else {
-    document.exitFullscreen?.();
-    modal.classList.remove("is-fullscreen");
-  }
-}
 
 /* =========================================================
-   FULLSCREEN (FIX DEFINITIVO)
+   FULLSCREEN (ACESSÍVEL)
 ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const btnFullscreen = document.getElementById("btnFullscreen");
+  if (!btnFullscreen) return;
 
-function toggleFullscreen() {
-  const stage = document.querySelector("#galleryModal .gallery-stage");
-  const modal = document.getElementById("galleryModal");
+  const iconPath = btnFullscreen.querySelector("path");
 
-  if (!stage) return;
+  const iconExpand =
+    "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
+  const iconCompress =
+    "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
 
-  if (!document.fullscreenElement) {
-    stage.requestFullscreen();
-    modal.classList.add("is-fullscreen");
-  } else {
-    document.exitFullscreen();
-    modal.classList.remove("is-fullscreen");
+  function updateIcon(state) {
+    if (iconPath)
+      iconPath.setAttribute("d", state ? iconCompress : iconExpand);
+
+    // 🔊 estado acessível
+    btnFullscreen.setAttribute("aria-pressed", state ? "true" : "false");
+    btnFullscreen.setAttribute(
+      "aria-label",
+      state ? "Sair da tela cheia" : "Ativar tela cheia"
+    );
   }
-}
 
-/* botão fullscreen */
- document.addEventListener('DOMContentLoaded', () => {
-            const btnFullscreen = document.getElementById('btnFullscreen');
-            const iconPath = btnFullscreen.querySelector('path');
+  btnFullscreen.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.();
+      updateIcon(true);
+    } else {
+      document.exitFullscreen?.();
+      updateIcon(false);
+    }
+  });
 
-            // Desenhos dos ícones (SVG paths)
-            const iconExpand = "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
-            const iconCompress = "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
-
-            function toggleFullScreen() {
-                if (!document.fullscreenElement &&    // Padrão W3C
-                    !document.mozFullScreenElement && // Firefox
-                    !document.webkitFullscreenElement && // Chrome, Safari e Opera
-                    !document.msFullscreenElement) {  // IE/Edge
-                    
-                    // Entrar em tela cheia
-                    if (document.documentElement.requestFullscreen) {
-                        document.documentElement.requestFullscreen();
-                    } else if (document.documentElement.msRequestFullscreen) {
-                        document.documentElement.msRequestFullscreen();
-                    } else if (document.documentElement.mozRequestFullScreen) {
-                        document.documentElement.mozRequestFullScreen();
-                    } else if (document.documentElement.webkitRequestFullscreen) {
-                        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                    }
-                    // Muda ícone para 'comprimir'
-                    if(iconPath) iconPath.setAttribute('d', iconCompress);
-
-                } else {
-                    // Sair de tela cheia
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    }
-                    // Muda ícone para 'expandir'
-                    if(iconPath) iconPath.setAttribute('d', iconExpand);
-                }
-            }
-
-            // Atualiza o ícone caso o usuário saia com ESC
-            function updateIconOnStateChange() {
-                if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-                     if(iconPath) iconPath.setAttribute('d', iconExpand);
-                } else {
-                     if(iconPath) iconPath.setAttribute('d', iconCompress);
-                }
-            }
-
-            btnFullscreen.addEventListener('click', toggleFullScreen);
-            
-            // Listeners para detectar mudança de estado (ex: apertar ESC)
-            document.addEventListener('fullscreenchange', updateIconOnStateChange);
-            document.addEventListener('webkitfullscreenchange', updateIconOnStateChange);
-            document.addEventListener('mozfullscreenchange', updateIconOnStateChange);
-            document.addEventListener('MSFullscreenChange', updateIconOnStateChange);
-        });
-
-        
+  document.addEventListener("fullscreenchange", () =>
+    updateIcon(!!document.fullscreenElement)
+  );
+});
