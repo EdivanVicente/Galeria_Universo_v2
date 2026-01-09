@@ -211,18 +211,46 @@ main {
 
 .app-wrapper {
   width: 100%;
-  max-width: 1800px;
   margin: 0 auto;
   position: relative;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-inline: 2rem;
+
+  /* trava inicial */
+  max-width: 992px;
 }
 
+/* ===============================
+   TRAVAS DE BREAKPOINT — GLOBAL
+================================ */
+
+/* >= 1200px */
+@media (min-width: 1200px) {
+  .app-wrapper {
+    max-width: 1200px;
+  }
+}
+
+/* >= 1440px */
+@media (min-width: 1440px) {
+  .app-wrapper {
+    max-width: 1440px;
+  }
+}
+
+/* >= 1800px */
+@media (min-width: 1800px) {
+  .app-wrapper {
+    max-width: 1800px;
+  }
+}
+
+/* >= 2560px */
 @media (min-width: 2560px) {
   .app-wrapper {
     max-width: 2560px;
   }
 }
+
 
 /* =========================================================
    MODAL GALERIA GLOBAL
@@ -1249,96 +1277,177 @@ transform: translateX(8rem);
 /* =========================================================
             MODAL CRÉDITOS — DESKTOP (BASE)      
 ========================================================= */
+
+
+/* =========================================================
+   MODAL CRÉDITOS — DESKTOP (BASE UNIFICADA)
+========================================================= */
+
+@media (min-width: 1200px) {
+
+  #menuModal .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  #menuModal .custom-popup-content {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 6rem;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  #menuModal .popup-row {
+    display: flex;
+    align-items: stretch;
+
+    margin: 0 auto;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.4rem solid #fff;
+    border-radius: 2rem;
+  }
+
+  #menuModal .box-wrapper-creditos,
+  #menuModal .box-wrapper-utilizar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+
+}
+
 /* =========================================================
         MODAL CRÉDITOS — DESKTOP 1200px 
 ========================================================= */
 @media (min-width: 1200px) and (max-width: 1439.98px) {
 
-  
   #menuModal .modal-dialog {
     max-width: none;
     width: 100%;
     margin: 0;
+    align-items: stretch;
+  }
+
+  #menuModal .modal-content {
+    height: 100%;
+    background: transparent;
+    border: none;
   }
 
   #menuModal .custom-popup-content {
-    width: min(92vw, 120rem);
-    padding-top: 6rem;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
+    padding-top: 4rem;
+    padding-inline: 4rem;
+
     display: flex;
     justify-content: center;
-    max-width: 1439.98px;
+    height: 100%;
   }
 
-  /* linha principal */
+  /* === LINHA PRINCIPAL (COMPACTA) === */
   #menuModal .popup-row {
     display: flex;
     flex-direction: row;
-    gap: 3rem;
+    align-items: stretch;
 
     width: 100%;
-    max-width: 120rem;
+    max-width: 100rem;
     margin: 0 auto;
+    margin-top: 5rem;
 
-    padding: 3rem;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.4rem solid #fff;
-    border-radius: 1.5rem;
+    padding: 2.4rem;
+    border: 0.3rem solid #fff;
+    border-radius: 1.2rem;
+
+    gap: 6rem;          /* <<< MENOR */
+    min-height: unset;   /* REMOVE A TRAVA */
+    height: 60rem;       /* CONTROLE REAL */
   }
 
-  /* colunas */
+  /* === COLUNAS === */
   #menuModal .box-wrapper-creditos,
   #menuModal .box-wrapper-utilizar {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     min-width: 0;
     position: relative;
   }
 
+  #menuModal .box-wrapper-creditos {
+    flex: 0 0 35%;
+    /* SEM margin-left aqui */
+    margin-left: 7rem;
+  }
 
+  #menuModal .box-wrapper-utilizar {
+    flex: 0 0 30%;
+    margin-left: 12rem;
+  }
+
+  /* === CRÉDITOS === */
+  #menuModal .box-wrapper-creditos .popup-caixa {
+    flex: 1;
+    max-height: none;
+    overflow-y: hidden;
+  }
+
+  /* === COMO UTILIZAR === */
+  #menuModal .box-wrapper-utilizar .popup-caixa {
+    max-height: 36rem;
+    overflow-y: auto;
+  }
+
+  /* === CAIXAS === */
+  .popup-caixa {
+    margin-top: 4.2rem;
+    padding: 2.2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* === TÍTULOS === */
   .custom-popup-title,
   .custom-popup-title-utilizar {
     top: 0;
     left: 0;
 
-    height: 5.2rem;
+    height: 4.6rem;
     font-size: 2rem;
 
-    width: auto;                 
+    width: auto;
     max-width: 90%;
 
-    padding-block: 0.8rem;
-    padding-inline: clamp(2rem, 1.6vw, 3.6rem);
-
+    padding: 0.8rem 2.2rem;
     white-space: nowrap;
   }
 
-
+  /* === RECORTE SUPERIOR === */
   .popup-caixa::before {
     right: 0;
-    left: var(--title-offset, 14.2rem);
+    left: var(--title-offset, 12.4rem);
   }
 
   .popup-caixa-utilizar::before {
     right: 0;
-    left: var(--title-offset-utilizar, 20rem);
+    left: var(--title-offset-utilizar, 16.2rem);
   }
 
-  .popup-caixa {
-    margin-top: 5.2rem;
-    font-size: 1.6rem;
-    line-height: 1.5;
-  }
-
-  /* botão fechar */
+  /* === BOTÃO FECHAR === */
   #menuModal .btn-close-custom-styled {
-    top: 4.6rem;
-    right: 1.6rem;
-  
+    top: 7.6rem;
+    right: 7.6rem;
   }
-    #menuModal .btn-close-custom-styled img{
-     width: 5rem;
-    height: 5rem;
-  
+
+  #menuModal .btn-close-custom-styled img {
+    width: 4.8rem;
+    height: 4.8rem;
   }
 }
 
@@ -1347,258 +1456,400 @@ transform: translateX(8rem);
 ========================================================= */
 @media (min-width: 1440px) {
 
-
-  #menuModal .modal-dialog {
+#menuModal .modal-dialog {
     max-width: none;
     width: 100%;
     margin: 0;
+    align-items: stretch;
+  }
+
+  #menuModal .modal-content {
+    height: 100%;
+    background: transparent;
+    border: none;
   }
 
   #menuModal .custom-popup-content {
-    width: min(90vw, 140rem);
-    padding-top: 6rem;
+    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
+    padding-top: 5rem;
+    padding-inline: 6rem;
+
     display: flex;
     justify-content: center;
-    max-width: 1440px;
-
+    height: 100%;
   }
 
-  /* linha principal */
+  /* === LINHA PRINCIPAL (1440 INTERMEDIÁRIO) === */
   #menuModal .popup-row {
     display: flex;
     flex-direction: row;
-    gap: 4rem;
+    align-items: stretch;
 
     width: 100%;
-    max-width: 140rem;
+    max-width: 118rem;
     margin: 0 auto;
+    margin-top: 7rem;
 
-    padding: 3.6rem;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.4rem solid #fff;
-    border-radius: 1.5rem;
+    padding: 3rem;
+    border: 0.35rem solid #fff;
+    border-radius: 1.4rem;
+
+    gap: 9rem;
+    height: 70rem;        /* <<< CONTROLE REAL */
+    min-height: unset;
   }
 
-  /* colunas */
+  /* === COLUNAS === */
   #menuModal .box-wrapper-creditos,
   #menuModal .box-wrapper-utilizar {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     min-width: 0;
     position: relative;
   }
 
+  #menuModal .box-wrapper-creditos {
+    flex: 0 0 38%;
+    margin-left: 9rem;
+  }
 
+  #menuModal .box-wrapper-utilizar {
+    flex: 0 0 30%;
+    margin-left: 7rem;
+  }
+
+  /* === CRÉDITOS === */
+  #menuModal .box-wrapper-creditos .popup-caixa {
+    flex: 1;
+    max-height: none;
+    overflow-y: hidden;
+  }
+
+  /* === COMO UTILIZAR === */
+  #menuModal .box-wrapper-utilizar .popup-caixa {
+    max-height: 44rem;
+    overflow-y: auto;
+  }
+
+  /* === CAIXAS === */
+  .popup-caixa {
+    margin-top: 4.6rem;
+    padding: 2.6rem;
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  /* === TÍTULOS === */
   .custom-popup-title,
   .custom-popup-title-utilizar {
-    top: 0.1rem;
-    left: 0;                  
-    
-    height: 5.2rem;
+    top: 0;
+    left: 0;
+
+    height: 5rem;
     font-size: 2.2rem;
 
-    width: auto;                
-    max-width: 90%;             
+    width: auto;
+    max-width: 90%;
 
-    padding-block: 0.8rem;
-    padding-inline: clamp(1.4rem, 2vw, 4.8rem);
-
+    padding: 0.9rem 2.8rem;
     white-space: nowrap;
-  }  
+  }
+
+  /* === RECORTE SUPERIOR === */
   .popup-caixa::before {
     right: 0;
-    left: var(--title-offset, 17.1rem);
-   
+    left: var(--title-offset, 14.6rem);
   }
 
   .popup-caixa-utilizar::before {
     right: 0;
-    left: var(--title-offset-utilizar, 23.2rem);
-  }
-  
-  .popup-caixa {
-    margin-top: 5.2rem;
-    font-size: 1.8rem;
-    line-height: 1.5;
+    left: var(--title-offset-utilizar, 19.2rem);
   }
 
-  /* botão fechar */
+  /* === BOTÃO FECHAR === */
   #menuModal .btn-close-custom-styled {
-    top: 3.6rem;
-    right: 0.6rem;
+    top: 10.6rem;
+    right: 9.6rem;
   }
-   #menuModal .btn-close-custom-styled img {
-    width: 6rem;
-    height: 6rem;
+
+  #menuModal .btn-close-custom-styled img {
+    width: 5.6rem;
+    height: 5.6rem;
   }
 }
 
 /* =========================================================
             MODAL CRÉDITOS — DESKTOP 1800px+
 ========================================================= */
-@media (min-width: 1800px) {
+
+
+ /* =========================================================
+   MODAL CRÉDITOS — DESKTOP 1800px (FINAL)
+========================================================= */
+@media (min-width: 1800px) and (max-width: 2559.98px) {
+
+  /* === DESTRAVA A ALTURA DO MODAL (BOOTSTRAP) === */
+  #menuModal .modal-dialog {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    align-items: stretch;
+  }
+
+  #menuModal .modal-content {
+    height: 100%;
+    background: transparent;
+    border: none;
+  }
 
   #menuModal .custom-popup-content {
     width: 100%;
-    max-width: none;
-    padding-inline: 8rem;
     max-width: 1800px;
-  }
-
-  #menuModal .popup-row {
-    width: 100%;
-    max-width: 120rem;
-    padding: 6rem;
-    gap: 8rem;
     margin: 0 auto;
+    padding-top: 6rem;
+    padding-inline: 8rem;
 
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.5rem solid #fff;
-    border-radius: 2rem;
-  }
+    display: flex;
+    justify-content: center;
 
-  #menuModal .box-wrapper-creditos {
-    flex: 0 0 50rem;
-  }
-
-  #menuModal .box-wrapper-utilizar {
-    flex: 0 0 40rem;
+    height: 100%;
   }
 
-  .popup-caixa {
-    padding: 3rem;
-    font-size: 1.7rem;
-    line-height: 1.6;
-  }
+  /* === LINHA PRINCIPAL (AGORA COM ALTURA REAL) === */
+#menuModal .popup-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 
-  .custom-popup-title,
-  .custom-popup-title-utilizar {
-    font-size: 2.4rem;
-    padding: 1rem 3.2rem;
-    border-width: 0.4rem;
-  }
-    #menuModal .btn-close-custom-styled {
-    top: 4.6rem;
-    right: 26.6rem;
-  }
-   #menuModal .btn-close-custom-styled img {
-    width: 6rem;
-    height: 6rem;
-  }
+  width: 100%;
+  max-width: 125rem;
+  margin: 0 auto;
+  margin-top: 10rem;
+
+  padding: 3.6rem;
+  border: 0.4rem solid #fff;
+  border-radius: 1.5rem;
+
+  gap: 18rem;        /* <<< separação REAL entre os boxes */
+  min-height: 85rem;
 }
 
-/* =========================
-     MODAL CREDITS 2560px
-  ========================= */
-@media (min-width: 2560px) {
- /* container geral */
-  #menuModal .custom-popup-content {
-    width: 100%;
-    padding-inline: 8rem;
-    max-width: 2560px;
-  }
 
-  /* linha principal */
-  #menuModal .popup-row {
-    display: flex;
-    align-items: stretch;
-    gap: 8rem;
-
-    width: 100%;
-    max-width: 180rem;
-    height: 98rem;
-
-    margin: 0 auto;
-    transform: translateX(-8rem);
-    padding: 6rem;
-
-    border: 0.5rem solid #fff;
-    border-radius: 2rem;
-  }
-
-  /* colunas */
-  #menuModal .box-wrapper-creditos {
-    flex: 0 0 80rem;
-  }
-
-  #menuModal .box-wrapper-utilizar {
-    flex: 0 0 70rem;
-  }
-
+  /* === COLUNAS === */
   #menuModal .box-wrapper-creditos,
   #menuModal .box-wrapper-utilizar {
     display: flex;
     flex-direction: column;
     height: 100%;
-    transform: translateX(5rem);
+    min-width: 0;
+    position: relative;
   }
 
-  /* REMOVE QUALQUER TRAVA DE ALTURA */
-  #menuModal .popup-caixa {
-    max-height: none;
+
+
+#menuModal .box-wrapper-creditos {
+  flex: 0 0 35%;
+  margin-left: 10rem;
+
+
+}
+
+#menuModal .box-wrapper-utilizar {
+  flex: 0 0 30%;
+}
+
+
+
+  /* === CRÉDITOS — OCUPA TODA A ALTURA === */
+  #menuModal .box-wrapper-creditos .popup-caixa {
+    flex: 1;
+    max-height: none;          /* REMOVE A TRAVA */
+    overflow-y: hidden;
+  }
+
+  /* === COMO UTILIZAR — MENOR, COM SCROLL === */
+  #menuModal .box-wrapper-utilizar .popup-caixa {
+    max-height: 55rem;
+    overflow-y: auto;
+  }
+
+  /* === CAIXAS (ESTILO) === */
+  .popup-caixa {
+    margin-top: 5.2rem;
     padding: 3rem;
-    font-size: 2.1rem;
+     font-size: 1.6rem;
     line-height: 1.6;
   }
 
-  /* CRÉDITOS — ocupa tudo */
-  #menuModal .box-wrapper-creditos .popup-caixa {
-    flex: 1;
-      overflow-y: hidden; /* ou hidden */
-  }
-
-  /* COMO UTILIZAR — menor */
-  #menuModal .box-wrapper-utilizar .popup-caixa {
-    height: 55rem;
-    overflow-y: auto;
-   
-  }
-
-  /* títulos */
+  /* === TÍTULOS === */
   .custom-popup-title,
   .custom-popup-title-utilizar {
-    font-size: 3.4rem;
+    top: 0.1rem;
+    left: 0;
+
+    height: 5.2rem;
+    font-size: 2.4rem;
+
+    width: auto;
+    max-width: 90%;
+
     padding: 1rem 3.2rem;
-    border-width: 0.4rem;
-    top: -6px;
-    height: 6rem;
-      line-height: 1.2;
-  }
-  /* CRÉDITOS + COMO UTILIZAR */
-  #menuModal .popup-caixa-creditos,
-  #menuModal .popup-caixa-utilizar {
-    border: 0.5rem solid #fff;   /* antes: 0.3rem */
-    border-top: none;
+    white-space: nowrap;
   }
 
-  /* recorte superior do título */
-  #menuModal .popup-caixa-creditos::before,
-  #menuModal .popup-caixa-utilizar::before {
-    border-top: 0.5rem solid #fff; /* MESMO VALOR */
+  /* === RECORTE SUPERIOR === */
+  .popup-caixa::before {
+    right: 0;
+    left: var(--title-offset, 17.1rem);
   }
-  /* botão fechar */
+
+  .popup-caixa-utilizar::before {
+    right: 0;
+    left: var(--title-offset-utilizar, 23.2rem);
+  }
+
+  /* === BOTÃO FECHAR === */
   #menuModal .btn-close-custom-styled {
-    top: 2.6rem;
-    right: 40.6rem;
+    top: 13.6rem;
+    right: 23.6rem;
+  }
+
+  #menuModal .btn-close-custom-styled img {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+
+
+/* =========================
+     MODAL CREDITS 2560px
+  ========================= */
+@media (min-width: 2560px) {
+  #menuModal .modal-dialog {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    align-items: stretch;
+  }
+
+  #menuModal .modal-content {
+    height: 100%;
+    background: transparent;
+    border: none;
+  }
+
+  #menuModal .custom-popup-content {
+    width: 100%;
+    max-width: 2560px;
+    margin: 0 auto;
+    padding-top: 8rem;
+    padding-inline: 10rem;
+
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+
+  /* === LINHA PRINCIPAL — DESKTOP EDITORIAL === */
+  #menuModal .popup-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    width: 100%;
+    max-width: 180rem;
+    margin: 0 auto;
+    margin-top: 12rem;
+
+    padding: 6rem;
+    border: 0.5rem solid #fff;
+    border-radius: 2rem;
+
+    gap: 24rem;
+    height: 120rem;
+    min-height: unset;
+  }
+
+  /* === COLUNAS === */
+  #menuModal .box-wrapper-creditos,
+  #menuModal .box-wrapper-utilizar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+    position: relative;
+  }
+
+  #menuModal .box-wrapper-creditos {
+    flex: 0 0 35%;
+  }
+
+  #menuModal .box-wrapper-utilizar {
+    flex: 0 0 30%;
+  }
+
+  /* === CRÉDITOS — FULL HEIGHT === */
+  #menuModal .box-wrapper-creditos .popup-caixa {
+    flex: 1;
+    max-height: none;
+    overflow-y: hidden;
+  }
+
+  /* === COMO UTILIZAR — CONTROLADO === */
+  #menuModal .box-wrapper-utilizar .popup-caixa {
+    max-height: 55rem;
+    overflow-y: auto;
+  }
+
+  /* === CAIXAS === */
+  .popup-caixa {
+    margin-top: 6rem;
+    padding: 4rem;
+      font-size: 2.4rem;
+    line-height: 1.6;
+  }
+
+  /* === TÍTULOS === */
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    top: 1px;
+    left: 0;
+
+    height: 6rem;
+    font-size: 3.4rem;
+
+    width: auto;
+    max-width: 90%;
+
+    padding: 1rem 3.6rem;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  /* === RECORTE SUPERIOR === */
+  .popup-caixa::before {
+    right: 0;
+    left: var(--title-offset, 22rem);
+  }
+
+  .popup-caixa-utilizar::before {
+    right: 0;
+    left: var(--title-offset-utilizar, 30rem);
+  }
+
+  /* === BOTÃO FECHAR === */
+  #menuModal .btn-close-custom-styled {
+    top: 16.6rem;
+    right: 32rem;
   }
 
   #menuModal .btn-close-custom-styled img {
     width: 9rem;
     height: 9rem;
-  }
-    #menuModal {
-    --popup-border-size: 0.5rem;
-  }
-
-  #menuModal .popup-caixa-creditos,
-  #menuModal .popup-caixa-utilizar {
-    border: var(--popup-border-size) solid #fff;
-    border-top: none;
-  }
-
-  #menuModal .popup-caixa-creditos::before,
-  #menuModal .popup-caixa-utilizar::before {
-    border-top: var(--popup-border-size) solid #fff;
   }
 }
 
@@ -3765,3 +4016,17 @@ GRID + HEADER — DESKTOP 1800+
 
 }
 
+@media (min-width: 2560px) {
+
+  #menuModal .popup-caixa {
+    overflow-y: unset;
+  }
+
+  #menuModal .box-wrapper-creditos .popup-caixa {
+    overflow-y: hidden;
+  }
+
+  #menuModal .box-wrapper-utilizar .popup-caixa {
+    overflow-y: auto;
+  }
+}
