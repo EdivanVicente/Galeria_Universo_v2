@@ -298,8 +298,77 @@ function preloadAdjacentImages(theme, index) {
   const images = galleryData[theme].images;
   if (images.length <= 1) return;
 
-  if (index + 1 < images.length) new Image().src = images[index + 1].src;
-  if (index - 1 >= 0) new Image().src = images[index - 1].src;
+  if (index + 1 < images.length) {
+    const imgNext = new Image();
+    imgNext.src = images[index + 1].src;
+  }
+
+  if (index - 1 >= 0) {
+    const imgPrev = new Image();
+    imgPrev.src = images[index - 1].src;
+  }
+}
+
+/* =========================================================
+   CLASSIFICAÇÃO SEMÂNTICA
+========================================================= */
+function applyTitleClasses(el, text) {
+  el.classList.remove("title-short", "title-medium", "title-long");
+
+  const len = text.length;
+
+  if (len <= 10) el.classList.add("title-short");
+  else if (len <= 20) el.classList.add("title-medium");
+  else el.classList.add("title-long");
+}
+
+function applyCaptionClasses(el, text) {
+  el.classList.remove("caption-short", "caption-medium", "caption-long");
+
+  const len = text.length;
+
+  if (len <= 120) el.classList.add("caption-short");
+  else if (len <= 200) el.classList.add("caption-medium");
+  else el.classList.add("caption-long");
+}
+
+function applyCreditClasses(el, text) {
+  el.classList.remove("credit-short", "credit-medium", "credit-long");
+
+  const len = text.length;
+
+  if (len <= 40) el.classList.add("credit-short");
+  else if (len <= 80) el.classList.add("credit-medium");
+  else el.classList.add("credit-long");
+}
+
+/* =========================================================
+   HELPERS DE TEXTO (ANTI-PALAVRA SOZINHA)
+========================================================= */
+function normalizeCaptionText(text) {
+  if (typeof text !== "string") return "";
+
+  let result = text;
+
+  /* regras específicas que NÃO devem quebrar linha */
+  const noBreakPairs = [
+    "ESPACIAL HUBBLE",
+    "JAMES WEBB",
+    "VIA LÁCTEA",
+    "BRAÇOS MENORES",
+    "ÁCIDO CORROSIVO",
+    "GRAUS CELSIUS",
+    "SUL TERRESTRE",
+    "FORA DA\nTERRA",
+  
+  ];
+ noBreakPairs.forEach(function (pair) {
+    const safePair = pair.replace(" ", "\u00A0");
+    const regex = new RegExp(pair, "g");
+    result = result.replace(regex, safePair);
+  });
+
+  return result;
 }
 
 /* =========================================================
@@ -315,61 +384,45 @@ function updateGallery() {
   /* ===== IMAGEM ===== */
   const img = document.getElementById("galleryImage");
   img.src = item.src;
-
-  // 🔊 ALT acessível
   img.alt =
     item.alt ||
-    item.caption?.split(".")[0] ||
-    `${themeData.title}, imagem ${currentIndex + 1} de ${totalImages}`;
+    (item.caption ? item.caption.split(".")[0] : "") ||
+    themeData.title + ", imagem " + (currentIndex + 1) + " de " + totalImages;
 
-  /* ===== MODAL (classe dinâmica por imagem) ===== */
+  /* ===== MODAL ===== */
   const modal = document.getElementById("galleryModal");
 
-  [...modal.classList].forEach(c => {
-    if (c.startsWith("img_")) modal.classList.remove(c);
+  /* remove classes antigas (img_ e theme_) */
+  Array.from(modal.classList).forEach(function (c) {
+    if (c.indexOf("img_") === 0 || c.indexOf("theme-") === 0) {
+      modal.classList.remove(c);
+    }
   });
 
+  /* classe por imagem */
   const match = item.src.match(/(img_g\d+f\d+)/i);
   if (match) modal.classList.add(match[1]);
+
+  /* classe por tema */
+  modal.classList.add("theme-" + currentTheme);
 
   /* ===== TÍTULO ===== */
   const title = document.getElementById("galleryTitle");
   title.textContent = themeData.title;
+  applyTitleClasses(title, themeData.title);
 
-  const titleWrapper = title.closest(".card-title-wrapper");
-  titleWrapper.classList.remove("long-title", "extra-long-title");
-
-  const wordCount = themeData.title.trim().split(/\s+/).length;
-  if (wordCount >= 2) titleWrapper.classList.add("long-title");
-  if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
-
-  /* ===== DESCRIÇÃO (aria-live já cuida da leitura) ===== */
+  /* ===== DESCRIÇÃO ===== */
   const caption = document.getElementById("galleryCaption");
-  caption.textContent = item.caption || "";
-
-  const descWrapper = caption.closest(".card-description-wrapper");
-  descWrapper.classList.remove(
-    "short-description",
-    "long-description",
-    "extra-long-description"
-  );
-
-  const len = item.caption?.length || 0;
-  if (len > 190) descWrapper.classList.add("extra-long-description");
-  else if (len > 150) descWrapper.classList.add("long-description");
-  else descWrapper.classList.add("short-description");
+  const captionText = normalizeCaptionText(item.caption || "");
+  caption.textContent = captionText;
+  applyCaptionClasses(caption, captionText);
 
   /* ===== CRÉDITO ===== */
   const verticalLabel = modal.querySelector(".vertical-label");
   verticalLabel.textContent = item.credit || "";
+  applyCreditClasses(verticalLabel, item.credit || "");
 
-  verticalLabel.classList.remove("long-credit", "extra-long-credit");
-
-  const creditLen = item.credit?.length || 0;
-  if (creditLen > 200) verticalLabel.classList.add("extra-long-credit");
-  else if (creditLen > 45) verticalLabel.classList.add("long-credit");
-
-  /* força repaint (mantém sua lógica antiga) */
+  /* força repaint (Safari / iOS) */
   verticalLabel.style.display = "none";
   verticalLabel.offsetHeight;
   verticalLabel.style.display = "block";
@@ -383,13 +436,19 @@ function updateGallery() {
     right.style.display = "none";
   } else {
     left.style.display = currentIndex === 0 ? "none" : "flex";
-    right.style.display = currentIndex === totalImages - 1 ? "none" : "flex";
+    right.style.display =
+      currentIndex === totalImages - 1 ? "none" : "flex";
   }
 
-  /* 🔊 Anúncio leve de navegação */
+  /* ===== ARIA ===== */
   caption.setAttribute(
     "aria-label",
-    `Imagem ${currentIndex + 1} de ${totalImages}. ${item.caption || ""}`
+    "Imagem " +
+      (currentIndex + 1) +
+      " de " +
+      totalImages +
+      ". " +
+      (item.caption || "")
   );
 
   preloadAdjacentImages(currentTheme, currentIndex);
@@ -414,10 +473,10 @@ function goNext() {
 }
 
 /* =========================================================
-   ABERTURA DO MODAL (FOCO ACESSÍVEL)
+   ABERTURA DO MODAL
 ========================================================= */
-document.querySelectorAll(".open-gallery").forEach(card => {
-  card.addEventListener("click", () => {
+document.querySelectorAll(".open-gallery").forEach(function (card) {
+  card.addEventListener("click", function () {
     const theme = card.dataset.tema;
     if (!galleryData[theme]) return;
 
@@ -426,38 +485,40 @@ document.querySelectorAll(".open-gallery").forEach(card => {
     updateGallery();
 
     const modalEl = document.getElementById("galleryModal");
-    let modal = bootstrap.Modal.getInstance(modalEl);
-    if (!modal) modal = new bootstrap.Modal(modalEl);
-    modal.show();
+    let modalInstance = bootstrap.Modal.getInstance(modalEl);
+    if (!modalInstance) modalInstance = new bootstrap.Modal(modalEl);
+    modalInstance.show();
 
-    // 🔊 move foco para o modal
-    setTimeout(() => modalEl.focus(), 300);
+    setTimeout(function () {
+      modalEl.focus();
+    }, 300);
   });
 });
 
 /* =========================================================
    EVENTOS
 ========================================================= */
-document.addEventListener("click", e => {
+document.addEventListener("click", function (e) {
   if (e.target.closest(".nav-arrow.left")) goPrev();
   if (e.target.closest(".nav-arrow.right")) goNext();
 });
 
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", function (e) {
   const modal = document.getElementById("galleryModal");
   if (!modal.classList.contains("show")) return;
 
   if (e.key === "ArrowLeft") goPrev();
   if (e.key === "ArrowRight") goNext();
   if (e.key === "Escape") {
-    bootstrap.Modal.getInstance(modal)?.hide();
+    const instance = bootstrap.Modal.getInstance(modal);
+    if (instance) instance.hide();
   }
 });
 
 /* =========================================================
    FULLSCREEN (ACESSÍVEL)
 ========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
   const btnFullscreen = document.getElementById("btnFullscreen");
   if (!btnFullscreen) return;
 
@@ -472,7 +533,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (iconPath)
       iconPath.setAttribute("d", state ? iconCompress : iconExpand);
 
-    // 🔊 estado acessível
     btnFullscreen.setAttribute("aria-pressed", state ? "true" : "false");
     btnFullscreen.setAttribute(
       "aria-label",
@@ -480,17 +540,17 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  btnFullscreen.addEventListener("click", () => {
+  btnFullscreen.addEventListener("click", function () {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen?.();
+      document.documentElement.requestFullscreen();
       updateIcon(true);
     } else {
-      document.exitFullscreen?.();
+      document.exitFullscreen();
       updateIcon(false);
     }
   });
 
-  document.addEventListener("fullscreenchange", () =>
-    updateIcon(!!document.fullscreenElement)
-  );
+  document.addEventListener("fullscreenchange", function () {
+    updateIcon(!!document.fullscreenElement);
+  });
 });

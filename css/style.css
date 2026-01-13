@@ -171,23 +171,40 @@ main {
   text-overflow: ellipsis;
 }
 
+
 /* =========================================================
-   HEADER
+   HEADER — PADRÃO GLOBAL 
 ========================================================= */
 .header-container {
-  width: 100%;
+  width: 72rem;                /* largura padrão controlada */
+  max-width: calc(100% - 4rem);
+
   height: var(--header-height);
-  margin: 2.4rem 0 0;
+
+  margin-top: 2.4rem;
+  margin-left: 2rem;           /* 🔑 PADRÃO DEFINITIVO */
+
   display: flex;
   align-items: center;
-  background-color: var(--color-primary);
+
+  padding-left: 1.6rem;
+
+  background: linear-gradient(
+    to right,
+    #8045dd 0%,
+    #8045dd 75%,
+    rgba(128, 69, 221, 0.85) 85%,
+    rgba(128, 69, 221, 0.4) 93%,
+    rgba(128, 69, 221, 0) 100%
+  );
+
   box-shadow: var(--shadow-sm);
   border-radius: 1.2rem 0 0 1.2rem;
-  padding-left: 1.6rem;
+
   position: relative;
   z-index: 10;
-  margin-left: 0;
 }
+
 
 .header-row {
   width: 100%;
@@ -409,7 +426,7 @@ main {
 
 #menuModal .custom-popup-content {
   width: 100%;
-  max-width: 992px; /* base mobile / tablet */
+  max-width: 992px;
   margin: 0 auto;
 
   position: relative;
@@ -582,6 +599,25 @@ main {
 ========================================================= */
 
 @media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
+  .app-wrapper .header-container {
+    margin-top: 1rem;
+    margin-left: 2rem;
+    height: 4.2rem;
+  }
+  .header-row {
+    gap: 1rem;
+  }
+
+  .btn-menu img {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
   .category-grid {
     display: flex;
     flex-wrap: wrap;
@@ -589,7 +625,7 @@ main {
     gap: 1.6rem;
   }
   .category-grid-item {
-    max-width: 14rem;
+    max-width: 12rem;
   }
   .category-title {
     font-size: 1.3rem;   
@@ -622,7 +658,6 @@ main {
 ========================================================= */
 @media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
 
-  /* herda tudo do iPhone landscape automaticamente */
 
   .category-grid {
     display: flex;
@@ -631,7 +666,8 @@ main {
     gap: 1.6rem;
   }
   .category-grid-item {
-    max-width: 14rem;
+    max-width: 15.5rem;
+    margin-top:2rem ;
   }
   .category-title {
     font-size: 1.3rem;   
@@ -651,15 +687,41 @@ main {
 
 }
 /* ================================
-      Tablet Landscape 
+      IPAD GRIND Landscape 
 ================================ */
 @media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+    /* libera subida */
+  .app-wrapper {
+    overflow: visible;
+  }
+
+  header.header-container {
+    position: absolute;
+    top: 0;
+    left: 2rem;
+
+    width: 55%;
+    margin: 0;
+    height: 5.6rem;
+    padding-left: 1.8rem;
+    z-index: 50;
+    
+
+    /* ajuste moderado (menos que A51) */
+    transform: translateY(-17.2rem);
+  }
+
+  .main-title {
+    font-size: 2.6rem;
+    line-height: 1;
+  }
+  
   .category-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2.4rem;
-    margin-top: 8rem;
+    margin-top: -5rem;
   }
   .category-grid-item {
     max-width: 22rem;
@@ -682,7 +744,7 @@ main {
 
 @media (min-width: 1200px) and (max-width: 1439.98px) {
   .header-container {
-    width: 70%;
+    
     height: 8rem;
    
   }
@@ -712,18 +774,43 @@ main {
 ========================================================= */
 
 @media (min-width: 1440px) and (max-width: 1799.98px) {
-  .header-container {
-  width: 100%;
-  max-width: 720px; /* ajuste fino depois */
-  height: 8.5rem;
+header.header-container {
+    position: relative;
+
+    width: 60%;              /* cresce levemente */
+    max-width: 82rem;        /* novo limite visual */
+
+    height: 8.8rem;
     
+    margin-left: calc(-1 * var(--bs-gutter-x, 1.6rem));
+    margin-top: 2rem;
+    margin-bottom: 0;
+
+    padding-left: 3.2rem;
+
+    border-radius: 1.8rem 0 0 1.8rem;
   }
+
+  .header-row {
+    gap: 2rem;
+  }
+
+  .btn-menu img {
+    width: 5.2rem;
+    height: 5.2rem;
+  }
+
   .main-title {
-    font-size: 4.6rem;
+    font-size: 4.8rem;
+    line-height: 1;
   }
+
   .category-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
+   
+   
+    
   }
   .gallery-row-second {
     grid-column: 1 / -1;
@@ -731,7 +818,7 @@ main {
     grid-template-columns: repeat(3, max-content);
     justify-content: center;
     gap: 3rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
   #galleryModal .gallery-stage {
     max-width: 1440px;
@@ -751,7 +838,7 @@ main {
     max-width: 1800px;
   }
   .header-container {
-    width: 60%;
+  
     height: 10rem;
    
   }
@@ -937,7 +1024,7 @@ main {
 }
 
 /* =========================================================
-   MOBILE LARGE LANDSCAPE (Galaxy A51 / similares)
+   MOBILE LARGE LANDSCAPE (Galaxy A51 / similares) MODAL CREDITOS
 ========================================================= */
 @media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
     
@@ -1069,7 +1156,7 @@ main {
 }
 
 /* =========================================================
-              MODAL CRÉDITOS — iPAD LANDSCAPE  
+              MODAL CRÉDITOS — IPAD  LANDSCAPE  
 ========================================================= */
 @media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
 
@@ -1206,7 +1293,7 @@ main {
   }
 }
 /* =========================================================
-   MODAL CRÉDITOS — iPAD PORTRAIT
+   MODAL CRÉDITOS — IPAD  PORTRAIT
 ========================================================= */
 
 @media (min-width: 768px) and (orientation: portrait) {
@@ -2059,10 +2146,10 @@ main {
 @media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
 
   /* ===============================
-     HEADER — TABLET PORTRAIT
+     HEADER — IPAD PORTRAIT
   =============================== */
   .header-container {
-    width: 60rem;         
+         
     height: 7rem;
   
   }
@@ -2072,7 +2159,7 @@ main {
   }
 
   /* ===============================
-     GRID — TABLET PORTRAIT
+     GRID — IPAD PORTRAIT
   =============================== */
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2105,33 +2192,55 @@ main {
 }
 
   /* ===============================
-     GRIND — TABLET LANDSCAPE
+     GRIND — IPAD LANDSCAPE
   =============================== */
 /* ===================================
         GRID — DESKTOP 1200px
 =================================== */
 @media (min-width: 1200px) and (max-width: 1439.98px) {
 
- 
+    header.header-container {
+    position: relative;
+
+    width: 68%;
+    max-width: 72rem;
+    height: 8rem;
+
+    /* 🔑 COLA NA ESQUERDA REAL */
+    margin-left: calc(-1 * var(--bs-gutter-x, 1.6rem));
+    margin-top: 3.2rem;
+    margin-bottom: 2.4rem;
+
+    padding-left: 2.4rem;
+
+    border-radius: 1.6rem 0 0 1.6rem;
+  }
+   .main-title {
+    font-size: 4.4rem;
+    line-height: 1;
+  }
+
+  .header-row {
+    gap: 1.6rem;
+  }
+
+  .btn-menu img {
+    width: 4.4rem;
+    height: 4.4rem;
+  }
+
+
   .category-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3.2rem;
     padding-top:5rem;
     max-width: 120rem;
-    margin: 4rem auto;
+    margin: 2rem auto;
     justify-items: center;
 
   }
-  .main-title {
-    font-size: 4.4rem;
-  }
 
-  .header-container{
-     width: 72rem;          /* controle visual real */
-    max-width: 100%;       /* segurança */
-    height: 8rem;
-  }
   .category-grid-item {
     width: 100%;
     max-width: 26rem; 
@@ -2187,13 +2296,12 @@ main {
 
   .header-container {
     position: relative;
-     width: 100%;
-     max-width: 720px;
+    
     height: 8.5rem;
-   margin-top: 0;          /* já corrigido */
-    margin-left: 6rem; 
+   
+   
   align-self: flex-start;
-    margin-top: 0;
+    
     border-radius: 1.2rem 0 0 1.2rem;
   }
 
@@ -2249,7 +2357,7 @@ GRID + HEADER — DESKTOP 1800+
   =============================== */
   .header-container {
     position: relative;  
-   width: 100%;
+ 
     height: 10rem;
   
   align-self: flex-start;
@@ -2309,7 +2417,7 @@ GRID + HEADER — DESKTOP 1800+
  
   .header-container {
     position: relative;
-    width: 72rem;
+    
     height: 8.5rem;
     
     align-self: flex-start;
@@ -2402,7 +2510,8 @@ GRID + HEADER — DESKTOP 1800+
   
   #galleryModal .card-title-wrapper {
      top: 209px;
-    left: 57px;
+    left: 59px;
+    
   }  
   #galleryModal .card-title-wrapper.long-title {     
       left: 59px;
@@ -2420,99 +2529,139 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .card-title {
     font-size: 15px;
   }
-  
+  /*==========================================
+        titulos galeria iphone portrait
+  ============================================*/
+  #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 20.8rem;
+    left: 25.6%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+    top: 20.8rem;
+    left: 36.9%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 1.3rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+
+  #galleryModal.theme-satelites .card-title-wrapper {
+   top: 20.8rem;
+    left: 34.7%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 1.3rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+
+  #galleryModal.theme-corpos .card-title-wrapper {
+    top: 20.8rem;
+    left: 39.7%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 1.3rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+     top: 20.8rem;
+    left: 41.7%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 1.3rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+
+
 
   /* ===== DESCRIÇÃO ===== */
-  #galleryModal .card-description-wrapper {
-
-    max-width: 250px;
-    font-size: 7px;
-    
+    #galleryModal .image-wrapper {
+    position: relative; /* 🔑 referência do card */
   }
   
-  /* LEGENDA CURTA */
-  #galleryModal .card-description-wrapper.short-description {
-    bottom: 207px;
-   
-    
-  }
-
-  /* LEGENDA MÉDIA */
-  #galleryModal .card-description-wrapper.long-description {
-    bottom: 203px;
-   
-  }
-
-  /* LEGENDA LONGA */
-  #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 200px;
  
+
+  /* ===== DESCRIÇÃO (BASE) ===== */
+  #galleryModal .card-description-wrapper {
+    max-width: 270px;
+    font-size: 0.65rem;
+    text-align: center;
+    border: 1px solid red;
+    bottom: 21.8rem;
   }
 
+  /* curtas */
+  #galleryModal .card-description-wrapper.short-description {
+    bottom: 50px; 
+    border: 1px solid yellow;
+  }
+
+  /* médias */
+  #galleryModal .card-description-wrapper.long-description {
+    bottom: 47px;   
+    border: 1px solid green;
+  }
+
+  /* longas */
+  #galleryModal .card-description-wrapper.extra-long-description {
+    bottom: 37px; 
+    border: 1px solid purple;  
+  }
 
 /* ===============================
        AJUSTES ESPECIFICOS
 =============================== */
 
+#galleryModal.img_g1f2 .card-description-wrapper,
 #galleryModal.img_g1f3 .card-description-wrapper,
 #galleryModal.img_g1f4 .card-description-wrapper,
-#galleryModal.img_g2f1 .card-description-wrapper,
+#galleryModal.img_g1f6 .card-description-wrapper,
+#galleryModal.img_g2f2 .card-description-wrapper,
+#galleryModal.img_g2f3 .card-description-wrapper,
+#galleryModal.img_g2f5 .card-description-wrapper,
 #galleryModal.img_g3f2 .card-description-wrapper,
-#galleryModal.img_g4f1 .card-description-wrapper,
-#galleryModal.img_g4f7 .card-description-wrapper,
 #galleryModal.img_g4f9 .card-description-wrapper,
-#galleryModal.img_g5f6 .card-description-wrapper,
-#galleryModal.img_g7f1 .card-description-wrapper {
-  bottom: 215px;
-}
+#galleryModal.img_g4f12 .card-description-wrapper,
+#galleryModal.img_g7f1 .card-description-wrapper,
+#galleryModal.img_g7f4 .card-description-wrapper,
+#galleryModal.img_g7f5 .card-description-wrapper{bottom: 21.5rem; max-width: 265px;}
 
-#galleryModal.img_g4f2 .card-description-wrapper,
-#galleryModal.img_g5f1 .card-description-wrapper,
-#galleryModal.img_g5f2 .card-description-wrapper {
-  bottom: 217px;
-}
-
-#galleryModal.img_g2f2 .card-description-wrapper {
-  bottom: 214px;
-}
-
-#galleryModal.img_g2f3 .card-description-wrapper {
-  bottom: 207px;
-}
 #galleryModal.img_g2f4 .card-description-wrapper,
 #galleryModal.img_g3f1 .card-description-wrapper,
-#galleryModal.img_g4f4 .card-description-wrapper {
-  bottom: 225px;
-}
+#galleryModal.img_g4f1 .card-description-wrapper,
+#galleryModal.img_g4f4 .card-description-wrapper,
+#galleryModal.img_g4f11 .card-description-wrapper{ bottom: 22.5rem; max-width: 265px;}
 
-#galleryModal.img_g1f5 .card-description-wrapper {
-  bottom: 228px;
-}
 #galleryModal.img_g4f5 .card-description-wrapper,
-#galleryModal.img_g4f6 .card-description-wrapper {
-  bottom: 230px;
-}
-#galleryModal.img_g5f3 .card-description-wrapper,
-#galleryModal.img_g6f3 .card-description-wrapper {
-  bottom: 205px;
-  text-align: left;
-}
+#galleryModal.img_g4f6 .card-description-wrapper{ bottom: 23.5rem;  max-width: 265px;}
+#galleryModal.img_g4f6 .card-description-wrapper{ bottom: 23.5rem;  max-width: 265px;}
+#galleryModal.img_g7f2 .card-description-wrapper{ bottom: 21.3rem;  max-width: 265px;}
+#galleryModal.img_g7f3 .card-description-wrapper{ bottom: 21.3rem;  max-width: 265px;}
+#galleryModal.img_g7f4 .card-description-wrapper{ bottom: 21.5rem;  max-width: 265px;}
 
-#galleryModal.img_g5f3 .card-description-wrapper {
-  max-width: 260px;
-}
 
-#galleryModal.img_g5f3 .card-description-wrapper,
-#galleryModal.img_g6f3 .card-description-wrapper {
-  bottom: 205px;
-  text-align: left;
-}
-
-#galleryModal.img_g7f2 .card-description-wrapper,
-#galleryModal.img_g7f3 .card-description-wrapper,
-#galleryModal.img_g7f5 .card-description-wrapper {
-  bottom: 212px;
-}
 /* ===================================================
                  LABEL VERTICAL 
 =================================================== */
@@ -2522,14 +2671,16 @@ GRID + HEADER — DESKTOP 1800+
   right: 60px;
   font-size: 6px;
   color: var(--color-primary);
+  max-width: 250px;
 }
 
 #galleryModal .vertical-label.long-credit {
-  max-width: 200px;
+  max-width: 300px;
+  
 }
 
 #galleryModal .vertical-label.extra-long-credit {
-  max-width: 230px;
+  max-width: 330px;
   font-size: 5.5px;
 }
 }
@@ -2544,8 +2695,8 @@ GRID + HEADER — DESKTOP 1800+
   }
   /* ===== STAGE ===== */
   #galleryModal .gallery-stage {
-    width: 667px;          
-    height: 375px;         
+    width: 667px;
+    height: 375px;       
     max-width: 667px;
     max-height: 375px;
   }
@@ -2586,6 +2737,85 @@ GRID + HEADER — DESKTOP 1800+
     height: 30px;
   }
 
+  /*=============================================
+      Titulos galeria iphone landscape
+  =============================================*/
+  #galleryModal.theme-galaxias .card-title-wrapper {
+    top: 4rem;
+    left: 33.4%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  #galleryModal.theme-galaxias #galleryTitle {
+    font-size: 1.7rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }  #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 4rem;
+    left: 33.5%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  #galleryModal.theme-estrelas #galleryTitle {
+    font-size: 1.7rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+   top: 4rem;
+    left: 41.2%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 1.5rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+
+  #galleryModal.theme-satelites .card-title-wrapper {
+   top: 4rem;
+    left: 39.7%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 1.5rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+
+  #galleryModal.theme-corpos .card-title-wrapper {
+   top: 4rem;
+    left: 42.8%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 1.5rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+    top: 4rem;
+    left: 44.5%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 1.5rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
   /* ===== TÍTULO ===== */
   #galleryModal .card-title-wrapper {
     top: 40px;
@@ -2611,62 +2841,37 @@ GRID + HEADER — DESKTOP 1800+
 
   /* ===== DESCRIÇÃO (BASE) ===== */
   #galleryModal .card-description-wrapper {
-    max-width: 300px;
-    font-size: 8px;
+    max-width: 320px;
+    font-size: 8.5px;
     text-align: center;
+    border: 1PX solid red;
+    bottom: 45px; 
+    
   }
 
-  /* curtas */
-  #galleryModal .card-description-wrapper.short-description {
-    bottom: 50px; 
-  }
 
-  /* médias */
-  #galleryModal .card-description-wrapper.long-description {
-    bottom: 47px;   
-  }
-
-  /* longas */
-  #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 37px;   
-  }
 /* ================================================
       Ajustes especificos iphone landscape
 ================================================ */
+#galleryModal.img_g1f1 .card-description-wrapper,
+#galleryModal.img_g1f2 .card-description-wrapper,
+#galleryModal.img_g4f10 .card-description-wrapper{ bottom: 37px;}
 #galleryModal.img_g1f5 .card-description-wrapper,
+#galleryModal.img_g4f2 .card-description-wrapper,
+#galleryModal.img_g5f1 .card-description-wrapper { bottom: 50px;}
 #galleryModal.img_g2f4 .card-description-wrapper,
-#galleryModal.img_g4f4 .card-description-wrapper,
-#galleryModal.img_g4f5 .card-description-wrapper{
-  bottom: 60px;
-}
-#galleryModal.img_g4f3 .card-description-wrapper,
-#galleryModal.img_g5f4 .card-description-wrapper,
-#galleryModal.img_g7f6 .card-description-wrapper{
-  bottom: 45px;
-}
+#galleryModal.img_g4f4 .card-description-wrapper{ bottom: 57px; max-width: 315px;}
+#galleryModal.img_g3f1 .card-description-wrapper { bottom: 55px;}
+#galleryModal.img_g4f3 .card-description-wrapper { bottom: 42px;}
 #galleryModal.img_g4f5 .card-description-wrapper,
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom: 68px;
-}
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom: 68px;
-}
-#galleryModal.img_g4f10 .card-description-wrapper{
-  bottom: 40px;
-}
-#galleryModal.img_g4f12 .card-description-wrapper,
-#galleryModal.img_g6f3 .card-description-wrapper,
-#galleryModal.img_g7f4 .card-description-wrapper{
-  bottom: 35px;
-}
-#galleryModal.img_g5f3 .card-description-wrapper{
-  bottom: 38px;
-  text-align: left;
-}
-#galleryModal.img_g7f6 .card-description-wrapper{
-  bottom: 45px;
+#galleryModal.img_g4f6 .card-description-wrapper{bottom: 69px;}
+#galleryModal.img_g4f12 .card-description-wrapper{bottom: 32px;}
+#galleryModal.img_g5f1 .card-description-wrapper{bottom: 50px;}
+#galleryModal.img_g5f3 .card-description-wrapper{bottom: 48px; max-width: 324px;}
+#galleryModal.img_g5f4 .card-description-wrapper{bottom: 40px; max-width: 324px;}
+#galleryModal.img_g7f2 .card-description-wrapper{bottom: 40px; max-width: 324px;} 
+#galleryModal.img_g7f6 .card-description-wrapper{max-width: 310px;}
 
-}
 /* ================================================
                 LABEL VERTICAL 
 ================================================ */
@@ -2787,37 +2992,20 @@ GRID + HEADER — DESKTOP 1800+
 #galleryModal.img_g1f5 .card-description-wrapper,
 #galleryModal.img_g2f4 .card-description-wrapper,
 #galleryModal.img_g4f4 .card-description-wrapper,
-#galleryModal.img_g4f5 .card-description-wrapper{
-  bottom: 60px;
-}
+#galleryModal.img_g4f5 .card-description-wrapper{ bottom: 60px;}
 #galleryModal.img_g4f3 .card-description-wrapper,
 #galleryModal.img_g5f4 .card-description-wrapper,
-#galleryModal.img_g7f6 .card-description-wrapper{
-  bottom: 45px;
-}
+#galleryModal.img_g7f6 .card-description-wrapper{ bottom: 45px;}
 #galleryModal.img_g4f5 .card-description-wrapper,
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom: 68px;
-}
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom: 68px;
-}
-#galleryModal.img_g4f10 .card-description-wrapper{
-  bottom: 40px;
+#galleryModal.img_g4f6 .card-description-wrapper{ bottom: 68px;}
+#galleryModal.img_g4f6 .card-description-wrapper{ bottom: 68px;}
+#galleryModal.img_g4f10 .card-description-wrapper{ bottom: 40px;
 }
 #galleryModal.img_g4f12 .card-description-wrapper,
 #galleryModal.img_g6f3 .card-description-wrapper,
-#galleryModal.img_g7f4 .card-description-wrapper{
-  bottom: 35px;
-}
-#galleryModal.img_g5f3 .card-description-wrapper{
-  bottom: 38px;
-  text-align: left;
-}
-#galleryModal.img_g7f6 .card-description-wrapper{
-  bottom: 45px;
-
-}
+#galleryModal.img_g7f4 .card-description-wrapper{ bottom: 35px;}
+#galleryModal.img_g5f3 .card-description-wrapper{ bottom: 38px; text-align: left;}
+#galleryModal.img_g7f6 .card-description-wrapper{ bottom: 45px;}
 /* ================================================
                 LABEL VERTICAL 
 ================================================ */
@@ -2843,7 +3031,142 @@ GRID + HEADER — DESKTOP 1800+
 }
 
 /* =========================================================
-              IPAD PORTRAIT — MODAL GALERIA
+              A51 — MODAL GALERIA LANDSCAPE
+========================================================= */
+
+/*==========================================
+        titulos galeria iphone portrait
+  ============================================*/
+  @media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
+  /* =============================================
+  ajustes titulos galeria A51 landscape
+  =============================================*/
+  
+  
+    #galleryModal.theme-galaxias .card-title-wrapper {
+    top: 3.9rem;
+    left: 33.6%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-galaxias #galleryTitle {
+    font-size: 1.7rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+ #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 3.9rem;
+    left: 33.6%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-estrelas #galleryTitle {
+    font-size: 1.7rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+    top: 3.9rem;
+    left: 41.3%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 1.6rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+
+  #galleryModal.theme-planetas .card-title-wrapper {
+   top: 3.9rem;
+    left: 33.6%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-planetas #galleryTitle {
+    font-size: 1.7rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+  #galleryModal.theme-satelites .card-title-wrapper {
+   top: 3.9rem;
+    left: 39.5%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 1.6rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+
+  #galleryModal.theme-corpos .card-title-wrapper {
+    top: 3.9rem;
+    left: 43%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 1.6rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+     top: 3.9rem;
+    left: 44.2%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 1.6rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+/* ================================================
+      descrições A51 landscape
+================================================ */
+    #galleryModal .card-description-wrapper {
+    max-width: 310px;
+    font-size: 9px;
+    text-align: center;
+     bottom: 48px;
+     line-height: 1.2;
+  }
+
+/* ================================================
+      Ajustes especificos a51 landscape
+================================================ */
+#galleryModal.img_g1f1 .card-description-wrapper,
+#galleryModal.img_g1f2 .card-description-wrapper{ bottom: 37px;}
+#galleryModal.img_g1f6 .card-description-wrapper{ bottom: 45px;  max-width: 320px;}
+#galleryModal.img_g2f3 .card-description-wrapper{ bottom: 35px;}
+#galleryModal.img_g2f4 .card-description-wrapper{line-height: 1.2; bottom: 63px;}
+#galleryModal.img_g2f5 .card-description-wrapper{ line-height: 1.2; bottom: 50px;}
+#galleryModal.img_g3f2 .card-description-wrapper{ line-height: 1.2; bottom: 50px;}
+#galleryModal.img_g4f2 .card-description-wrapper{ line-height: 1.2; bottom: 53px; max-width: 320px;}
+#galleryModal.img_g4f5 .card-description-wrapper{ line-height: 1.2; bottom: 72px; max-width: 320px;}
+#galleryModal.img_g4f6 .card-description-wrapper{ line-height: 1.2; bottom: 72px; max-width: 320px;}
+#galleryModal.img_g4f12 .card-description-wrapper{ bottom: 40px; max-width: 320px;}
+#galleryModal.img_g5f1 .card-description-wrapper{ bottom: 53px; max-width: 320px;}
+#galleryModal.img_g5f3 .card-description-wrapper{ bottom: 41px; max-width: 320px;}
+#galleryModal.img_g6f2 .card-description-wrapper{ bottom: 53px; max-width: 320px;}
+#galleryModal.img_g6f3 .card-description-wrapper{ bottom: 40px; max-width: 320px;}
+#galleryModal.img_g7f4 .card-description-wrapper{ bottom: 42px; max-width: 320px;}
+
+
+  }
+/* =========================================================
+              IPAD  PORTRAIT — MODAL GALERIA
 ========================================================= */
 @media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
 
@@ -2875,6 +3198,10 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .nav-arrow {
     top: 420px;
     transform: none;
+  } 
+   #galleryModal .nav-arrow img {
+   width: 55px;
+    height: 55px;
   }
 
   #galleryModal .nav-arrow.left {
@@ -2916,59 +3243,149 @@ GRID + HEADER — DESKTOP 1800+
     font-size: 25px;
   }
 
-  /* ===== DESCRIÇÃO — BASE ===== */
-  #galleryModal .card-description-wrapper {
-    max-width: 520px;
-    font-size: 1.3rem;
+ /* =============================================
+  ajustes titulos galeria A51 landscape
+  =============================================*/
+  
+  
+    #galleryModal.theme-galaxias .card-title-wrapper {
+    top: 20.9rem;
+    left: 26.2%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-galaxias #galleryTitle {
+    font-size: 2.7rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+ #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 20.9rem;
+    left: 26.2%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-estrelas #galleryTitle {
+    font-size: 2.7rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+    top: 20.9rem;
+    left: 37.2%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 2.6rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+
+  #galleryModal.theme-planetas .card-title-wrapper {
+   top: 20.9rem;
+    left: 26.2%;
+    transform: translateX(-50%);
     text-align: center;
   }
 
-  /* curta */
-  #galleryModal .card-description-wrapper.short-description {
-    bottom: 230px;
+  #galleryModal.theme-planetas #galleryTitle {
+    font-size: 2.7rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+  #galleryModal.theme-satelites .card-title-wrapper {
+    top: 20.9rem;
+    left: 35.2%;
+    transform: translateX(-50%);
+    text-align: center;
   }
 
-  /* média */
-  #galleryModal .card-description-wrapper.long-description {
-    bottom: 230px;
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 2.6rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
   }
 
-  /* longa */
-  #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 228px;
+  #galleryModal.theme-corpos .card-title-wrapper {
+    top: 20.9rem;
+    left: 39.8%;
+    transform: translateX(-50%);
+    text-align: center;
   }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 2.6rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+    top: 20.9rem;
+    left: 42%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 2.6rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
 /* ================================================
-    Ajustes especificos tablet portrait landscape
+      descrições A51 landscape
 ================================================ */
-#galleryModal.img_g1f1 .card-description-wrapper{
-  bottom: 215px;
+    #galleryModal .card-description-wrapper {
+    max-width: 510px;
+    font-size: 15px;
+    text-align: center;
+     bottom: 215px;
+     line-height: 1.2;
+  }
 
-}
-#galleryModal.img_g1f5 .card-description-wrapper{
-  bottom: 250px;
+/* ================================================
+    Ajustes especificos IPAD portrait 
+================================================ */
+#galleryModal.img_g1f3 .card-description-wrapper,
+#galleryModal.img_g1f4 .card-description-wrapper{bottom: 225px;}
 
-}
-#galleryModal.img_g4f3 .card-description-wrapper{
-  bottom: 225px;
+#galleryModal.img_g1f5 .card-description-wrapper{bottom: 240px;}
+#galleryModal.img_g2f1 .card-description-wrapper{bottom: 230px;}
+#galleryModal.img_g2f4 .card-description-wrapper{bottom: 250px;}
+#galleryModal.img_g2f5 .card-description-wrapper{bottom: 230px;}
+#galleryModal.img_g3f1 .card-description-wrapper{bottom: 240px;}
+#galleryModal.img_g3f2 .card-description-wrapper{bottom: 230px;}
+#galleryModal.img_g4f1 .card-description-wrapper{bottom: 230px; max-width: 530px;}
+#galleryModal.img_g4f2 .card-description-wrapper{bottom: 235px; max-width: 530px;}
+#galleryModal.img_g4f3 .card-description-wrapper{bottom: 225px; max-width: 530px;}
+#galleryModal.img_g4f4 .card-description-wrapper{bottom: 245px; max-width: 530px;}
+#galleryModal.img_g4f5 .card-description-wrapper{bottom: 265px; max-width: 530px;}
+#galleryModal.img_g4f6 .card-description-wrapper{bottom: 265px; max-width: 530px;}
 
-}
-#galleryModal.img_g4f4 .card-description-wrapper{
-  bottom: 245px;
+#galleryModal.img_g4f7 .card-description-wrapper,
+#galleryModal.img_g4f9 .card-description-wrapper{bottom: 225px; max-width: 530px;} 
 
-}#galleryModal.img_g4f5 .card-description-wrapper,
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom: 260px;
+#galleryModal.img_g4f11 .card-description-wrapper{bottom: 225px; max-width: 530px;} 
+#galleryModal.img_g5f1 .card-description-wrapper{bottom: 235px; max-width: 530px;} 
+#galleryModal.img_g5f2 .card-description-wrapper{bottom: 230px; max-width: 530px;}
+#galleryModal.img_g5f3 .card-description-wrapper{bottom: 220px; max-width: 530px; text-align: left;}
 
-}
-#galleryModal.img_g4f12 .card-description-wrapper{
-  bottom: 208px;
-
-}
 #galleryModal.img_g5f4 .card-description-wrapper,
-#galleryModal.img_g7f2 .card-description-wrapper{
-  bottom: 220px;
+#galleryModal.img_g5f5 .card-description-wrapper,
+#galleryModal.img_g5f6 .card-description-wrapper,
+#galleryModal.img_g6f1 .card-description-wrapper,
+#galleryModal.img_g7f1 .card-description-wrapper,
+#galleryModal.img_g7f2 .card-description-wrapper,
+#galleryModal.img_g7f3 .card-description-wrapper,
+#galleryModal.img_g7f5 .card-description-wrapper,
+#galleryModal.img_g7f6 .card-description-wrapper{bottom: 230px; max-width: 530px;}
+#galleryModal.img_g7f6 .card-description-wrapper{bottom: 230px; max-width: 530px;}
 
-}
 
 /* ================================================
             LABEL VERTICAL
@@ -2977,24 +3394,31 @@ GRID + HEADER — DESKTOP 1800+
   #galleryModal .vertical-label {
     bottom: 207px;
     right: 120px;   
-    font-size: 10px;
+    font-size: 11px;
     color: var(--color-primary);
+    position:absolute;
+    transform: none;   /* mata qualquer herança de landscape */
+    width: 500px;
+    border: 1px solid red;
+     max-width: none;      /* REMOVE A TRAVA */
+    width: 60%;           /* agora funciona */
+   
   }
 
   #galleryModal .vertical-label.long-credit {
-    max-width: 360px;
+    max-width: 560px;
   }
 
+
   #galleryModal .vertical-label.extra-long-credit {
-    max-width: 420px;
+    max-width: 520px;
     font-size: 8px;
   }
 }
 /* =========================================================
-   TABLET LANDSCAPE — LAYOUT FECHADO (SEM DRIFT)
-   iPad landscape
+   IPAD GALERIA LANDSCAPE
 ========================================================= */
-@media (min-width: 992px) and (orientation: landscape) {
+@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
 
   #galleryModal #galleryCaption {
     color: var(--color-primary);
@@ -3058,100 +3482,155 @@ GRID + HEADER — DESKTOP 1800+
 
   #galleryModal .card-title {
     font-size: 26px;
+    
   }
 
-  #galleryModal .card-title-wrapper.long-title {
-    left: 250px;
-  }
 
-  #galleryModal .card-title-wrapper.extra-long-title {
-    left: 255px;
-  }
 
-  #galleryModal .card-title-wrapper.long-title .card-title {
-    font-size: 26px;
-  } 
-  #galleryModal .card-title-wrapper.extra-long-title .card-title {
-    font-size: 25px;
-  }
 
-  /* ===== DESCRIÇÃO (BASE) ===== */
-  #galleryModal .card-description-wrapper {
-    max-width: 500px;
-    font-size: 14px;
+ /* =============================================
+  ajustes titulos galeria ipad landscape
+  =============================================*/
+  
+  
+    #galleryModal.theme-galaxias .card-title-wrapper {
+    top: 14rem;
+    left: 32%;
+    transform: translateX(-50%);
     text-align: center;
   }
-  
-  /* curtas */
-  #galleryModal .card-description-wrapper.short-description {
-    bottom: 164px;
+      #galleryModal.theme-galaxias #galleryTitle {
+    font-size: 2.9rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+ #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 14rem;
+    left: 32%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-estrelas #galleryTitle {
+    font-size: 2.9rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+    top: 14.2rem;
+    left: 40.2%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 2.6rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
   }
 
-  /* médias */
-  #galleryModal .card-description-wrapper.long-description {
-    bottom: 138px;
+  #galleryModal.theme-planetas .card-title-wrapper {
+   top: 14rem;
+    left: 32%;
+    transform: translateX(-50%);
+    text-align: center;
   }
 
-  /* longas */
-  #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 135px;
+  #galleryModal.theme-planetas #galleryTitle {
+    font-size: 2.9rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+  #galleryModal.theme-satelites .card-title-wrapper {
+    top: 14rem;
+    left: 38.5%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 2.7rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+
+  #galleryModal.theme-corpos .card-title-wrapper {
+    top: 14rem;
+    left: 42.2%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 2.7rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+    top: 14rem;
+    left: 43.8%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 2.7rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+/* ================================================
+      descrições IPAD landscape
+================================================ */
+    #galleryModal .card-description-wrapper {
+    max-width: 510px;
+    font-size: 15px;
+    text-align: center;
+     bottom: 151px;
+     line-height: 1.2;
   }
 /* =================================================
-      AJUSTES ESPECIFICOS TABLET LANDSCAPE
+      AJUSTES ESPECIFICOS IPAD  LANDSCAPE
 ================================================= */
 
-#galleryModal.img_g1f1 .card-description-wrapper,
-#galleryModal.img_g1f2 .card-description-wrapper,
-#galleryModal.img_g7f4 .card-description-wrapper,
-#galleryModal.img_g7f6 .card-description-wrapper{
-  bottom: 145px;
-
-}
-#galleryModal.img_g1f5 .card-description-wrapper{
-  bottom: 185px;
-}
-
-#galleryModal.img_g2f4 .card-description-wrapper{
-  bottom: 170px;
-}
+#galleryModal.img_g1f3 .card-description-wrapper,
+#galleryModal.img_g1f4 .card-description-wrapper,
+#galleryModal.img_g2f1 .card-description-wrapper,
 #galleryModal.img_g2f2 .card-description-wrapper,
 #galleryModal.img_g2f5 .card-description-wrapper,
-#galleryModal.img_g3f2 .card-description-wrapper,
-#galleryModal.img_g4f1 .card-description-wrapper,
-#galleryModal.img_g4f9 .card-description-wrapper,
-#galleryModal.img_g4f11 .card-description-wrapper{
-  bottom: 155px;
-}
 #galleryModal.img_g4f3 .card-description-wrapper,
-#galleryModal.img_g5f4 .card-description-wrapper,
+#galleryModal.img_g6f1 .card-description-wrapper{bottom: 161px;}
+#galleryModal.img_g1f5 .card-description-wrapper{bottom: 171px;}
+
+#galleryModal.img_g2f4 .card-description-wrapper{bottom: 181px;}
+
+
+#galleryModal.img_g3f1 .card-description-wrapper{bottom: 171px;}
+
+#galleryModal.img_g3f2 .card-description-wrapper,
+#galleryModal.img_g4f7 .card-description-wrapper,
+#galleryModal.img_g4f9 .card-description-wrapper,
+#galleryModal.img_g4f11 .card-description-wrapper,
+#galleryModal.img_g5f1 .card-description-wrapper,
+#galleryModal.img_g5f2 .card-description-wrapper,
+#galleryModal.img_g5f5 .card-description-wrapper,
 #galleryModal.img_g5f6 .card-description-wrapper,
-#galleryModal.img_g6f1 .card-description-wrapper,
 #galleryModal.img_g7f2 .card-description-wrapper,
-#galleryModal.img_g7f3 .card-description-wrapper{
-  bottom: 150px;
-}
-#galleryModal.img_g4f4 .card-description-wrapper{
-  bottom: 175px;
-}
+#galleryModal.img_g7f3 .card-description-wrapper,
+#galleryModal.img_g7f5 .card-description-wrapper,
+#galleryModal.img_g4f2 .card-description-wrapper,
+#galleryModal.img_g7f6 .card-description-wrapper{bottom: 165px;}
+#galleryModal.img_g4f1 .card-description-wrapper{bottom: 161px;}
+
+#galleryModal.img_g4f4 .card-description-wrapper{bottom: 180px;}
 #galleryModal.img_g4f5 .card-description-wrapper,
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom: 195px;
-}
-#galleryModal.img_g4f7 .card-description-wrapper{
-  bottom:160px
-}
-#galleryModal.img_g4f8 .card-description-wrapper,
-#galleryModal.img_g4f10 .card-description-wrapper,
-#galleryModal.img_g7f2 .card-description-wrapper{
-  bottom:140px
-}
-#galleryModal.img_g5f3 .card-description-wrapper{
-  bottom:140px;
-  text-align: left;
-}
-#galleryModal.img_g7f2 .card-description-wrapper{
-  bottom:150px;
-}
+#galleryModal.img_g4f6 .card-description-wrapper{bottom: 195px;}
+
+#galleryModal.img_g5f3 .card-description-wrapper{bottom: 150px; max-width: 530px;text-align: left;}
+
 /* =================================================
               LABEL VERTICAL 
 ================================================= */
@@ -3176,7 +3655,7 @@ GRID + HEADER — DESKTOP 1800+
 /* =========================================================
    MODAL GALERIA — DESKTOP 1200px
    1200px – 1439.98px
-   Layout fechado (SEM DRIFT)
+  
 ========================================================= */
 @media (min-width: 1200px) and (max-width: 1439.98px) {
 
@@ -3256,125 +3735,158 @@ GRID + HEADER — DESKTOP 1800+
     height: 48px;
   }
 
-  /* =====================================
-                TÍTULO
-  ===================================== */
-  #galleryModal .card-title-wrapper {
-    position: absolute;
-    top: 109px;
-    left: 335px;
-    z-index: 25;
-  }
 
-  #galleryModal .card-title {
-    font-size: 28px;
+ /* =============================================
+  ajustes titulos galeria 1200PX landscape
+  =============================================*/
+  
+  
+    #galleryModal.theme-galaxias .card-title-wrapper {
+    top: 10.7rem;
+    left: 34%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-galaxias #galleryTitle {
+    font-size: 3.1rem;   /* ajuste aqui */
     line-height: 1.1;
-    white-space: nowrap;
+    white-space: nowrap; /* evita quebra feia */
+  }
+ #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 10.7rem;
+    left: 34%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-estrelas #galleryTitle {
+    font-size: 3.1rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+    top: 11rem;
+    left: 41.5%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 2.8rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
   }
 
-  #galleryModal .card-title-wrapper.long-title {
-    left: 332px;
-  }
-#galleryModal .card-title-wrapper.long-title .card-title {
-    font-size: 26px;
-  }  
-  #galleryModal .card-title-wrapper.extra-long-title {
-    left: 332px;
-  }
-  #galleryModal .card-title-wrapper.extra-long-title .card-title {
-    font-size: 26px;
+  #galleryModal.theme-planetas .card-title-wrapper {
+    top: 10.7rem;
+    left: 34.3%;
+    transform: translateX(-50%);
+    text-align: center;
   }
 
+  #galleryModal.theme-planetas #galleryTitle {
+    font-size: 3.1rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+  #galleryModal.theme-satelites .card-title-wrapper {
+    top: 11rem;
+    left: 39.8%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 2.8rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+
+  #galleryModal.theme-corpos .card-title-wrapper {
+    top: 10.7rem;
+    left: 43.2%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 2.8rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+    top: 10.7rem;
+    left: 44.5%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 2.8rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+/* ================================================
+      descrições 1200PX
+================================================ */
+    #galleryModal .card-description-wrapper {
+    max-width: 550px;
+    font-size: 15px;
+    text-align: center;
+     bottom: 120px;
+     line-height: 1.2;
+  }
 
   /* =====================================
      DESCRIÇÃO
   ===================================== */
 
-    #galleryModal .card-description-wrapper {
-    max-width: 500px;
-    font-size: 14.5px;
-    text-align: center;
-  }
-  
-  /* curtas */
-  #galleryModal .card-description-wrapper.short-description {
-    bottom: 130px;
-  }
-
-  /* médias */
-  #galleryModal .card-description-wrapper.long-description {
-    bottom: 105px;
-  }
-
-  /* longas */
-  #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 105px;
-  }
 
   /* =====================================
     AJUSTES ESPECIFICOS 1200px
   ===================================== */
-  #galleryModal.img_g1f1 .card-description-wrapper,
-   #galleryModal.img_g1f2 .card-description-wrapper,
-   #galleryModal.img_g4f8 .card-description-wrapper,
-   #galleryModal.img_g4f10 .card-description-wrapper,
-   #galleryModal.img_g5f1 .card-description-wrapper,
-   #galleryModal.img_g6f2 .card-description-wrapper,
-   #galleryModal.img_g7f4 .card-description-wrapper{
-  bottom:110px;
+  #galleryModal.img_g1f3 .card-description-wrapper,
+  #galleryModal.img_g1f4 .card-description-wrapper,
+  #galleryModal.img_g1f6 .card-description-wrapper,
+  #galleryModal.img_g2f1 .card-description-wrapper,
+  #galleryModal.img_g2f2 .card-description-wrapper{ bottom: 130px;}
+  #galleryModal.img_g1f5 .card-description-wrapper{ bottom: 140px;}
 
-}
-#galleryModal.img_g1f5 .card-description-wrapper{
-  bottom:152px;
+  #galleryModal.img_g2f3 .card-description-wrapper{ bottom: 120px;}
 
-}#galleryModal.img_g2f2 .card-description-wrapper,
-#galleryModal.img_g2f5 .card-description-wrapper,
-#galleryModal.img_g4f1 .card-description-wrapper,
-#galleryModal.img_g4f7 .card-description-wrapper,
-#galleryModal.img_g4f11 .card-description-wrapper,
-#galleryModal.img_g5f6 .card-description-wrapper,
-#galleryModal.img_g6f1 .card-description-wrapper,
-#galleryModal.img_g7f5 .card-description-wrapper,
-#galleryModal.img_g7f6 .card-description-wrapper{
-  bottom:125px;
+  #galleryModal.img_g2f4 .card-description-wrapper{bottom: 150px;} 
+  #galleryModal.img_g2f5 .card-description-wrapper,
+  #galleryModal.img_g3f1 .card-description-wrapper,
+  #galleryModal.img_g4f7 .card-description-wrapper,
+  #galleryModal.img_g4f8 .card-description-wrapper{bottom: 135px;} 
 
-}
-#galleryModal.img_g2f4 .card-description-wrapper{
-  bottom:155px;
-  line-height: 1.2;
-  max-width: 550px;
-
-}
-
-#galleryModal.img_g3f1 .card-description-wrapper{
-  bottom:145px;
-}
-
-#galleryModal.img_g4f3 .card-description-wrapper,
-#galleryModal.img_g4f9 .card-description-wrapper,
-#galleryModal.img_g5f4 .card-description-wrapper,
-#galleryModal.img_g7f2 .card-description-wrapper,
-#galleryModal.img_g7f3 .card-description-wrapper{
-  bottom:120px;
-}#galleryModal.img_g4f4 .card-description-wrapper{
-  bottom:145px;
-}
-#galleryModal.img_g4f5 .card-description-wrapper{
-  bottom:160px;
-}
-#galleryModal.img_g4f6 .card-description-wrapper{
-  bottom:167px;
-}
-#galleryModal.img_g5f1 .card-description-wrapper{
-  bottom:110px;
-}
-#galleryModal.img_g5f3 .card-description-wrapper{
-  bottom:105px;
-  text-align: left;
-}
-#galleryModal.img_g7f5 .card-description-wrapper{
-  bottom:125px;
-}
+  #galleryModal.img_g4f1 .card-description-wrapper,
+  #galleryModal.img_g4f2 .card-description-wrapper,  
+  #galleryModal.img_g4f3 .card-description-wrapper,
+  #galleryModal.img_g4f11 .card-description-wrapper,
+  #galleryModal.img_g5f1 .card-description-wrapper,
+  #galleryModal.img_g5f2 .card-description-wrapper,
+  #galleryModal.img_g5f5 .card-description-wrapper,
+  #galleryModal.img_g5f6 .card-description-wrapper,
+  #galleryModal.img_g6f1 .card-description-wrapper,
+  #galleryModal.img_g6f2 .card-description-wrapper,
+  #galleryModal.img_g6f3 .card-description-wrapper,
+  #galleryModal.img_g7f1 .card-description-wrapper,
+  #galleryModal.img_g7f2 .card-description-wrapper,
+  #galleryModal.img_g7f3 .card-description-wrappe,
+  #galleryModal.img_g7f5 .card-description-wrapper,
+  #galleryModal.img_g7f6 .card-description-wrapper{bottom: 135px;} 
+  #galleryModal.img_g4f4 .card-description-wrapper{bottom: 145px;} 
+  #galleryModal.img_g4f5 .card-description-wrapper,
+  #galleryModal.img_g4f6 .card-description-wrapper{bottom: 165px;}
+  #galleryModal.img_g5f3 .card-description-wrapper{bottom: 120px; max-width: 525px;}
+  #galleryModal.img_g7f6 .card-description-wrapper{bottom: 135px;} 
+  
+  
   /* =====================================
      LABEL VERTICAL
   ===================================== */
@@ -3474,128 +3986,130 @@ GRID + HEADER — DESKTOP 1800+
     height: 56px;
   }
 
-  /* =====================================
-               TÍTULO
-  ===================================== */
-  #galleryModal .card-title-wrapper {
-    position: absolute;
-    top: 132px;
-    left: 402px;
-    z-index: 25;
+ /* =============================================
+  ajustes titulos galeria 1440PX landscape
+  =============================================*/
+  
+  
+    #galleryModal.theme-galaxias .card-title-wrapper {
+    top: 13rem;
+    left: 34%;
+    transform: translateX(-50%);
+    text-align: center;
   }
-
-  #galleryModal .card-title {
-    font-size: 32px;
+      #galleryModal.theme-galaxias #galleryTitle {
+    font-size: 3.6rem;   /* ajuste aqui */
     line-height: 1.1;
-    white-space: nowrap;
+    white-space: nowrap; /* evita quebra feia */
+  }
+ #galleryModal.theme-estrelas .card-title-wrapper {
+    top: 13rem;
+    left: 34%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+      #galleryModal.theme-estrelas #galleryTitle {
+    font-size: 3.6rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
+  }
+  #galleryModal.theme-sistemas .card-title-wrapper {
+    top: 11rem;
+    left: 41.5%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+    #galleryModal.theme-sistemas #galleryTitle {
+    font-size: 2.8rem;   /* ajuste aqui */
+    line-height: 1.1;
+    white-space: nowrap; /* evita quebra feia */
   }
 
-  #galleryModal .card-title-wrapper.long-title {
-    left: 407px;
+  #galleryModal.theme-planetas .card-title-wrapper {
+    top: 13rem;
+    left: 34.3%;
+    transform: translateX(-50%);
+    text-align: center;
   }
 
-  #galleryModal .card-title-wrapper.long-title .card-title {
-    font-size: 30px;
+  #galleryModal.theme-planetas #galleryTitle {
+    font-size: 3.6rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
+  }
+  #galleryModal.theme-satelites .card-title-wrapper {
+    top: 13rem;
+    left: 39.8%;
+    transform: translateX(-50%);
+    text-align: center;
   }
 
-  #galleryModal .card-title-wrapper.extra-long-title {
-    left: 398px;
+  #galleryModal.theme-satelites #galleryTitle {
+    font-size: 3.4rem;        /* tamanho equilibrado */
+    line-height: 1.1;
+    white-space: nowrap;      /* evita quebra feia */
   }
 
-  #galleryModal .card-title-wrapper.extra-long-title .card-title {
-    font-size: 30px;
+  #galleryModal.theme-corpos .card-title-wrapper {
+    top: 13rem;
+    left: 43.2%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-corpos #galleryTitle {
+    font-size: 3.4rem;       /* título mais longo */
+    line-height: 1.15;
+    white-space: nowrap;      /* evita quebras ruins */
+  }
+
+
+  #galleryModal.theme-exploracao .card-title-wrapper {
+    top: 13rem;
+    left: 44.5%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  #galleryModal.theme-exploracao #galleryTitle {
+    font-size: 3.4rem;        /* título mais longo */
+    line-height: 1.15;
+    white-space: normal;      /* permite quebra controlada */
+    max-width: 90%;
+    margin: 0 auto;
   }
 
   /* =====================================
                 DESCRIÇÃO
   ===================================== */
   #galleryModal .card-description-wrapper {
-    max-width: 600px;
+    max-width: 620px;
     font-size: 16px;
     text-align: center;
+    bottom: 150px;
   }
 
-  /* curtas */
-  #galleryModal .card-description-wrapper.short-description {
-    bottom: 155px;
-  }
 
-  /* médias */
-  #galleryModal .card-description-wrapper.long-description {
-    bottom: 160px;
-  }
-
-  /* longas */
-  #galleryModal .card-description-wrapper.extra-long-description {
-    bottom: 128px;
-  }
 
   /* =====================================
      AJUSTES ESPECÍFICOS — 1440px
   ===================================== */
-  #galleryModal.img_g1f1 .card-description-wrapper,
-  #galleryModal.img_g1f2 .card-description-wrapper,  
-  #galleryModal.img_g4f10 .card-description-wrapper, 
-  #galleryModal.img_g7f4 .card-description-wrapper {
-    bottom: 132px;
-  }
-
-  #galleryModal.img_g1f5 .card-description-wrapper {
-    bottom: 182px;
-  }
-
-  #galleryModal.img_g2f2 .card-description-wrapper,
-  #galleryModal.img_g2f5 .card-description-wrapper,
-  #galleryModal.img_g4f1 .card-description-wrapper,
-  #galleryModal.img_g4f7 .card-description-wrapper,
-  #galleryModal.img_g4f11 .card-description-wrapper,
-  #galleryModal.img_g5f6 .card-description-wrapper,
-  #galleryModal.img_g6f1 .card-description-wrapper,
-  #galleryModal.img_g7f5 .card-description-wrapper,
-  #galleryModal.img_g7f6 .card-description-wrapper {
-    bottom: 150px;
-  }
-
-  #galleryModal.img_g2f4 .card-description-wrapper {
-    bottom: 186px;
-    line-height: 1.2;
-    max-width: 660px;
-  }
-
-  #galleryModal.img_g3f1 .card-description-wrapper {
-    bottom: 174px;
-  }
-
-  #galleryModal.img_g4f3 .card-description-wrapper,
-  #galleryModal.img_g4f9 .card-description-wrapper,
-  #galleryModal.img_g5f4 .card-description-wrapper,
-  #galleryModal.img_g7f2 .card-description-wrapper,
-  #galleryModal.img_g7f3 .card-description-wrapper {
-    bottom: 144px;
-  }
-
-  #galleryModal.img_g4f4 .card-description-wrapper {
-    bottom: 174px;
-  }
-
-  #galleryModal.img_g4f5 .card-description-wrapper {
-    bottom: 192px;
-  }
-  #galleryModal.img_g6f3 .card-description-wrapper {
-    bottom: 135px;
-  }
-
-  #galleryModal.img_g4f6 .card-description-wrapper {
-    bottom: 200px;
-  } 
-   #galleryModal.img_g4f12 .card-description-wrapper {
-    bottom: 140px;
-  }
-
-  #galleryModal.img_g5f3 .card-description-wrapper {
-    bottom: 128px;
-    text-align: left;
-  }
+  #galleryModal.img_g1f1 .card-description-wrapper{bottom: 140px;} 
+  #galleryModal.img_g1f2 .card-description-wrapper,
+  #galleryModal.img_g4f10 .card-description-wrapper{bottom: 160px;}
+  #galleryModal.img_g1f3 .card-description-wrapper,
+  #galleryModal.img_g4f8 .card-description-wrapper{bottom: 160px;} 
+  #galleryModal.img_g1f5 .card-description-wrapper,
+  #galleryModal.img_g7f6 .card-description-wrapper{bottom: 170px;}
+  #galleryModal.img_g2f4 .card-description-wrapper,
+  #galleryModal.img_g4f4 .card-description-wrapper{bottom: 180px;}
+  #galleryModal.img_g4f1 .card-description-wrapper{bottom: 180px; max-width: 640px;}
+  #galleryModal.img_g4f4 .card-description-wrapper{bottom: 180px;}
+  #galleryModal.img_g4f5 .card-description-wrapper,
+  #galleryModal.img_g4f6 .card-description-wrapper{bottom: 200px;}
+  #galleryModal.img_g4f11 .card-description-wrapper{bottom: 180px; max-width: 640px;}
+  
 
   /* =====================================
      LABEL VERTICAL
@@ -4114,7 +4628,7 @@ GRID + HEADER — DESKTOP 1800+
                    HEADER CONTAINER
  ========================================================= */
   .header-container {
-    width: 100%;
+ 
     height: 12rem;
 
     padding-left: 3.2rem;
@@ -4263,7 +4777,7 @@ body {
   max-height: 90vh !important;
   overflow: hidden !important;
 }/* =========================================================
-   FIX iOS — PORTRAIT (iPhone + iPad)
+   FIX iOS — PORTRAIT (iPhone + IPAD  )
    LIMPO / SEM CONFLITOS
 ========================================================= */
 @media (orientation: portrait) {
@@ -4297,5 +4811,55 @@ body {
     overflow: hidden;
   }
 
+
+}
+@media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
+
+  /* libera o header para subir */
+  .app-wrapper {
+    overflow: visible;
+  }
+
+  header.header-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    margin: 0;
+    height: 4.2rem;
+    padding-left: 1.2rem;
+    z-index: 50;
+
+    transform: translateY(-5.4rem);
+  }
+
+}
+
+@media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
+
+  /* libera o header para subir */
+  .app-wrapper {
+    overflow: visible;
+  }
+
+  header.header-container {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+
+    width: 60%;          /* um pouco mais largo que no SE */
+    margin: 0;
+    height: 5rem;        /* header mais alto no A51 */
+    padding-left: 1.6rem;
+    z-index: 50;
+
+    /* sobe MENOS que o iPhone SE */
+    transform: translateY(-2.2rem);
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+    line-height: 1;
+  }
 
 }
